@@ -15,28 +15,32 @@ public class MainMenu extends MarioPanel {
     private JButton chatRoom = new JButton("chat room");
     private JButton profile = new JButton("profile");
     private JButton logout = new JButton("logout");
+    private JButton onlineGame = new JButton("play online");
 
     MainMenu(PanelsManagerCard cardPanel) {
 
         this.cardPanel = cardPanel;
         setUI();
-        setUI();
     }
 
     @Override
     public void setUI() {
-        setLayout(null);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        add(Box.createVerticalGlue());
+
         setFocusable(false);
-        setBackground(new Color(112, 107, 107, 124));
+        setBackground(Color.LIGHT_GRAY);
         setButtonsBounds();
         setButtonsListeners();
 
+        add(onlineGame);
         add(startNewGame);
         add(continueLastGames);
         add(shop);
         add(chatRoom);
         add(profile);
         add(logout);
+        add(Box.createVerticalGlue());
         revalidate();
     }
 
@@ -49,13 +53,22 @@ public class MainMenu extends MarioPanel {
 
     private void setButtonsBounds() {
 
+        Dimension dimension = new Dimension(150,40);
+        startNewGame.setPreferredSize(dimension);
+        continueLastGames.setPreferredSize(dimension);
+        shop.setPreferredSize(dimension);
+        chatRoom.setPreferredSize(dimension);
+        profile.setPreferredSize(dimension);
+        logout.setPreferredSize(dimension);
+        onlineGame.setPreferredSize(dimension);
 
-        startNewGame.setBounds(26 * 48/2 -75,300,150,40);
-        continueLastGames.setBounds(26 * 48/2 - 75,300 +50,150,40);
-        shop.setBounds(26 * 48/2 - 75,300 +100,150,40);
-        chatRoom.setBounds(26 * 48/2 - 75,300 +250,150,40);
-        profile.setBounds(26 * 48/2 - 75,300 + 150,150,40);
-        logout.setBounds(26 * 48/2 - 75,300 +200,150,40);
+        startNewGame.setAlignmentX(Component.CENTER_ALIGNMENT);
+        continueLastGames.setAlignmentX(Component.CENTER_ALIGNMENT);
+        shop.setAlignmentX(Component.CENTER_ALIGNMENT);
+        profile.setAlignmentX(Component.CENTER_ALIGNMENT);
+        chatRoom.setAlignmentX(Component.CENTER_ALIGNMENT);
+        logout.setAlignmentX(Component.CENTER_ALIGNMENT);
+        onlineGame.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         startNewGame.setFocusable(false);
         continueLastGames.setFocusable(false);
@@ -63,6 +76,7 @@ public class MainMenu extends MarioPanel {
         profile.setFocusable(false);
         chatRoom.setFocusable(false);
         logout.setFocusable(false);
+        onlineGame.setFocusable(false);
 
     }
     private void setButtonsListeners(){
@@ -99,6 +113,13 @@ public class MainMenu extends MarioPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardPanel.getCardLayout().show(cardPanel,ItemShopPanel.class.getSimpleName());
+                cardPanel.getItemShopPanel().requestFocus();
+            }
+        });
+        onlineGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardPanel.getCardLayout().show(cardPanel,ChooseOnlineGamePanel.class.getSimpleName());
                 cardPanel.getItemShopPanel().requestFocus();
             }
         });

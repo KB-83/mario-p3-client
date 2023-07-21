@@ -2,6 +2,7 @@ package util;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -37,10 +38,10 @@ public class Config extends Properties {
     public boolean getPropertyAsBoolean(String name) {
         return Boolean.parseBoolean(super.getProperty(name));
     }
-    public void loadConfigs() {
+    public static void loadConfigs() {
         loadImages("images");
     }
-    private   Map<String, String> loadImages(String name) {
+    private  static Map<String, String> loadImages(String name) {
         Config config = getConfig(name);
         Map<String, String> imageMap = new HashMap<>();
 
@@ -48,7 +49,8 @@ public class Config extends Properties {
                 String imagePath = config.getProperty(key);
                 imageMap.put(key, imagePath);
             try {
-                IMAGES.put(key, ImageIO.read(getClass().getResourceAsStream("/image"+imagePath)));
+                BufferedImage bufferedImage = ImageIO.read(Config.class.getResourceAsStream("/image"+imagePath));
+                IMAGES.put(key, bufferedImage);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

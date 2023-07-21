@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        Config.getConfig("mainConfig").loadConfigs();
+        Config.loadConfigs();
         new ClientController();
 //        new Frame();
     }

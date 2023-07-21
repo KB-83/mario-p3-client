@@ -21,7 +21,7 @@ public class Frame extends JFrame {
         this.pauseFrame = new PauseFrame(this);
         setFocusable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
+//        setResizable(false);
         add(panelsManagerCard);
         pack();// check
         setLocationRelativeTo(null);
