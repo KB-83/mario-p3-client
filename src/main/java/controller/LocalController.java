@@ -41,4 +41,7 @@ public class LocalController {
     public Frame getFrame() {
         return frame;
     }
+    public void startGameState() {
+
+    }
 }

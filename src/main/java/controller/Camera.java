@@ -4,6 +4,7 @@ import model.dto.backgroundobject.block.BlockDTO;
 import model.dto.backgroundobject.pipe.PipeDTO;
 import model.dto.entity.enemy.EnemyDTO;
 import model.dto.entity.item.ItemDTO;
+import model.dto.entity.player.PlayerDTO;
 import model.dto.game.GameStateDTO;
 import util.Config;
 
@@ -15,6 +16,7 @@ public class Camera {
     private GameStateDTO gameStateDTO;
     private int startPaintingX ,endPaintingX;
     private int minasXLength;
+    private PlayerDTO playerDTO;
 
     public Camera() {
         startPaintingX = 0;
@@ -88,11 +90,12 @@ public class Camera {
             }
         }
 
-        // drying player
-//        g2.drawImage(gameStateDTO.getGuiPlayer().getCurrentImage(), getGameStateDTO().getGuiPlayer().getCameraX(),
-//                getGameStateDTO().getGuiPlayer().getCameraY()
-//                , getGameStateDTO().getGuiPlayer().getWidth(), getGameStateDTO().getGuiPlayer().getHeight(),
-//                null );
+//         drying player
+        Image image = Config.IMAGES.get("mario");
+        g2.drawImage(image, playerDTO.getCameraX(),
+                playerDTO.getCameraY()
+                , 48, 48,
+                null );
         //draw chckPoint test
 //        if(gameStateDTO.getCurrentGuiSection().getGuiCheckPoint() != null) {
 //            g2.drawImage(gameStateDTO.getCurrentGuiSection().getGuiCheckPoint().getCurrentImage(), gameStateDTO.getCurrentGuiSection().getGuiCheckPoint().getWorldX() - minasXLength,
@@ -120,18 +123,20 @@ public class Camera {
         return false;
     }
     public void updateCameraLocation(){
-        if (gameStateDTO != null) {
-//            startPaintingX = gameStateDTO.getGuiPlayer().getWorldX() - Constant.PANEL_WIDTH;
+//        if (gameStateDTO != null) {
+////            startPaintingX = playerDTO.getX() - Constant.PANEL_WIDTH;
+//            startPaintingX = playerDTO.getX() - 1248;
 //            if (startPaintingX < 0 ) {
 //                startPaintingX = 0;
 //            }//- game panel size;
 //            // todo: player camera x doesnt need to be initialize in logic player im goinig to creat it in graphic
-//            endPaintingX = startPaintingX + 2 * Constant.PANEL_WIDTH;//+ 2 gamePanel Size
-//            if (endPaintingX > gameStateDTO.getCurrentGuiSection().getGuibackgroundMap().getGuiBackGroundTiles()[0].length * Constant.BACKGROUND_TILE_SIZE){
-//                endPaintingX = gameStateDTO.getCurrentGuiSection().getGuibackgroundMap().getGuiBackGroundTiles()[0].length * Constant.BACKGROUND_TILE_SIZE;
-//            }
-//            minasXLength = gameStateDTO.getGuiPlayer().getWorldX() - gameStateDTO.getGuiPlayer().getCameraX();
-        }
+////            endPaintingX = startPaintingX + 2 * Constant.PANEL_WIDTH;//+ 2 gamePanel Size
+//            endPaintingX = startPaintingX + 2 * 1248;//+ 2 gamePanel Size
+////            if (endPaintingX > gameStateDTO.getCurrentGuiSection().getGuibackgroundMap().getGuiBackGroundTiles()[0].length * Constant.BACKGROUND_TILE_SIZE){
+////                endPaintingX = gameStateDTO.getCurrentGuiSection().getGuibackgroundMap().getGuiBackGroundTiles()[0].length * Constant.BACKGROUND_TILE_SIZE;
+////            }
+//            minasXLength = playerDTO.getX() - playerDTO.getCameraX();
+//        }
     }
 
     public GameStateDTO getGameStateDTO() {
@@ -158,6 +163,23 @@ public class Camera {
         this.endPaintingX = endPaintingX;
     }
     // world button row which it have to start painting from
+
+    public int getMinasXLength() {
+        return minasXLength;
+    }
+
+    public void setMinasXLength(int minasXLength) {
+        this.minasXLength = minasXLength;
+    }
+
+    public PlayerDTO getPlayerDTO() {
+        return playerDTO;
+    }
+
+    public void setPlayerDTO(PlayerDTO playerDTO) {
+        this.playerDTO = playerDTO;
+    }
+
 
 //    private int endY;
 }

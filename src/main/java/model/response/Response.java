@@ -9,6 +9,7 @@ import model.request.*;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = SignInLoginResponse.class),
+        @JsonSubTypes.Type(value = GameStateStatusResponse.class),
         @JsonSubTypes.Type(value = GameStartResponse.class)
 
 })

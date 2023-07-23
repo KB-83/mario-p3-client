@@ -1,6 +1,6 @@
 package controller.connection;
 
-import model.request.ReceiveGame;
+import model.request.GetGameStateRequest;
 import model.request.ReceiveItem;
 
 public class RequestHandler implements RequestVisitor {
@@ -13,7 +13,7 @@ public class RequestHandler implements RequestVisitor {
         return requestResponseHandler;
     }
     @Override
-    public void visit(ReceiveGame request) {
+    public void visit(GetGameStateRequest request) {
 
     }
 

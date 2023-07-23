@@ -4,11 +4,11 @@ import controller.connection.ResponseVisitor;
 import model.dto.entity.player.PlayerDTO;
 import model.dto.game.GameStateDTO;
 
-public class GameStartResponse extends Response{
+public class GameStateStatusResponse extends Response{
     private GameStateDTO gameStateDTO;
     private PlayerDTO playerDTO;
 
-    public GameStartResponse() {
+    public GameStateStatusResponse() {
     }
 
     @Override

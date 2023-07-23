@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import controller.connection.RequestHandler;
 import controller.connection.ResponseHandler;
 import model.request.Request;
+import model.response.GameStartResponse;
+import model.response.GameStateStatusResponse;
 import model.response.Response;
 
 import java.io.BufferedReader;
@@ -51,7 +53,7 @@ public class NetworkController extends Thread{
         try {
             String s = reader.readLine();
             Response response = MAPPER.readValue(s,Response.class);
-            response.visit(ResponseHandler.getInstance(controller.getLocalController().getFrame().getPanelsManagerCard()));
+            response.visit(ResponseHandler.getInstance(controller.getLocalController()));
         } catch (JsonProcessingException e) {
             System.out.println("json mapping problem");
             throw new RuntimeException(e);

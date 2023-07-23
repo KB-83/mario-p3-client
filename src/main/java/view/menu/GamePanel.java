@@ -2,6 +2,7 @@ package view.menu;
 
 
 import controller.Camera;
+import model.dto.entity.player.PlayerDTO;
 import model.dto.game.GameStateDTO;
 import view.GameHUI;
 
@@ -45,9 +46,11 @@ public class GamePanel extends MarioPanel {
         return gameStateDTO;
     }
 
-    public void setGameStateDTO(GameStateDTO gameStateDTO) {
+    public void setGameStateDTO(GameStateDTO gameStateDTO, PlayerDTO playerDTO) {
         this.gameStateDTO = gameStateDTO;
+        this.
         camera.setGameStateDTO(gameStateDTO);
+        camera.setPlayerDTO(playerDTO);
 //        gameHUI.setGuiGameState(gameStateDTO);
     }
 
@@ -67,7 +70,7 @@ public class GamePanel extends MarioPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g2 = (Graphics2D) g;
-        if (camera.getGameStateDTO() != null) {
+        if (camera.getGameStateDTO() != null && camera.getPlayerDTO() != null) {
             camera.paintCamera(g2);
             gameHUI.paintHui(g2);
         }

@@ -1,11 +1,11 @@
 package controller.connection;
 
-import model.request.ReceiveGame;
+import model.request.GetGameStateRequest;
 import model.request.ReceiveItem;
 
 // Visitor interface
 public interface RequestVisitor {
-    void visit(ReceiveGame request);
+    void visit(GetGameStateRequest request);
     void visit(ReceiveItem request);
 
 }
