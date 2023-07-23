@@ -8,7 +8,7 @@ public class TestMain {
         RequestHandler rrh= RequestHandler.getInstance();
         Request receiveGame = new ReceiveGame();
         Request receiveItem = new ReceiveItem();
-        receiveItem.visit(rrh);
-        receiveGame.visit(rrh);
+//        receiveItem.visit(rrh);
+//        receiveGame.visit(rrh);
     }
 }

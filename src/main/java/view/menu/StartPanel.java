@@ -146,4 +146,28 @@ public class StartPanel extends MarioPanel {
             getSignIn.setVisible(false);
         }
     }
+
+    public JTextArea getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(JTextArea loginName) {
+        this.loginName = loginName;
+    }
+
+    public JTextArea getLoginPass() {
+        return loginPass;
+    }
+
+    public void setLoginPass(JTextArea loginPass) {
+        this.loginPass = loginPass;
+    }
+
+    public JTextArea getSignName() {
+        return signName;
+    }
+
+    public JTextArea getSignPass() {
+        return signPass;
+    }
 }

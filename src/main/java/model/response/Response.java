@@ -1,0 +1,18 @@
+package model.response;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import controller.connection.RequestVisitor;
+import controller.connection.ResponseVisitor;
+import model.request.*;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = SignInLoginResponse.class),
+        @JsonSubTypes.Type(value = GameStartResponse.class)
+
+})
+
+public abstract class Response {
+    public abstract void visit(ResponseVisitor responseVisitor) ;
+}

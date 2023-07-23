@@ -42,7 +42,7 @@ public class PanelsManagerCard extends MarioPanel {
         itemShopPanel = new ItemShopPanel(localController,this);
         mainMenu = new MainMenu(this);
         cardLayout = new CardLayout();
-        chooseOnlineGamePanel = new ChooseOnlineGamePanel();
+        chooseOnlineGamePanel = new ChooseOnlineGamePanel(localController,this);
 
         setUI();
 
@@ -62,7 +62,7 @@ public class PanelsManagerCard extends MarioPanel {
         add(itemShopPanel , itemShopPanel.getClass().getSimpleName());
         add(startPanel , startPanel.getClass().getSimpleName());
         add(chooseOnlineGamePanel,chooseOnlineGamePanel.getClass().getSimpleName());
-//        add(gamePanel, "gamePanel");
+        add(gamePanel, gamePanel.getClass().getSimpleName());
 //        add(newGamePanel,"newGamePanel");
 //        add(lastGamesPanel,"lastGamesPanel");
         add(mainMenu,mainMenu.getClass().getSimpleName());

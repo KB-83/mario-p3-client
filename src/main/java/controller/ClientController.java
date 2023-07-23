@@ -1,5 +1,7 @@
 package controller;
 
+import model.request.Request;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +22,7 @@ public class ClientController {
             localController.showAskPanel();
             return;
         }
+        networkController.start();
         localController.showLoginPanel(true);
     }
     public void connectToServer() {
@@ -32,6 +35,15 @@ public class ClientController {
         timer.setRepeats(false);
         timer.start();
     }
+    public void sendRequestToServer(Request request) {
+        networkController.sendRequest(request);
+    }
 
+    public NetworkController getNetworkController() {
+        return networkController;
+    }
 
+    public LocalController getLocalController() {
+        return localController;
+    }
 }

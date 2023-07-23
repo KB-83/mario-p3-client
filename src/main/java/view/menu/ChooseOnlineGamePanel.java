@@ -1,17 +1,23 @@
 package view.menu;
 
+import controller.LocalController;
+import model.request.MarathonRequest;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ChooseOnlineGamePanel extends MarioPanel{
-    JButton scoreGame = new JButton("score game");
-    JButton createRoom = new JButton("create room");
-    JButton enterRoom = new JButton("enter room");
-    public ChooseOnlineGamePanel() {
+    private JButton scoreGame = new JButton("score game");
+    private JButton createRoom = new JButton("create room");
+    private JButton enterRoom = new JButton("enter room");
+    private PanelsManagerCard panelsManagerCard;
+    private LocalController localController;
+    public ChooseOnlineGamePanel(LocalController localController, PanelsManagerCard panelsManagerCard) {
+        this.panelsManagerCard = panelsManagerCard;
+        this.localController = localController;
         setUI();
-
-        }
+    }
 
 
     @Override
@@ -29,6 +35,7 @@ public class ChooseOnlineGamePanel extends MarioPanel{
         enterRoom.setPreferredSize(dimension);
 
         scoreGame.setFocusable(false);
+        scoreGame.addActionListener(this);
         createRoom.setFocusable(false);
         enterRoom.setFocusable(false);
 
@@ -46,7 +53,10 @@ public class ChooseOnlineGamePanel extends MarioPanel{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == scoreGame) {
+            MarathonRequest marathonRequest = new MarathonRequest();
+            localController.sendRequest(marathonRequest);
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import model.request.Request;
 import view.Frame;
 import view.menu.OfflineAskPanel;
 import view.menu.StartPanel;
@@ -32,5 +33,12 @@ public class LocalController {
 
     public void setController(ClientController controller) {
         this.controller = controller;
+    }
+    public void sendRequest (Request request) {
+        controller.sendRequestToServer(request);
+    }
+
+    public Frame getFrame() {
+        return frame;
     }
 }

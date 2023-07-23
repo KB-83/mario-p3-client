@@ -1,6 +1,8 @@
 package view.menu;
 
 
+import controller.Camera;
+import model.dto.game.GameStateDTO;
 import view.GameHUI;
 
 import java.awt.*;
@@ -10,8 +12,8 @@ import java.awt.event.ActionEvent;
 public class GamePanel extends MarioPanel {
     private PanelsManagerCard cardPanel;
     private Graphics2D g2;
-//    private GuiGameState guiGameState;
-//    private Camera camera;
+    private GameStateDTO gameStateDTO;
+    private Camera camera = new Camera();
     private GameHUI gameHUI;
 //    private Loop gameloop;
 
@@ -39,36 +41,36 @@ public class GamePanel extends MarioPanel {
     }
 
 
-//    public GuiGameState getGuiGameState() {
-//        return guiGameState;
-//    }
-//
-//    public void setGuiGameState(GuiGameState guiGameState) {
-//        this.guiGameState = guiGameState;
-//        camera.setGuiGameState(guiGameState);
-//        gameHUI.setGuiGameState(guiGameState);
-//    }
+    public GameStateDTO getGameStateDTO() {
+        return gameStateDTO;
+    }
 
-//    public Camera getCamera() {
-//        return camera;
-//    }
-//
-//    public void setCamera(Camera camera) {
-//        this.camera = camera;
-//    }
+    public void setGameStateDTO(GameStateDTO gameStateDTO) {
+        this.gameStateDTO = gameStateDTO;
+        camera.setGameStateDTO(gameStateDTO);
+//        gameHUI.setGuiGameState(gameStateDTO);
+    }
+
+    public Camera getCamera() {
+        return camera;
+    }
+
+    public void setCamera(Camera camera) {
+        this.camera = camera;
+    }
 //    public void setKeyListener(GameState gameState) {
 //        if (getKeyListeners().length == 0) {
 //            addKeyListener(new PlayerListener(new PlayerRequestHandler(gameState)));
 //        }
 //    }
-//
-//    public void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//        g2 = (Graphics2D) g;
-//        if (camera.getGuiGameState() != null) {
-//            camera.paintCamera(g2);
-//            gameHUI.paintHui(g2);
-//        }
-//    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g2 = (Graphics2D) g;
+        if (camera.getGameStateDTO() != null) {
+            camera.paintCamera(g2);
+            gameHUI.paintHui(g2);
+        }
+    }
 
 }
