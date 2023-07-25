@@ -1,7 +1,7 @@
 package util;
 
 import controller.LocalController;
-import model.dto.entity.player.PlayerDTO;
+import model.dto.entity.PlayerDTO;
 import model.dto.game.GameStateDTO;
 import model.request.GetGameStateRequest;
 import view.menu.GamePanel;

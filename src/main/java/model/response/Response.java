@@ -2,7 +2,6 @@ package model.response;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import controller.connection.RequestVisitor;
 import controller.connection.ResponseVisitor;
 import model.request.*;
 

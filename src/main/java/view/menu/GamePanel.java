@@ -2,7 +2,9 @@ package view.menu;
 
 
 import controller.Camera;
-import model.dto.entity.player.PlayerDTO;
+import controller.LocalController;
+import controller.listener.PlayerListener;
+import model.dto.entity.PlayerDTO;
 import model.dto.game.GameStateDTO;
 import view.GameHUI;
 
@@ -14,7 +16,7 @@ public class GamePanel extends MarioPanel {
     private PanelsManagerCard cardPanel;
     private Graphics2D g2;
     private GameStateDTO gameStateDTO;
-    private Camera camera = new Camera();
+    private final Camera camera = new Camera();
     private GameHUI gameHUI;
 //    private Loop gameloop;
 
@@ -57,15 +59,11 @@ public class GamePanel extends MarioPanel {
     public Camera getCamera() {
         return camera;
     }
-
-    public void setCamera(Camera camera) {
-        this.camera = camera;
+    public void setKeyListener(LocalController localController) {
+        if (getKeyListeners().length == 0) {
+            addKeyListener(new PlayerListener(localController));
+        }
     }
-//    public void setKeyListener(GameState gameState) {
-//        if (getKeyListeners().length == 0) {
-//            addKeyListener(new PlayerListener(new PlayerRequestHandler(gameState)));
-//        }
-//    }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

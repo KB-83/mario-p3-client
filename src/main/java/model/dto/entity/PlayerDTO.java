@@ -1,9 +1,11 @@
-package model.dto.entity.player;
+package model.dto.entity;
 
 public class PlayerDTO {
     private int x,y;
     private int cameraX, cameraY;
     private String type;
+    private int height;
+    private String  image;
 
     public PlayerDTO() {
     }
@@ -46,5 +48,21 @@ public class PlayerDTO {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

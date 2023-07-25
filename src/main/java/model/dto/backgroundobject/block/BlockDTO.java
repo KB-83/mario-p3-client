@@ -1,7 +1,5 @@
 package model.dto.backgroundobject.block;
 
-import model.dto.entity.item.ItemDTO;
-
 public class BlockDTO {
     private int col;
     private int row;

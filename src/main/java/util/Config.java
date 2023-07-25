@@ -50,7 +50,12 @@ public class Config extends Properties {
                 imageMap.put(key, imagePath);
             try {
                 BufferedImage bufferedImage = ImageIO.read(Config.class.getResourceAsStream("/image"+imagePath));
-                IMAGES.put(key, bufferedImage);
+
+
+                // Create a new BufferedImage with the desired width and height
+                BufferedImage resizedImage = new BufferedImage(48, 48, bufferedImage.getType());
+                resizedImage.getGraphics().drawImage(bufferedImage, 0, 0, 48, 48, null);
+                IMAGES.put(key, resizedImage);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

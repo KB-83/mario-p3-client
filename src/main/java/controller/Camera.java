@@ -2,9 +2,10 @@ package controller;
 
 import model.dto.backgroundobject.block.BlockDTO;
 import model.dto.backgroundobject.pipe.PipeDTO;
-import model.dto.entity.enemy.EnemyDTO;
-import model.dto.entity.item.ItemDTO;
-import model.dto.entity.player.PlayerDTO;
+import model.dto.entity.EnemyDTO;
+import model.dto.entity.ItemDTO;
+import model.dto.entity.PlayerDTO;
+import model.dto.entity.power.BulletDTO;
 import model.dto.game.GameStateDTO;
 import util.Config;
 
@@ -39,11 +40,7 @@ public class Camera {
                         48,null);
             }
         }
-//        for (GuiBackgroundTile guiBackGroundTile: guiGameState.getCurrentGuiSection().getGuibackgroundMap().getGuiBackGroundTiles()) {
-//            g2.drawImage(GuiBackgroundMap.getImages()[guiBackGroundTile.getNum().getIndex()], (guiBackGroundTile.getCol() * Constant.BACKGROUND_TILE_SIZE)-minasXLength,
-//                        guiBackGroundTile.getRow() * Constant.BACKGROUND_TILE_SIZE,Constant.BACKGROUND_TILE_SIZE,
-//                        Constant.BACKGROUND_TILE_SIZE,null);
-//        }
+
 //        drawing enemies
 //        System.out.println("camera 44   "+);
         if (gameStateDTO.getCurrentSection().getEnemies() != null) {
@@ -64,8 +61,7 @@ public class Camera {
 //            }
             Image image = Config.IMAGES.get(blockDTO.getType().toLowerCase());
             g2.drawImage(image,(blockDTO.getCol()*48)- minasXLength,
-                    blockDTO.getRow()*48,
-                    55,55,null);
+                    blockDTO.getRow()*48, null);
         }
 ////         drawing pipes
 //        todo check i something is null
@@ -84,17 +80,25 @@ public class Camera {
         //item
         if (gameStateDTO.getCurrentSection().getItems() != null) {
             for (ItemDTO itemDTO : gameStateDTO.getCurrentSection().getItems()) {
-                Image image = Config.IMAGES.get(itemDTO.getType().toLowerCase());
-                g2.drawImage(image,itemDTO.getX() - minasXLength ,itemDTO.getY(),
-                        48,48,null);
+                if (!itemDTO.isLock()) {
+                    Image image = Config.IMAGES.get(itemDTO.getType().toLowerCase());
+                    g2.drawImage(image, itemDTO.getX() - minasXLength, itemDTO.getY(),
+                            48, 48, null);
+                }
             }
         }
 
 //         drying player
-        Image image = Config.IMAGES.get("mario");
+        Image image;
+        if (playerDTO.getImage() != null) {
+            image = Config.IMAGES.get(playerDTO.getImage().toLowerCase());
+        }
+        else {
+            image = Config.IMAGES.get("marioright1");
+        }
         g2.drawImage(image, playerDTO.getCameraX(),
                 playerDTO.getCameraY()
-                , 48, 48,
+                , 48, playerDTO.getHeight(),
                 null );
         //draw chckPoint test
 //        if(gameStateDTO.getCurrentGuiSection().getGuiCheckPoint() != null) {
@@ -103,8 +107,8 @@ public class Camera {
 //                    gameStateDTO.getCurrentGuiSection().getGuiCheckPoint().getHeight(),
 //                    null);
 //        }
-        //dryingBullet
-//        GuiBullet guiBullet = gameStateDTO.getGuiPlayer().getGuiBullet();
+//        dryingBullet
+//        BulletDTO bulletDTO = playerDTO.getGuiBullet();
 //        if (!guiBullet.isLock()){
 //            g2.drawImage(guiBullet.getCurrentImage(),guiBullet.getWorldX() - minasXLength,guiBullet.getWorldY(),
 //                    guiBullet.getWidth(),guiBullet.getHeight(),null);
@@ -123,20 +127,20 @@ public class Camera {
         return false;
     }
     public void updateCameraLocation(){
-//        if (gameStateDTO != null) {
-////            startPaintingX = playerDTO.getX() - Constant.PANEL_WIDTH;
-//            startPaintingX = playerDTO.getX() - 1248;
-//            if (startPaintingX < 0 ) {
-//                startPaintingX = 0;
-//            }//- game panel size;
-//            // todo: player camera x doesnt need to be initialize in logic player im goinig to creat it in graphic
-////            endPaintingX = startPaintingX + 2 * Constant.PANEL_WIDTH;//+ 2 gamePanel Size
-//            endPaintingX = startPaintingX + 2 * 1248;//+ 2 gamePanel Size
-////            if (endPaintingX > gameStateDTO.getCurrentGuiSection().getGuibackgroundMap().getGuiBackGroundTiles()[0].length * Constant.BACKGROUND_TILE_SIZE){
-////                endPaintingX = gameStateDTO.getCurrentGuiSection().getGuibackgroundMap().getGuiBackGroundTiles()[0].length * Constant.BACKGROUND_TILE_SIZE;
-////            }
-//            minasXLength = playerDTO.getX() - playerDTO.getCameraX();
-//        }
+        if (gameStateDTO != null) {
+//            startPaintingX = playerDTO.getX() - Constant.PANEL_WIDTH;
+            startPaintingX = playerDTO.getX() - 1248;
+            if (startPaintingX < 0 ) {
+                startPaintingX = 0;
+            }//- game panel size;
+            // todo: player camera x doesnt need to be initialize in logic player im goinig to creat it in graphic
+//            endPaintingX = startPaintingX + 2 * Constant.PANEL_WIDTH;//+ 2 gamePanel Size
+            endPaintingX = startPaintingX + 2 * 1248;//+ 2 gamePanel Size
+            if (endPaintingX > gameStateDTO.getCurrentSection().getBackGroundTiles()[0].length * 48){
+                endPaintingX = gameStateDTO.getCurrentSection().getBackGroundTiles()[0].length * 48;
+            }
+            minasXLength = playerDTO.getX() - playerDTO.getCameraX();
+        }
     }
 
     public GameStateDTO getGameStateDTO() {
