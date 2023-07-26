@@ -33,11 +33,21 @@ public class Camera {
 
             for (int i = 0; i< gameStateDTO.getCurrentSection().getBackGroundTiles().length; i++){
                 for (int j = startPaintingX/48;j< endPaintingX/48;j++){
-                    int num = gameStateDTO.getCurrentSection().getBackGroundTiles()[i][j];
+                    int num = 0;
+                    try {
+                        num = gameStateDTO.getCurrentSection().getBackGroundTiles()[i][j];
+                    }
+                    catch (ArrayIndexOutOfBoundsException e){
+                        //todo : there is a bug in section changing which i dont know.
+                        System.out.println(gameStateDTO.getCurrentSection().getBackGroundTiles()[0].length+"  array out of bound");
+                    }
+
                     Image image = Config.IMAGES.get("backgroundTile"+num);
                 g2.drawImage(image, (j* 48)-minasXLength,
                         i * 48,48,
                         48,null);
+
+
             }
         }
 
@@ -135,7 +145,7 @@ public class Camera {
             }//- game panel size;
             // todo: player camera x doesnt need to be initialize in logic player im goinig to creat it in graphic
 //            endPaintingX = startPaintingX + 2 * Constant.PANEL_WIDTH;//+ 2 gamePanel Size
-            endPaintingX = startPaintingX + 2 * 1248;//+ 2 gamePanel Size
+            endPaintingX = startPaintingX + (2 * 1248);//+ 2 gamePanel Size
             if (endPaintingX > gameStateDTO.getCurrentSection().getBackGroundTiles()[0].length * 48){
                 endPaintingX = gameStateDTO.getCurrentSection().getBackGroundTiles()[0].length * 48;
             }

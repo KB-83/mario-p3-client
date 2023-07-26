@@ -7,6 +7,7 @@ import view.ProfilePanel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class PanelsManagerCard extends MarioPanel {
     private Frame frame;
@@ -38,7 +39,7 @@ public class PanelsManagerCard extends MarioPanel {
         gamePanel = new GamePanel(this);
         startPanel = new StartPanel(localController,this);
         chatPanel = new ChatPanel(localController,this);
-        privateChatPanel = new PrivateChatPanel();
+        privateChatPanel = new PrivateChatPanel(localController,this);
         itemShopPanel = new ItemShopPanel(localController,this);
         mainMenu = new MainMenu(this);
         cardLayout = new CardLayout();

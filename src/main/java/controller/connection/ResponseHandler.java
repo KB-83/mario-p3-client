@@ -5,8 +5,10 @@ import controller.LocalController;
 import model.dto.game.GameStateDTO;
 import model.response.GameStartResponse;
 import model.response.GameStateStatusResponse;
+import model.response.NewPMResponse;
 import model.response.SignInLoginResponse;
 import util.Loop;
+import view.menu.ChatPanel;
 import view.menu.GamePanel;
 import view.menu.MainMenu;
 import view.menu.PanelsManagerCard;
@@ -29,6 +31,9 @@ public class ResponseHandler implements ResponseVisitor{
     @Override
     public void visit(SignInLoginResponse response) {
         if (response.isOk()){
+            localController.getController().setClient(response.getClient());
+            response.getClient().setClientController(localController.getController());
+            localController.clientCleared(response.getClient());
             panelsManagerCard.getCardLayout().show(panelsManagerCard, MainMenu.class.getSimpleName());
             panelsManagerCard.getStartPanel().requestFocus();
         }
@@ -55,5 +60,14 @@ public class ResponseHandler implements ResponseVisitor{
     public void visit(GameStateStatusResponse response) {
         //bayad gamestate game panel ro in konim.
         panelsManagerCard.getGamePanel().setGameStateDTO(response.getGameStateDTO(),response.getPlayerDTO());
+    }
+
+    @Override
+    public void visit(NewPMResponse response) {
+        localController.getController().getClient().setPrivateChats(response.getNewPrivateChat());
+//        if (ChatPanel baz bood)
+        if (response.getSender() != "") {
+            panelsManagerCard.getPrivateChatPanel().setChat(localController.getController().getPrivateChatByOpponentName(response.getSender()).getMassages(), response.getSender());
+        }
     }
 }

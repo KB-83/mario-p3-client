@@ -1,5 +1,6 @@
 package controller;
 
+import model.Client;
 import model.request.Request;
 import view.Frame;
 import view.menu.OfflineAskPanel;
@@ -42,6 +43,11 @@ public class LocalController {
         return frame;
     }
     public void startGameState() {
+
+    }
+    public void clientCleared(Client client) {
+        //set client
+        frame.getPanelsManagerCard().getChatPanel().clientCleared(client);
 
     }
 }
