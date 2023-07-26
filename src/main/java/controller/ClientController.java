@@ -30,7 +30,7 @@ public class ClientController {
         localController.showLoginPanel(true);
     }
     public void connectToServer() {
-        Timer timer = new Timer(7000, new ActionListener() {
+        Timer timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 connectionStartMode(networkController.connectToServer());

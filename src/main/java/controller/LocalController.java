@@ -3,10 +3,12 @@ package controller;
 import model.Client;
 import model.request.Request;
 import view.Frame;
+import view.menu.LoadingPanel;
 import view.menu.OfflineAskPanel;
 import view.menu.StartPanel;
 
 public class LocalController {
+    public static boolean isOnline = true;
     private ClientController controller;
     private Frame frame;
     public LocalController(ClientController controller) {
@@ -49,5 +51,13 @@ public class LocalController {
         //set client
         frame.getPanelsManagerCard().getChatPanel().clientCleared(client);
 
+    }
+    public void tryToConnectAgain() {
+        frame.getPanelsManagerCard().getCardLayout().show(
+                frame.getPanelsManagerCard(), LoadingPanel.class.getSimpleName()
+        );
+        frame.getPanelsManagerCard().getLoadingPanel().setLoading(true);
+        controller.connectToServer();
+        isOnline = true;
     }
 }

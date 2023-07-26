@@ -3,6 +3,7 @@ package view.menu;
 import controller.LocalController;
 import model.Massage;
 import model.request.SendPMRequest;
+import util.Loader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -119,11 +120,13 @@ public class PrivateChatPanel extends MarioPanel {
         messageField.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (LocalController.isOnline) {
                     String message = messageField.getText();
                     if (!message.isEmpty()) {
-                        addMessage(message,true);
-                        localController.sendRequest(new SendPMRequest(titleLabel.getText(),messageField.getText()));
+                        addMessage(message, true);
+                        localController.sendRequest(new SendPMRequest(titleLabel.getText(), messageField.getText()));
                         messageField.setText("");
+                    }
                     }
                 }
             }

@@ -51,7 +51,7 @@ public class LoadingPanel extends MarioPanel{
         timer = new Timer(ANIMATION_DELAY, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (System.currentTimeMillis() - startTime > 6000) {
+                if (System.currentTimeMillis() - startTime > 600) {
                     rotationAngle = 0;
                     arcExtentAngle = 0;
                     repaint();

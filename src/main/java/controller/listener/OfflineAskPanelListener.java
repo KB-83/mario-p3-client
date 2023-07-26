@@ -19,13 +19,10 @@ public class OfflineAskPanelListener {
         this.offlineAskPanel = offlineAskPanel;
     }
     public void tryAgain() {
-        offlineAskPanel.getPanelsManagerCard().getCardLayout().show(
-                offlineAskPanel.getPanelsManagerCard(), LoadingPanel.class.getSimpleName()
-        );
-        offlineAskPanel.getPanelsManagerCard().getLoadingPanel().setLoading(true);
-        localController.getController().connectToServer();
+        localController.tryToConnectAgain();
     }
     public void playOffline(){
         localController.showLoginPanel(false);
+        LocalController.isOnline = false;
     }
 }

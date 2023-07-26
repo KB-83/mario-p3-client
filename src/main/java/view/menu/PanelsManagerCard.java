@@ -92,6 +92,7 @@ public class PanelsManagerCard extends MarioPanel {
         startPanel.setOffline(offline);
         itemShopPanel.setOffline(offline);
         mainMenu.setOffline(offline);
+        privateChatPanel.setOffline(offline);
     }
 
     public void paintComponent(Graphics g) {

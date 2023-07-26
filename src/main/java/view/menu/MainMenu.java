@@ -47,6 +47,7 @@ public class MainMenu extends MarioPanel {
     @Override
     public void setOffline(boolean offline) {
         profile.setEnabled(!offline);
+        onlineGame.setEnabled(!offline);
     }
 
 

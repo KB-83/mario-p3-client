@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 public class StartPanel extends MarioPanel {
     private StartPanelListener startPanelListener;
     private PanelsManagerCard cardPanel;
-    private JButton login, signIn, exit, getSignIn,getLogin;
+    private JButton login, signIn, exit, getSignIn,getLogin,tryAgain;
     private Image image;
     private JTextArea loginName = new JTextArea("username");
     private JTextArea loginPass = new JTextArea("pass");
@@ -53,24 +53,28 @@ public class StartPanel extends MarioPanel {
         exit = new JButton("exit");
         getLogin = new JButton("ok");
         getSignIn = new JButton("ok");
+        tryAgain = new JButton("try to connect again");
 
         signIn.addActionListener(this);
         login.addActionListener(this);
         getLogin.addActionListener(this);
         getSignIn.addActionListener(this);
         exit.addActionListener(this);
+        tryAgain.addActionListener(this);
 //
         signIn.setBounds(3 * 48 - 50 , 460,100,40);
         login.setBounds(3 * 48 - 50, 520,100,40);
         exit.setBounds(3 * 48 - 50,580,100,40);
         getSignIn.setBounds(3 * 48 + 280 + 30, 460,50,40);
         getLogin.setBounds(3 * 48 + 280 + 30, 520,50,40);
+        tryAgain.setBounds(1000,20,150,40);
 //
         signIn.setFocusable(false);
         login.setFocusable(false);
         exit.setFocusable(false);
         getSignIn.setFocusable(false);
         getLogin.setFocusable(false);
+        tryAgain.setFocusable(false);
 //
         getLogin.setVisible(false);
         getSignIn.setVisible(false);
@@ -80,6 +84,7 @@ public class StartPanel extends MarioPanel {
         this.add(exit);
         this.add(getLogin);
         this.add(getSignIn);
+        this.add(tryAgain);
         this.revalidate();
     }
     private void setTextAreas() {
@@ -144,6 +149,9 @@ public class StartPanel extends MarioPanel {
             signName.setVisible(false);
             signPass.setVisible(false);
             getSignIn.setVisible(false);
+        }
+        else if (e.getSource() == tryAgain) {
+            startPanelListener.tryAgain();
         }
     }
 
