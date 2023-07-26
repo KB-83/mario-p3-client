@@ -67,8 +67,10 @@ public class ResponseHandler implements ResponseVisitor{
     @Override
     public void visit(NewPMResponse response) {
         localController.getController().getClient().setPrivateChats(response.getNewPrivateChat());
+
 //        if (ChatPanel baz bood)
         if (response.getSender() != "") {
+            localController.getFrame().getNotification().showNotification("NEW PM",response.getMassage().getContext());
             panelsManagerCard.getPrivateChatPanel().setChat(localController.getController().getPrivateChatByOpponentName(response.getSender()).getMassages(), response.getSender());
         }
     }

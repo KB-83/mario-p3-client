@@ -1,6 +1,7 @@
 package view;
 
 import controller.LocalController;
+import view.Notification.Notification;
 import view.menu.PanelsManagerCard;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ public class Frame extends JFrame {
     private PanelsManagerCard panelsManagerCard;
     private CheckPointFrame checkPointFrame;
     private PauseFrame pauseFrame;
+    private Notification notification;
     public Frame(LocalController localController){
         this.controller = localController;
         setDependencies(localController);
@@ -19,6 +21,7 @@ public class Frame extends JFrame {
         this.panelsManagerCard = new PanelsManagerCard(this,localController);
         this.checkPointFrame = new CheckPointFrame(this);
         this.pauseFrame = new PauseFrame(this);
+        this.notification = new Notification(this);
         setFocusable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        setResizable(false);
@@ -56,5 +59,9 @@ public class Frame extends JFrame {
 
     public void setPauseFrame(PauseFrame pauseFrame) {
         this.pauseFrame = pauseFrame;
+    }
+
+    public Notification getNotification() {
+        return notification;
     }
 }
