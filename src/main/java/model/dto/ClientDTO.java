@@ -25,8 +25,8 @@ public class ClientDTO {
     public ClientDTO() {
     }
 
-    public ClientDTO(String username, String password, ClientController clientController) {
-            this.clientController = clientController;
+    public ClientDTO(String username, String password,ArrayList<PrivateChat> privateChats) {
+            this.privateChats = privateChats;
             this.username = username;
             this.password = password;
 

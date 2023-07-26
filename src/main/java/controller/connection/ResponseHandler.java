@@ -1,14 +1,13 @@
 package controller.connection;
 
-import controller.ClientController;
 import controller.LocalController;
-import model.dto.game.GameStateDTO;
+import util.Saver;
+import model.dto.ClientDTO;
 import model.response.GameStartResponse;
 import model.response.GameStateStatusResponse;
 import model.response.NewPMResponse;
 import model.response.SignInLoginResponse;
 import util.Loop;
-import view.menu.ChatPanel;
 import view.menu.GamePanel;
 import view.menu.MainMenu;
 import view.menu.PanelsManagerCard;
@@ -36,6 +35,9 @@ public class ResponseHandler implements ResponseVisitor{
             localController.clientCleared(response.getClient());
             panelsManagerCard.getCardLayout().show(panelsManagerCard, MainMenu.class.getSimpleName());
             panelsManagerCard.getStartPanel().requestFocus();
+            //save mikonim
+            ClientDTO clientDTO = new ClientDTO(response.getClient().getUsername(),response.getClient().getPassword(),response.getClient().getPrivateChats());
+            Saver.getSaver().saveUser(clientDTO);
         }
         else {
             System.out.println(response.getMassage());
