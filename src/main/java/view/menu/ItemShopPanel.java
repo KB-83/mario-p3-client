@@ -2,6 +2,7 @@ package view.menu;
 
 import controller.LocalController;
 import controller.listener.ItemShopPanelListener;
+import model.request.BuyRequest;
 import util.Config;
 
 import javax.swing.*;
@@ -22,17 +23,20 @@ public class ItemShopPanel extends MarioPanel {
     private JPanel southPanel;
     private JButton buyButton;
     private JButton backButton;
+    private JButton buyCoinButton;
+    private ShopDialog shopDialog;
 
     public ItemShopPanel(LocalController localController,PanelsManagerCard panelsManagerCard) {
         this.panelsManagerCard = panelsManagerCard;
         listener = new ItemShopPanelListener(localController,this);
+        shopDialog = new ShopDialog();
         setUI();
 
     }
 
     private JPanel createItemPanel(String address, String itemName) {
         JPanel itemPanel = new JPanel(new BorderLayout());
-        ImageIcon itemImage = new ImageIcon(Config.IMAGES.get(address)); // Replace with your item image
+        ImageIcon itemImage = new ImageIcon(Config.IMAGES.get(address));
         JLabel itemLabel = new JLabel(itemImage);
         itemPanel.add(itemLabel, BorderLayout.CENTER);
 
@@ -99,6 +103,11 @@ public class ItemShopPanel extends MarioPanel {
         diamondsLabel = new JLabel("Diamonds: " + diamondCount, diamondIcon, SwingConstants.LEFT);
         topPanel.add(diamondsLabel);
 
+        buyCoinButton = new JButton("buy coin");
+        buyCoinButton.setFocusable(false);
+        buyCoinButton.addActionListener(this);
+        topPanel.add(buyCoinButton);
+
 
         add(topPanel, BorderLayout.NORTH);
 
@@ -108,22 +117,15 @@ public class ItemShopPanel extends MarioPanel {
         add(scrollPane, BorderLayout.CENTER);
 
         // Add items to the center panel
-        String[] itemNames = {"hammer", "healthpotion", "invisiblepotion",
-                "hammer", "healthpotion", "invisiblepotion", "speedbomb", "tntbomb","speedpotion","speedbomb", "tntbomb","speedpotion","hammer", "healthpotion", "invisiblepotion", "speedbomb", "tntbomb","speedpotion"};
+        String[] itemNames = {"hammer", "healthpotion", "invisiblepotion", "invisiblepotion", "speedbomb"};
         for (int i = 1; i <= itemNames.length; i++) {
             centerPanel.add(createItemPanel(itemNames[i - 1], itemNames[i - 1]));
         }
 
         // Create south panel for buy button
         southPanel = new JPanel();
-        buyButton = new JButton("Buy");
-        buyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Perform buy operation here
-                JOptionPane.showMessageDialog(centerPanel, "Buy button clicked!");
-            }
-        });
+        buyButton = new JButton("BuyRequest");
+        buyButton.addActionListener(this);
 
 
         southPanel.add(buyButton);
@@ -132,7 +134,8 @@ public class ItemShopPanel extends MarioPanel {
 
     @Override
     public void setOffline(boolean offline) {
-        buyButton.setEnabled(!offline);
+//        buyButton.setEnabled(!offline);
+//        buyCoinButton.setEnabled(!offline);
     }
 
     @Override
@@ -141,5 +144,16 @@ public class ItemShopPanel extends MarioPanel {
             panelsManagerCard.getCardLayout().show(panelsManagerCard,MainMenu.class.getSimpleName());
             panelsManagerCard.getMainMenu().requestFocus();
         }
+        if (e.getSource() == buyCoinButton) {
+            shopDialog.setVisible(true);
+//            listener.buyCoin();
+        }
+        if (e.getSource() == buyButton) {
+            listener.buyRequest();
+        }
+    }
+
+    public JPanel getCenterPanel() {
+        return centerPanel;
     }
 }

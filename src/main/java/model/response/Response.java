@@ -10,6 +10,7 @@ import model.request.*;
         @JsonSubTypes.Type(value = SignInLoginResponse.class),
         @JsonSubTypes.Type(value = GameStateStatusResponse.class),
         @JsonSubTypes.Type(value = NewPMResponse.class),
+        @JsonSubTypes.Type(value = BuyResponse.class),
         @JsonSubTypes.Type(value = GameStartResponse.class)
 
 })

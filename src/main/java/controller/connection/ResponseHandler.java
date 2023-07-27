@@ -1,12 +1,9 @@
 package controller.connection;
 
 import controller.LocalController;
+import model.response.*;
 import util.Saver;
 import model.dto.ClientDTO;
-import model.response.GameStartResponse;
-import model.response.GameStateStatusResponse;
-import model.response.NewPMResponse;
-import model.response.SignInLoginResponse;
 import util.Loop;
 import view.menu.GamePanel;
 import view.menu.MainMenu;
@@ -73,5 +70,18 @@ public class ResponseHandler implements ResponseVisitor{
             localController.getFrame().getNotification().showNotification("NEW PM",response.getMassage().getContext());
             panelsManagerCard.getPrivateChatPanel().setChat(localController.getController().getPrivateChatByOpponentName(response.getSender()).getMassages(), response.getSender());
         }
+    }
+
+    @Override
+    public void visit(BuyResponse response) {
+        if (response.getBill() != null) {
+            System.out.println(response.getBill().getCoinCost());
+            System.out.println(response.getBill().getDiamondCost());
+            System.out.println(response.getBill().getBuyRequest().getHammer());
+        }
+        else {
+            System.out.println(response.getMessage());
+        }
+        System.out.println("buy response returned");
     }
 }

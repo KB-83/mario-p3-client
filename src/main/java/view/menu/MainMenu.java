@@ -13,6 +13,7 @@ public class MainMenu extends MarioPanel {
     private JButton continueLastGames = new JButton("continue last games");
     private JButton shop = new JButton("shop");
     private JButton chatRoom = new JButton("chat room");
+    private JButton tryAgain = new JButton("try to connect again");
     private JButton profile = new JButton("profile");
     private JButton logout = new JButton("logout");
     private JButton onlineGame = new JButton("play online");
@@ -25,24 +26,11 @@ public class MainMenu extends MarioPanel {
 
     @Override
     public void setUI() {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        add(Box.createVerticalGlue());
-
-        setFocusable(false);
-        setBackground(Color.LIGHT_GRAY);
+        setLayout(new GridBagLayout());
         setButtonsBounds();
         setButtonsListeners();
-
-        add(onlineGame);
-        add(startNewGame);
-        add(continueLastGames);
-        add(shop);
-        add(chatRoom);
-        add(profile);
-        add(logout);
-        add(Box.createVerticalGlue());
-        revalidate();
     }
+
 
     @Override
     public void setOffline(boolean offline) {
@@ -53,32 +41,36 @@ public class MainMenu extends MarioPanel {
 
 
     private void setButtonsBounds() {
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.insets = new Insets(5, 5, 5, 5); // Add some padding
 
-        Dimension dimension = new Dimension(150,40);
-        startNewGame.setPreferredSize(dimension);
-        continueLastGames.setPreferredSize(dimension);
-        shop.setPreferredSize(dimension);
-        chatRoom.setPreferredSize(dimension);
-        profile.setPreferredSize(dimension);
-        logout.setPreferredSize(dimension);
-        onlineGame.setPreferredSize(dimension);
+        // Add the buttons one by one
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        add(onlineGame, constraints);
 
-        startNewGame.setAlignmentX(Component.CENTER_ALIGNMENT);
-        continueLastGames.setAlignmentX(Component.CENTER_ALIGNMENT);
-        shop.setAlignmentX(Component.CENTER_ALIGNMENT);
-        profile.setAlignmentX(Component.CENTER_ALIGNMENT);
-        chatRoom.setAlignmentX(Component.CENTER_ALIGNMENT);
-        logout.setAlignmentX(Component.CENTER_ALIGNMENT);
-        onlineGame.setAlignmentX(Component.CENTER_ALIGNMENT);
+        constraints.gridy++;
+        add(startNewGame, constraints);
 
-        startNewGame.setFocusable(false);
-        continueLastGames.setFocusable(false);
-        shop.setFocusable(false);
-        profile.setFocusable(false);
-        chatRoom.setFocusable(false);
-        logout.setFocusable(false);
-        onlineGame.setFocusable(false);
+        constraints.gridy++;
+        add(continueLastGames, constraints);
 
+        constraints.gridy++;
+        add(shop, constraints);
+
+        constraints.gridy++;
+        add(chatRoom, constraints);
+
+        constraints.gridy++;
+        add(profile, constraints);
+
+        constraints.gridy++;
+        add(logout, constraints);
+
+        // Place "try again" button to the right of the other buttons
+        constraints.gridy++;
+        add(tryAgain, constraints);
     }
     private void setButtonsListeners(){
         startNewGame.addActionListener(new ActionListener() {

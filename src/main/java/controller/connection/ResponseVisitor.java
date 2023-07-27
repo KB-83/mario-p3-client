@@ -1,14 +1,12 @@
 package controller.connection;
 
-import model.response.GameStartResponse;
-import model.response.GameStateStatusResponse;
-import model.response.NewPMResponse;
-import model.response.SignInLoginResponse;
+import model.response.*;
 
 public interface ResponseVisitor {
     void visit(SignInLoginResponse response);
     void visit(GameStartResponse response);
     void visit(GameStateStatusResponse response);
     void visit(NewPMResponse response);
+    void visit(BuyResponse response);
 
 }
