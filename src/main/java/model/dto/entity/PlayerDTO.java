@@ -6,6 +6,7 @@ public class PlayerDTO {
     private String type;
     private int height;
     private String  image;
+    private String name;
 
     public PlayerDTO() {
     }
@@ -64,5 +65,13 @@ public class PlayerDTO {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

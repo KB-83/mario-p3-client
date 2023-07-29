@@ -41,6 +41,7 @@ public class StartPanel extends MarioPanel {
     @Override
     public void setOffline(boolean offline) {
         signIn.setEnabled(!offline);
+        tryAgain.setVisible(offline);
     }
 
     // all design

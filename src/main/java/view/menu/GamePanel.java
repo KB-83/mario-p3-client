@@ -17,11 +17,12 @@ public class GamePanel extends MarioPanel {
     private Graphics2D g2;
     private GameStateDTO gameStateDTO;
     private final Camera camera = new Camera();
+    private final GameOverDialog gameOverDialog;
     private GameHUI gameHUI;
 //    private Loop gameloop;
 
     public GamePanel(PanelsManagerCard cardPanel) {
-
+        gameOverDialog = new GameOverDialog(cardPanel.getFrame(),cardPanel);
         this.cardPanel = cardPanel;
 //        this.camera = new Camera();
         this.gameHUI = new GameHUI();
@@ -74,4 +75,7 @@ public class GamePanel extends MarioPanel {
         }
     }
 
+    public GameOverDialog getGameOverDialog() {
+        return gameOverDialog;
+    }
 }

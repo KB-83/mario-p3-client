@@ -84,4 +84,9 @@ public class ResponseHandler implements ResponseVisitor{
         }
         System.out.println("buy response returned");
     }
+
+    @Override
+    public void visit(GameOverResponse response) {
+        panelsManagerCard.getGamePanel().getGameOverDialog().showDialog(response.getScore(),response.getDiamond(), response.getMassage());
+    }
 }

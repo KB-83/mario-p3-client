@@ -18,6 +18,9 @@ public class Camera {
     private int startPaintingX ,endPaintingX;
     private int minasXLength;
     private PlayerDTO playerDTO;
+    // Assuming you have loaded the font file and created the Font object
+    private Font cartoonFont = new Font("Comic Sans MS", Font.PLAIN, 20);
+
 
     public Camera() {
         startPaintingX = 0;
@@ -99,17 +102,47 @@ public class Camera {
         }
 
 //         drying player
+//        Image image;
+//        if (playerDTO.getImage() != null) {
+//            image = Config.IMAGES.get(playerDTO.getImage().toLowerCase());
+//        }
+//        else {
+//            image = Config.IMAGES.get("marioright1");
+//        }
+//        g2.drawImage(image, playerDTO.getCameraX(),
+//                playerDTO.getCameraY()
+//                , 48, playerDTO.getHeight(),
+//                null );
+
+
+        //draying other players
         Image image;
-        if (playerDTO.getImage() != null) {
-            image = Config.IMAGES.get(playerDTO.getImage().toLowerCase());
+        for (PlayerDTO playerDTO1 : gameStateDTO.getPlayerDTOS()) {
+            if (playerDTO1.getImage() != null) {
+                image = Config.IMAGES.get(playerDTO1.getImage().toLowerCase());
+            }
+            else {
+                image = Config.IMAGES.get("marioright1");
+            }
+
+            g2.setFont(cartoonFont);
+            if (playerDTO.getName().equals(playerDTO1.getName())) {
+                g2.drawImage(image, playerDTO1.getCameraX(),
+                        playerDTO1.getCameraY()
+                        , 48, playerDTO1.getHeight(),
+                        null);
+                g2.drawString(playerDTO1.getName(),playerDTO1.getCameraX(), playerDTO1.getCameraY() - 30);
+
+            }
+            else if (playerDTO1.getName() != null){
+                g2.drawImage(image, playerDTO1.getX() - minasXLength,
+                        playerDTO1.getY()
+                        , 48, playerDTO1.getHeight(),
+                        null);
+                g2.drawString(playerDTO1.getName(),playerDTO1.getX() - minasXLength, playerDTO1.getY() - 30);
+            }
         }
-        else {
-            image = Config.IMAGES.get("marioright1");
-        }
-        g2.drawImage(image, playerDTO.getCameraX(),
-                playerDTO.getCameraY()
-                , 48, playerDTO.getHeight(),
-                null );
+        g2.drawString(String.valueOf(gameStateDTO.getCurrentSection().getTime()),100,100);
         //draw chckPoint test
 //        if(gameStateDTO.getCurrentGuiSection().getGuiCheckPoint() != null) {
 //            g2.drawImage(gameStateDTO.getCurrentGuiSection().getGuiCheckPoint().getCurrentImage(), gameStateDTO.getCurrentGuiSection().getGuiCheckPoint().getWorldX() - minasXLength,

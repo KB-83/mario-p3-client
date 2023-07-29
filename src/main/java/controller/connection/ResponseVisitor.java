@@ -8,5 +8,6 @@ public interface ResponseVisitor {
     void visit(GameStateStatusResponse response);
     void visit(NewPMResponse response);
     void visit(BuyResponse response);
+    void visit(GameOverResponse response);
 
 }
