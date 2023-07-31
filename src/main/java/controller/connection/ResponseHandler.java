@@ -48,6 +48,7 @@ public class ResponseHandler implements ResponseVisitor{
 //        panelsManagerCard.getGamePanel().setKeyListener(gameState);
         //test
         Loop loop = new Loop(localController,response.getGameStateDTO(),response.getPlayerDTO(),panelsManagerCard.getGamePanel(),60);
+        localController.setClientCurrentGameLoop(loop);
         loop.start();
         panelsManagerCard.getGamePanel().setGameStateDTO(response.getGameStateDTO(),response.getPlayerDTO());
         panelsManagerCard.getGamePanel().setKeyListener(localController);
@@ -87,6 +88,8 @@ public class ResponseHandler implements ResponseVisitor{
 
     @Override
     public void visit(GameOverResponse response) {
+        // next line is very important
+        localController.getClientCurrentGameLoop().kill();
         panelsManagerCard.getGamePanel().getGameOverDialog().showDialog(response.getScore(),response.getDiamond(), response.getMassage());
     }
 }

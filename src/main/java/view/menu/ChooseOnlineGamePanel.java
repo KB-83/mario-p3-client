@@ -1,16 +1,18 @@
 package view.menu;
 
 import controller.LocalController;
-import model.request.MarathonRequest;
+import view.menu.room.CreateRoomPanel;
+import view.menu.room.RoomManagerPanel;
+import view.menu.room.RoomManagerCard;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ChooseOnlineGamePanel extends MarioPanel{
-    private JButton scoreGame = new JButton("score game");
-    private JButton createRoom = new JButton("create room");
-    private JButton enterRoom = new JButton("enter room");
+    private JButton scoreGame = createStyledButton("score game");
+    private JButton createRoom = createStyledButton("create room");
+    private JButton enterRoom = createStyledButton("enter room");
     private PanelsManagerCard panelsManagerCard;
     private LocalController localController;
     public ChooseOnlineGamePanel(LocalController localController, PanelsManagerCard panelsManagerCard) {
@@ -37,7 +39,9 @@ public class ChooseOnlineGamePanel extends MarioPanel{
         scoreGame.setFocusable(false);
         scoreGame.addActionListener(this);
         createRoom.setFocusable(false);
+        createRoom.addActionListener(this);
         enterRoom.setFocusable(false);
+        enterRoom.addActionListener(this);
 
         add(scoreGame);
         add(createRoom);
@@ -54,8 +58,15 @@ public class ChooseOnlineGamePanel extends MarioPanel{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == scoreGame) {
-            MarathonRequest marathonRequest = new MarathonRequest();
-            localController.sendRequest(marathonRequest);
+            panelsManagerCard.getCardLayout().show(panelsManagerCard,OnlineGamePanel.class.getSimpleName());
+        }
+        if (e.getSource() == enterRoom) {
+            panelsManagerCard.getRoomManager().getCardLayout().show(panelsManagerCard.getRoomManager(), RoomManagerPanel.class.getSimpleName());
+            panelsManagerCard.getCardLayout().show(panelsManagerCard, RoomManagerCard.class.getSimpleName());
+        }
+        if (e.getSource() == createRoom) {
+            panelsManagerCard.getRoomManager().getCardLayout().show(panelsManagerCard.getRoomManager(), CreateRoomPanel.class.getSimpleName());
+            panelsManagerCard.getCardLayout().show(panelsManagerCard, RoomManagerCard.class.getSimpleName());
         }
     }
 

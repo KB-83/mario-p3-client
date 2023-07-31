@@ -2,6 +2,7 @@ package controller;
 
 import model.Client;
 import model.request.Request;
+import util.Loop;
 import view.Frame;
 import view.menu.LoadingPanel;
 import view.menu.OfflineAskPanel;
@@ -10,6 +11,7 @@ import view.menu.StartPanel;
 public class LocalController {
     public static boolean isOnline = true;
     private ClientController controller;
+    private Loop clientCurrentGameLoop;
     private Frame frame;
     public LocalController(ClientController controller) {
         this.controller = controller;
@@ -59,5 +61,13 @@ public class LocalController {
         frame.getPanelsManagerCard().getLoadingPanel().setLoading(true);
         controller.connectToServer();
         isOnline = true;
+    }
+
+    public void setClientCurrentGameLoop(Loop clientCurrentGameLoop) {
+        this.clientCurrentGameLoop = clientCurrentGameLoop;
+    }
+
+    public Loop getClientCurrentGameLoop() {
+        return clientCurrentGameLoop;
     }
 }

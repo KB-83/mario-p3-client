@@ -4,10 +4,10 @@ import controller.LocalController;
 import view.Frame;
 import view.NewGamePanel;
 import view.ProfilePanel;
+import view.menu.room.RoomManagerCard;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 
 public class PanelsManagerCard extends MarioPanel {
     private Frame frame;
@@ -18,7 +18,9 @@ public class PanelsManagerCard extends MarioPanel {
     private GamePanel gamePanel;
     private StartPanel startPanel;
     private LoadingPanel loadingPanel;
+    private OnlineGamePanel onlineGamePanel;
     private MainMenu mainMenu;
+    private RoomManagerCard roomManagerCard;
     private ProfilePanel profilePanel;
     private ShopPanel shopPanel;
     private NewGamePanel newGamePanel;
@@ -44,6 +46,8 @@ public class PanelsManagerCard extends MarioPanel {
         mainMenu = new MainMenu(this);
         cardLayout = new CardLayout();
         chooseOnlineGamePanel = new ChooseOnlineGamePanel(localController,this);
+        onlineGamePanel = new OnlineGamePanel(localController,this);
+        roomManagerCard = new RoomManagerCard(frame,localController);
 
         setUI();
 
@@ -64,6 +68,8 @@ public class PanelsManagerCard extends MarioPanel {
         add(startPanel , startPanel.getClass().getSimpleName());
         add(chooseOnlineGamePanel,chooseOnlineGamePanel.getClass().getSimpleName());
         add(gamePanel, gamePanel.getClass().getSimpleName());
+        add(onlineGamePanel,onlineGamePanel.getClass().getSimpleName());
+        add(roomManagerCard, roomManagerCard.getClass().getSimpleName());
 //        add(newGamePanel,"newGamePanel");
 //        add(lastGamesPanel,"lastGamesPanel");
         add(mainMenu,mainMenu.getClass().getSimpleName());
@@ -169,6 +175,18 @@ public class PanelsManagerCard extends MarioPanel {
 
     public LoadingPanel getLoadingPanel() {
         return loadingPanel;
+    }
+
+    public OnlineGamePanel getOnlineGamePanel() {
+        return onlineGamePanel;
+    }
+
+    public RoomManagerCard getRoomManager() {
+        return roomManagerCard;
+    }
+
+    public ChooseOnlineGamePanel getChooseOnlineGamePanel() {
+        return chooseOnlineGamePanel;
     }
 
     @Override

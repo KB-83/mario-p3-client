@@ -80,7 +80,7 @@ public class LoadingPanel extends MarioPanel{
             int y = (getHeight() - CIRCLE_DIAMETER) / 2;
 
             Graphics2D g2d = (Graphics2D) g.create();
-            g2d.setColor(Color.DARK_GRAY);
+            g2d.setColor(MarioPanel.DARK_COLOR);
             g2d.setStroke(new BasicStroke(3));
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g2d.rotate(Math.toRadians(rotationAngle), getWidth() / 2, getHeight() / 2);
@@ -95,9 +95,10 @@ public class LoadingPanel extends MarioPanel{
     }
     @Override
     public void setUI() {
-        setOpaque(false);
+//        setOpaque(false);
+        setBackground(MarioPanel.LIGTH_COLOR);
         setLayout(new BorderLayout());
-        connectingLabel = new JLabel("Connecting...");
+        connectingLabel = createStyledLabel("Connecting...",false);
         connectingLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(connectingLabel, BorderLayout.SOUTH);
     }

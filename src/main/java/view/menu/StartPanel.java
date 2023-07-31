@@ -3,6 +3,7 @@ package view.menu;
 
 import controller.LocalController;
 import controller.listener.StartPanelListener;
+import util.Config;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -13,7 +14,7 @@ public class StartPanel extends MarioPanel {
     private StartPanelListener startPanelListener;
     private PanelsManagerCard cardPanel;
     private JButton login, signIn, exit, getSignIn,getLogin,tryAgain;
-    private Image image;
+    private Image image = Config.IMAGES.get("back2");
     private JTextArea loginName = new JTextArea("username");
     private JTextArea loginPass = new JTextArea("pass");
     private JTextArea signName = new JTextArea("username");
@@ -26,6 +27,7 @@ public class StartPanel extends MarioPanel {
     }
     @Override
     public void setUI() {
+        setBackground(MarioPanel.LIGTH_COLOR);
         setFocusable(true);
         setLayout(null);
         setTextAreas();
@@ -49,12 +51,12 @@ public class StartPanel extends MarioPanel {
 //        // TODO: you can change and use config
 //
 //
-        signIn = new JButton("sign in");
-        login = new JButton("login");
-        exit = new JButton("exit");
-        getLogin = new JButton("ok");
-        getSignIn = new JButton("ok");
-        tryAgain = new JButton("try to connect again");
+        signIn = createStyledButton("sign in");
+        login = createStyledButton("login");
+        exit = createStyledButton("exit");
+        getLogin = createStyledButton("ok");
+        getSignIn = createStyledButton("ok");
+        tryAgain = createStyledButton("try to connect again");
 
         signIn.addActionListener(this);
         login.addActionListener(this);
@@ -66,9 +68,9 @@ public class StartPanel extends MarioPanel {
         signIn.setBounds(3 * 48 - 50 , 460,100,40);
         login.setBounds(3 * 48 - 50, 520,100,40);
         exit.setBounds(3 * 48 - 50,580,100,40);
-        getSignIn.setBounds(3 * 48 + 280 + 30, 460,50,40);
-        getLogin.setBounds(3 * 48 + 280 + 30, 520,50,40);
-        tryAgain.setBounds(1000,20,150,40);
+        getSignIn.setBounds(3 * 48 + 280 + 30, 460,70,40);
+        getLogin.setBounds(3 * 48 + 280 + 30, 520,70,40);
+        tryAgain.setBounds(1000,20,200,40);
 //
         signIn.setFocusable(false);
         login.setFocusable(false);
@@ -120,7 +122,7 @@ public class StartPanel extends MarioPanel {
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-        g.drawImage(image,0,0,1248,720,null);
+//        g.drawImage(image,0,0,1248,720,null);
 
     }
 
@@ -155,7 +157,6 @@ public class StartPanel extends MarioPanel {
             startPanelListener.tryAgain();
         }
     }
-
     public JTextArea getLoginName() {
         return loginName;
     }

@@ -1,5 +1,7 @@
 package model.dto.entity;
 
+import java.awt.*;
+
 public class PlayerDTO {
     private int x,y;
     private int cameraX, cameraY;
@@ -7,6 +9,8 @@ public class PlayerDTO {
     private int height;
     private String  image;
     private String name;
+    private int remainingLifePercent;
+    private int teamColor;
 
     public PlayerDTO() {
     }
@@ -73,5 +77,21 @@ public class PlayerDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getRemainingLifePercent() {
+        return remainingLifePercent;
+    }
+
+    public void setRemainingLifePercent(int remainingLifePercent) {
+        this.remainingLifePercent = remainingLifePercent;
+    }
+
+    public int getTeamColor() {
+        return teamColor;
+    }
+
+    public void setTeamColor(int teamColor) {
+        this.teamColor = teamColor;
     }
 }

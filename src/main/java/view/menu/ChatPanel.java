@@ -30,7 +30,7 @@ public class ChatPanel extends MarioPanel {
     public void setUI() {
         setLayout(new BorderLayout());
 
-        backButton = new JButton("<-");
+        backButton = createButton("< -");
         backButton.setHorizontalTextPosition(SwingConstants.LEFT);
         backButton.setHorizontalAlignment(SwingConstants.LEFT);
         backButton.setFocusable(false);

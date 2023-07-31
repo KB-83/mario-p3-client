@@ -9,14 +9,14 @@ public class MainMenu extends MarioPanel {
 
     private PanelsManagerCard cardPanel;
     //    User user;
-    private JButton startNewGame = new JButton("start new game");
-    private JButton continueLastGames = new JButton("continue last games");
-    private JButton shop = new JButton("shop");
-    private JButton chatRoom = new JButton("chat room");
-    private JButton tryAgain = new JButton("try to connect again");
-    private JButton profile = new JButton("profile");
-    private JButton logout = new JButton("logout");
-    private JButton onlineGame = new JButton("play online");
+    private JButton startNewGame = createStyledButton("start new game");
+    private JButton continueLastGames = createStyledButton("continue last games");
+    private JButton shop = createStyledButton("shop");
+    private JButton chatRoom = createStyledButton("chat room");
+    private JButton tryAgain = createStyledButton("try to connect again");
+    private JButton profile = createStyledButton("profile");
+    private JButton logout = createStyledButton("logout");
+    private JButton onlineGame = createStyledButton("play online");
 
     MainMenu(PanelsManagerCard cardPanel) {
 

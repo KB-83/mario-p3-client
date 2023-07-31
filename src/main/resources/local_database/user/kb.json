@@ -1,6 +1,6 @@
 {
   "username" : "kb",
-  "password" : "pass:",
+  "password" : "pass",
   "privateChats" : [ {
     "opponentUsername" : "username",
     "massages" : [ {

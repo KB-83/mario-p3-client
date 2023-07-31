@@ -32,16 +32,16 @@ public class OfflineAskPanel extends MarioPanel{
         JPanel buttonsPanel = new JPanel(new FlowLayout());
         buttonsPanel.setPreferredSize(new Dimension(150,150));
 
-        tryAgain = new JButton("try again");
+        tryAgain = createButton("try again");
         tryAgain.setVerticalAlignment(JButton.CENTER);
         tryAgain.addActionListener(this);
 
-        playOffline = new JButton("play offline");
+        playOffline = createButton("play offline");
         playOffline.setVerticalAlignment(JButton.CENTER);
         playOffline.addActionListener(this);
 
 
-        lostConnection = new JLabel("could not connect to server.");
+        lostConnection = createStyledLabel("could not connect to server.",true);
         lostConnection.setHorizontalAlignment(JLabel.CENTER);
         lostConnection.setVerticalAlignment(JLabel.BOTTOM);
 

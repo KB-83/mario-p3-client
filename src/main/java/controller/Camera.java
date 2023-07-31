@@ -126,12 +126,14 @@ public class Camera {
             }
 
             g2.setFont(cartoonFont);
-            if (playerDTO.getName().equals(playerDTO1.getName())) {
+
+            if (playerDTO.getName() != null &&playerDTO.getName().equals(playerDTO1.getName())) {
                 g2.drawImage(image, playerDTO1.getCameraX(),
                         playerDTO1.getCameraY()
                         , 48, playerDTO1.getHeight(),
                         null);
-                g2.drawString(playerDTO1.getName(),playerDTO1.getCameraX(), playerDTO1.getCameraY() - 30);
+                g2.setColor(Color.BLACK);
+                g2.drawString(playerDTO1.getName(),playerDTO1.getCameraX(), playerDTO1.getCameraY() - 50);
 
             }
             else if (playerDTO1.getName() != null){
@@ -139,9 +141,17 @@ public class Camera {
                         playerDTO1.getY()
                         , 48, playerDTO1.getHeight(),
                         null);
-                g2.drawString(playerDTO1.getName(),playerDTO1.getX() - minasXLength, playerDTO1.getY() - 30);
+                g2.setColor(Color.BLACK);
+                g2.drawString(playerDTO1.getName(),playerDTO1.getX() - minasXLength, playerDTO1.getY() - 50);
+
+                g2.setColor(Color.WHITE);
+                g2.drawRoundRect(playerDTO1.getX(),playerDTO1.getY() - 30,100,15,5,5);
+                g2.setColor(new Color(playerDTO1.getTeamColor()));
+                g2.fillRoundRect(playerDTO1.getX(),playerDTO1.getY() - 30,
+                        playerDTO1.getRemainingLifePercent(),15,5,5);
             }
         }
+        g2.setColor(Color.BLACK);
         g2.drawString(String.valueOf(gameStateDTO.getCurrentSection().getTime()),100,100);
         //draw chckPoint test
 //        if(gameStateDTO.getCurrentGuiSection().getGuiCheckPoint() != null) {
@@ -162,6 +172,13 @@ public class Camera {
 //            g2.drawImage(guiSward.getCurrentImage(),guiSward.getWorldX() - minasXLength,guiSward.getWorldY(),
 //                    guiSward.getWidth(),guiSward.getHeight(),null);
 //        }
+        if (playerDTO.getRemainingLifePercent() >= 0) {
+            g2.setColor(Color.WHITE);
+            g2.drawRoundRect(playerDTO.getX(),playerDTO.getY() - 30,100,15,5,5);
+            g2.setColor(new Color(playerDTO.getTeamColor()));
+            g2.fillRoundRect(playerDTO.getX(),playerDTO.getY() - 30,
+                    playerDTO.getRemainingLifePercent(),15,5,5);
+        }
     }
     private boolean checkBound (int x , int y) {
         if(x < endPaintingX && x > startPaintingX) {
