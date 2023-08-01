@@ -9,5 +9,6 @@ public interface ResponseVisitor {
     void visit(NewPMResponse response);
     void visit(BuyResponse response);
     void visit(GameOverResponse response);
+    void visit(RoomResponse response);
 
 }

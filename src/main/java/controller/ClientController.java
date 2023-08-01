@@ -1,7 +1,7 @@
 package controller;
 
+import model.Chat;
 import model.Client;
-import model.PrivateChat;
 import model.request.Request;
 
 import javax.swing.*;
@@ -44,15 +44,15 @@ public class ClientController {
     }
     public ArrayList<String> returnChatNames() {
         ArrayList<String> names = new ArrayList<>();
-        for (PrivateChat privateChat : client.getPrivateChats()) {
-            names.add(privateChat.getOpponentUsername());
+        for (Chat chat : client.getChats()) {
+            names.add(chat.getOpponentUsername());
         }
         return names;
     }
-    public PrivateChat getPrivateChatByOpponentName(String opponentName) {
-        for (PrivateChat privateChat : client.getPrivateChats()) {
-            if (privateChat.getOpponentUsername().equals(opponentName)) {
-                return privateChat;
+    public Chat getChatByOpponentName(String opponentUsername) {
+        for (Chat chat : client.getChats()) {
+            if (chat.getOpponentUsername().equals(opponentUsername)) {
+                return chat;
             }
         }
         return null;

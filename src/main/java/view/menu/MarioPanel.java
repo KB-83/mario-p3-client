@@ -15,6 +15,7 @@ public abstract class MarioPanel extends JPanel implements ActionListener {
     public static final Font FONT = new Font("Arial", Font.BOLD, 16);
     public static final Color DARK_COLOR = new Color(255, 100, 100);
     public static final Color LIGTH_COLOR = new Color(255, 150, 150);
+    public static final Color MENU_COLOR = new Color(255,230,230 );
     public static final Color WHITE_COLOR = new Color(240, 240, 240);
     public static final Color BOARDER_COLOR = new Color(210, 0, 0);
     public static final Border BLACK_BORDER = BorderFactory.createLineBorder(Color.BLACK, 2, true);
@@ -29,7 +30,7 @@ public abstract class MarioPanel extends JPanel implements ActionListener {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
     }
-    public JLabel createStyledLabel(String text, boolean hasBackground) {
+    public static JLabel createStyledLabel(String text, boolean hasBackground) {
         JLabel label = new JLabel(text);
         label.setFont(FONT);
         label.setFocusable(false);
@@ -45,7 +46,7 @@ public abstract class MarioPanel extends JPanel implements ActionListener {
 
         return label;
     }
-    public JButton createButton(String text) {
+    public static JButton createButton(String text) {
         JButton button = new JButton(text);
         button.setFont(FONT);
         button.setFocusPainted(false);
@@ -56,7 +57,7 @@ public abstract class MarioPanel extends JPanel implements ActionListener {
         button.setForeground(Color.BLACK);
         return button;
     }
-    public JButton createStyledButton(String text) {
+    public static JButton createStyledButton(String text) {
         JButton button = new JButton(text);
         button.setFont(FONT);
         button.setFocusPainted(false);
@@ -83,5 +84,26 @@ public abstract class MarioPanel extends JPanel implements ActionListener {
 
         return button;
     }
+    public static JTextField createStyledTextField(String text, boolean hasBackground, int columns) {
+        JTextField textField = new JTextField(text, columns);
+        textField.setFont(FONT);
+        textField.setForeground(Color.RED);
+        if (hasBackground) {
+            textField.setOpaque(true);
+            textField.setBackground(LIGTH_COLOR);
+        }
+        return textField;
+    }
+    private JButton createBackButton() {
+        JButton backButton = new JButton("<");
+        backButton.setFont(new Font("Arial", Font.BOLD, 16));
+        backButton.setFocusPainted(false);
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        backButton.setPreferredSize(new Dimension(40, 40));
 
+        // Add your back button action listener here
+        // backButton.addActionListener(...);
+
+        return backButton;
+    }
 }

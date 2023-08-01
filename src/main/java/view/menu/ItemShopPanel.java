@@ -41,15 +41,17 @@ public class ItemShopPanel extends MarioPanel {
         itemPanel.add(itemLabel, BorderLayout.CENTER);
 
         JPanel namePanel = new JPanel();
+        namePanel.setBackground(MarioPanel.MENU_COLOR);
         JLabel nameLabel = new JLabel(itemName);
         namePanel.add(nameLabel);
 
         itemPanel.add(namePanel, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
-        JButton minusButton = new JButton("-");
-        JLabel quantityLabel = new JLabel("0");
-        JButton plusButton = new JButton("+");
+        buttonPanel.setBackground(MarioPanel.MENU_COLOR);
+        JButton minusButton = createButton(" - ");
+        JLabel quantityLabel = createStyledLabel("0",false);
+        JButton plusButton = createButton(" + ");
 
         minusButton.addActionListener(new ActionListener() {
             @Override
@@ -76,18 +78,21 @@ public class ItemShopPanel extends MarioPanel {
         buttonPanel.add(plusButton);
 
         itemPanel.add(buttonPanel, BorderLayout.SOUTH);
+        itemPanel.setBackground(MarioPanel.LIGTH_COLOR);
         return itemPanel;
     }
 
 
     @Override
     public void setUI() {
+
         setLayout(new BorderLayout());
 
         // Create top panel for currencies
         topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        topPanel.setBackground(MarioPanel.LIGTH_COLOR);
 
-        backButton = new JButton("<-");
+        backButton = createButton(" < ");
         backButton.addActionListener(this);
         topPanel.add(backButton);
 
@@ -95,15 +100,19 @@ public class ItemShopPanel extends MarioPanel {
         coinIcon.setImage(Config.IMAGES.get("coin"));
 
 
-        coinsLabel = new JLabel("Coins: " + userCoins, coinIcon, SwingConstants.LEFT);
+        coinsLabel = createStyledLabel("Coins: " + userCoins,false);
+        coinsLabel.setIcon(coinIcon);
+
+
         topPanel.add(coinsLabel);
 
         ImageIcon diamondIcon = new ImageIcon(); // Replace with your diamond image
         diamondIcon.setImage(Config.IMAGES.get("diamond"));
-        diamondsLabel = new JLabel("Diamonds: " + diamondCount, diamondIcon, SwingConstants.LEFT);
+        diamondsLabel = createStyledLabel("Diamonds: " + diamondCount,false);
+        diamondsLabel.setIcon(diamondIcon);
         topPanel.add(diamondsLabel);
 
-        buyCoinButton = new JButton("buy coin");
+        buyCoinButton = createButton("buy coin");
         buyCoinButton.setFocusable(false);
         buyCoinButton.addActionListener(this);
         topPanel.add(buyCoinButton);
@@ -113,6 +122,7 @@ public class ItemShopPanel extends MarioPanel {
 
         // Create center panel for item display
         centerPanel = new JPanel(new GridLayout(0, 3, 10, 10));
+        centerPanel.setBackground(MarioPanel.DARK_COLOR);
         scrollPane = new JScrollPane(centerPanel);
         add(scrollPane, BorderLayout.CENTER);
 
@@ -124,7 +134,7 @@ public class ItemShopPanel extends MarioPanel {
 
         // Create south panel for buy button
         southPanel = new JPanel();
-        buyButton = new JButton("BuyRequest");
+        buyButton = createStyledButton("BuyRequest");
         buyButton.addActionListener(this);
 
 

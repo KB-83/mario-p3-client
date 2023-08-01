@@ -22,7 +22,7 @@ public class RoomManagerCard extends MarioPanel{
     public void setDependencies(LocalController localController) {
         cardLayout = new CardLayout();
         roomManagerPanel = new RoomManagerPanel();
-        createRoomPanel = new CreateRoomPanel();
+        createRoomPanel = new CreateRoomPanel(localController);
 
         setUI();
 

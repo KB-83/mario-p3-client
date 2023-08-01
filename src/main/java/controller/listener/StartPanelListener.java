@@ -30,7 +30,7 @@ public class StartPanelListener {
 
             if(clientDTO != null) {
                 Client client = new Client();
-                client.setPrivateChats(clientDTO.getPrivateChats());
+                client.setChats(clientDTO.getChats());
                 client.setPassword(clientDTO.getPassword());
                 client.setUsername(clientDTO.getUsername());
                 localController.getController().setClient(client);

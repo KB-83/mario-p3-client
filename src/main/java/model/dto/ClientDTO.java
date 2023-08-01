@@ -2,7 +2,7 @@ package model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import controller.ClientController;
-import model.PrivateChat;
+import model.Chat;
 import model.dto.entity.PlayerDTO;
 import model.dto.game.GameStateDTO;
 
@@ -17,7 +17,10 @@ public class ClientDTO {
         private ClientController clientController;
         private String username;
         private String password;
-        private ArrayList<PrivateChat> privateChats;
+        private ArrayList<Chat> chats;
+        // vaghti room request miad Setcon shayad asan currunt room bashe
+        @JsonIgnore
+        private Chat roomChat;
         //    todo : maybe in feature going to add multiplie players
 //    private Player[] players;
 
@@ -25,8 +28,8 @@ public class ClientDTO {
     public ClientDTO() {
     }
 
-    public ClientDTO(String username, String password,ArrayList<PrivateChat> privateChats) {
-            this.privateChats = privateChats;
+    public ClientDTO(String username, String password,ArrayList<Chat> chats) {
+            this.chats = chats;
             this.username = username;
             this.password = password;
 
@@ -71,11 +74,19 @@ public class ClientDTO {
         }
 
 
-        public ArrayList<PrivateChat> getPrivateChats() {
-            return privateChats;
+        public ArrayList<Chat> getChats() {
+            return chats;
         }
 
-        public void setPrivateChats(ArrayList<PrivateChat> privateChats) {
-            this.privateChats = privateChats;
+        public void setChats(ArrayList<Chat> chats) {
+            this.chats = chats;
         }
+
+    public Chat getRoomChat() {
+        return roomChat;
+    }
+
+    public void setRoomChat(Chat roomChat) {
+        this.roomChat = roomChat;
+    }
 }

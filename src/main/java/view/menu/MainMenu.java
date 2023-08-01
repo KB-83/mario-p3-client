@@ -26,6 +26,7 @@ public class MainMenu extends MarioPanel {
 
     @Override
     public void setUI() {
+        setBackground(MarioPanel.MENU_COLOR);
         setLayout(new GridBagLayout());
         setButtonsBounds();
         setButtonsListeners();

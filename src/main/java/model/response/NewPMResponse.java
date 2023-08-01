@@ -2,22 +2,14 @@ package model.response;
 
 
 import controller.connection.ResponseVisitor;
+import model.Chat;
 import model.Massage;
-import model.PrivateChat;
 
 import java.util.ArrayList;
 
 public class NewPMResponse extends Response {
     private Massage massage;
-    private String sender;
-    private ArrayList<PrivateChat> newPrivateChat;
-
-
-    public NewPMResponse(Massage massage, String sender) {
-        this.massage = massage;
-        this.sender = sender;
-    }
-
+    private ArrayList<Chat> newChat;
     public NewPMResponse() {
     }
 
@@ -29,12 +21,12 @@ public class NewPMResponse extends Response {
         this.massage = massage;
     }
 
-    public String getSender() {
-        return sender;
+    public ArrayList<Chat> getNewChat() {
+        return newChat;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public void setNewPrivateChat(ArrayList<Chat> newChat) {
+        this.newChat = newChat;
     }
 
     @Override
@@ -42,11 +34,4 @@ public class NewPMResponse extends Response {
         responseVisitor.visit(this);
     }
 
-    public ArrayList<PrivateChat> getNewPrivateChat() {
-        return newPrivateChat;
-    }
-
-    public void setNewPrivateChat(ArrayList<PrivateChat> newPrivateChat) {
-        this.newPrivateChat = newPrivateChat;
-    }
 }

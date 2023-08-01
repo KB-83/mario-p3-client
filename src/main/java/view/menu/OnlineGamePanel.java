@@ -24,6 +24,7 @@ public class OnlineGamePanel extends MarioPanel{
 
     @Override
     public void setUI() {
+        setBackground(MarioPanel.MENU_COLOR);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(Box.createVerticalGlue());
 

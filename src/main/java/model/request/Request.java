@@ -2,7 +2,7 @@ package model.request;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import controller.connection.RequestVisitor;
+
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = MarathonRequest.class),
@@ -14,7 +14,7 @@ import controller.connection.RequestVisitor;
         @JsonSubTypes.Type(value = GroupSurvivalRequest.class),
         @JsonSubTypes.Type(value = BuyRequest.class),
         @JsonSubTypes.Type(value = SignInRequest.class),
-        @JsonSubTypes.Type(value = Room.class)
+        @JsonSubTypes.Type(value = RoomRequest.class)
 })
 
 public abstract class Request {

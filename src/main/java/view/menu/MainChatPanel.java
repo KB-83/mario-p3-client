@@ -3,29 +3,28 @@ package view.menu;
 import controller.LocalController;
 import model.Massage;
 import model.request.SendPMRequest;
-import util.Loader;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class PrivateChatPanel extends MarioPanel {
+public class MainChatPanel extends MarioPanel implements ActionListener {
     private PanelsManagerCard panelsManagerCard;
     private LocalController localController;
     private JPanel messagesPanel;
     private JPanel topPanel;
-    private JButton backButton;
     private JPanel titlePanel;
     private JLabel titleLabel;
     private JScrollPane scrollPane;
     private JPanel inputPanel;
     private JTextField messageField;
     private JButton sendButton;
-    public PrivateChatPanel(LocalController localController,PanelsManagerCard panelsManagerCard) {
+    private JButton backButton;
+    private String username;
+
+    public MainChatPanel(LocalController localController, PanelsManagerCard panelsManagerCard) {
         this.panelsManagerCard = panelsManagerCard;
         this.localController = localController;
         setUI();
@@ -45,7 +44,7 @@ public class PrivateChatPanel extends MarioPanel {
         return sb.toString();
     }
 
-    private void addMessage(String message,boolean isOwner) {
+    private void addMessage(String message, boolean isOwner, String senderName) {
         JPanel messagePanel = new JPanel(new BorderLayout());
 
         JLabel messageLabel = new JLabel(breakMessageIntoLines(message));
@@ -54,12 +53,19 @@ public class PrivateChatPanel extends MarioPanel {
         messageLabel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
         messageLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
+        // Create a circular icon with the sender's first initial
+        ImageIcon circularIcon = createCircularIcon(senderName.substring(0, 1), 30);
+        JLabel senderLabel = new JLabel(senderName, circularIcon, JLabel.LEFT);
+        senderLabel.setVerticalTextPosition(JLabel.CENTER);
+        senderLabel.setHorizontalTextPosition(JLabel.RIGHT);
+        senderLabel.setFont(new Font("Arial", Font.BOLD, 16));
+
+        if (!isOwner) {
+            messagePanel.add(senderLabel, BorderLayout.LINE_START);
+            messageLabel.setBackground(Color.green);
+        }
 
         JPanel labelWrapperPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        if (!isOwner){
-            messageLabel.setBackground(Color.green);
-            labelWrapperPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        }
         labelWrapperPanel.add(messageLabel);
 
         messagePanel.add(labelWrapperPanel, BorderLayout.LINE_END);
@@ -68,13 +74,21 @@ public class PrivateChatPanel extends MarioPanel {
         messagesPanel.revalidate();
         messagesPanel.repaint();
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JScrollBar verticalScrollBar = ((JScrollPane) messagesPanel.getParent().getParent()).getVerticalScrollBar();
-                verticalScrollBar.setValue(verticalScrollBar.getMaximum());
-            }
+        SwingUtilities.invokeLater(() -> {
+            JScrollBar verticalScrollBar = ((JScrollPane) messagesPanel.getParent().getParent()).getVerticalScrollBar();
+            verticalScrollBar.setValue(verticalScrollBar.getMaximum());
         });
+    }
+
+    public void setChat(ArrayList<Massage> messages, String groupName) {
+        username = localController.getController().getClient().getUsername();
+        messagesPanel.removeAll(); // Clear existing messages
+        titleLabel.setText(groupName);
+        for (Massage message : messages) {
+            if (message.getContext() != null) {
+                addMessage(message.getContext(), message.getSenderUsername().equals(username), message.getSenderUsername());
+            }
+        }
     }
 
     @Override
@@ -121,12 +135,12 @@ public class PrivateChatPanel extends MarioPanel {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     if (LocalController.isOnline) {
-                    String message = messageField.getText();
-                    if (!message.isEmpty()) {
-                        addMessage(message, true);
-                        localController.sendRequest(new SendPMRequest(titleLabel.getText(), messageField.getText()));
-                        messageField.setText("");
-                    }
+                        String message = messageField.getText();
+                        if (!message.isEmpty()) {
+                            addMessage(message, true, username);
+                            localController.sendRequest(new SendPMRequest(new Massage(username, titleLabel.getText(),messageField.getText())));
+                            messageField.setText("");
+                        }
                     }
                 }
             }
@@ -136,13 +150,10 @@ public class PrivateChatPanel extends MarioPanel {
         sendButton = new JButton("Send");
         sendButton.addActionListener(this);
         sendButton.setPreferredSize(new Dimension(100, 40));
-        sendButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String message = messageField.getText();
-                if (!message.isEmpty()) {
-                    addMessage(message,true);
-                }
+        sendButton.addActionListener(e -> {
+            String message = messageField.getText();
+            if (!message.isEmpty()) {
+                addMessage(message, true, username);
             }
         });
         inputPanel.add(sendButton);
@@ -152,19 +163,22 @@ public class PrivateChatPanel extends MarioPanel {
         add(scrollPane, BorderLayout.CENTER);
         add(inputPanel, BorderLayout.SOUTH);
     }
-    public void setChat(ArrayList<Massage> massages, String opponentName) {
 
-        messagesPanel = new JPanel();
-        messagesPanel.setLayout(new BoxLayout(messagesPanel, BoxLayout.Y_AXIS));
-        messagesPanel.setBackground(Color.WHITE);
-        scrollPane.setViewportView(messagesPanel);
-
-        titleLabel.setText(opponentName);
-        for (Massage massage : massages) {
-            if (massage.getContext() != null) {
-                addMessage(massage.getContext(),massage.isOwnersPM());
-            }
-        }
+    private ImageIcon createCircularIcon(String text, int size) {
+        BufferedImage image = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = image.createGraphics();
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setColor(Color.GREEN);
+        g2d.fillOval(0, 0, size - 1, size - 1);
+        g2d.setColor(Color.WHITE);
+        Font font = new Font("Arial", Font.BOLD, size / 2);
+        g2d.setFont(font);
+        FontMetrics fm = g2d.getFontMetrics();
+        int x = (size - fm.stringWidth(text)) / 2;
+        int y = (fm.getAscent() + (size - (fm.getAscent() + fm.getDescent())) / 2);
+        g2d.drawString(text, x, y);
+        g2d.dispose();
+        return new ImageIcon(image);
     }
 
     @Override
@@ -177,12 +191,15 @@ public class PrivateChatPanel extends MarioPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
-            panelsManagerCard.getCardLayout().show(panelsManagerCard,ChatPanel.class.getSimpleName());
+            panelsManagerCard.getCardLayout().show(panelsManagerCard, ChatPanel.class.getSimpleName());
         }
         if (e.getSource() == sendButton) {
-            localController.sendRequest(new SendPMRequest(titleLabel.getText(),messageField.getText()));
+            localController.sendRequest(new SendPMRequest(new Massage(username,titleLabel.getText(), messageField.getText())));
             messageField.setText("");
         }
-
     }
 }
+
+
+
+

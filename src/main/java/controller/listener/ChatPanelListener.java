@@ -2,6 +2,7 @@ package controller.listener;
 
 import controller.LocalController;
 import view.menu.ChatPanel;
+import view.menu.MainChatPanel;
 import view.menu.PanelsManagerCard;
 
 public class ChatPanelListener {
@@ -15,7 +16,7 @@ public class ChatPanelListener {
     }
     public void openPrivateChat(String opponentName) {
         PanelsManagerCard panelsManagerCard = localController.getFrame().getPanelsManagerCard();
-        panelsManagerCard.getPrivateChatPanel().setChat(localController.getController().getPrivateChatByOpponentName(opponentName).getMassages(),opponentName);
-        panelsManagerCard.getCardLayout().show(panelsManagerCard,panelsManagerCard.getPrivateChatPanel().getClass().getSimpleName());
+        panelsManagerCard.getMainChatPanel().setChat(localController.getController().getChatByOpponentName(opponentName).getMassages(),opponentName);
+        panelsManagerCard.getCardLayout().show(panelsManagerCard, MainChatPanel.class.getSimpleName());
     }
 }

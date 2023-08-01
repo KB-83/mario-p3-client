@@ -2,12 +2,16 @@ package controller.connection;
 
 import controller.LocalController;
 import model.response.*;
+import util.Config;
 import util.Saver;
 import model.dto.ClientDTO;
 import util.Loop;
+import view.Notification.CustomDialogPanel;
 import view.menu.GamePanel;
 import view.menu.MainMenu;
 import view.menu.PanelsManagerCard;
+
+import javax.swing.*;
 
 public class ResponseHandler implements ResponseVisitor{
     private static ResponseHandler responseHandler;
@@ -33,7 +37,7 @@ public class ResponseHandler implements ResponseVisitor{
             panelsManagerCard.getCardLayout().show(panelsManagerCard, MainMenu.class.getSimpleName());
             panelsManagerCard.getStartPanel().requestFocus();
             //save mikonim
-            ClientDTO clientDTO = new ClientDTO(response.getClient().getUsername(),response.getClient().getPassword(),response.getClient().getPrivateChats());
+            ClientDTO clientDTO = new ClientDTO(response.getClient().getUsername(),response.getClient().getPassword(),response.getClient().getChats());
             Saver.getSaver().saveUser(clientDTO);
         }
         else {
@@ -64,12 +68,12 @@ public class ResponseHandler implements ResponseVisitor{
 
     @Override
     public void visit(NewPMResponse response) {
-        localController.getController().getClient().setPrivateChats(response.getNewPrivateChat());
+        localController.getController().getClient().setChats(response.getNewChat());
 
 //        if (ChatPanel baz bood)
-        if (response.getSender() != "") {
+        if (!response.getMassage().getSenderUsername().equals(localController.getController().getClient().getUsername())) {
             localController.getFrame().getNotification().showNotification("NEW PM",response.getMassage().getContext());
-            panelsManagerCard.getPrivateChatPanel().setChat(localController.getController().getPrivateChatByOpponentName(response.getSender()).getMassages(), response.getSender());
+            panelsManagerCard.getMainChatPanel().setChat(localController.getController().getChatByOpponentName(response.getMassage().getSenderUsername()).getMassages(),response.getMassage().getSenderUsername());
         }
     }
 
@@ -91,5 +95,13 @@ public class ResponseHandler implements ResponseVisitor{
         // next line is very important
         localController.getClientCurrentGameLoop().kill();
         panelsManagerCard.getGamePanel().getGameOverDialog().showDialog(response.getScore(),response.getDiamond(), response.getMassage());
+    }
+
+    @Override
+    public void visit(RoomResponse response) {
+        System.out.println(response.getRoomToken());
+        ImageIcon icon = new ImageIcon();
+        icon.setImage(Config.IMAGES.get("marioright1"));
+        CustomDialogPanel.showDialog(localController.getFrame().getPanelsManagerCard().getRoomManager(),"token: "+response.getRoomToken() ,icon);
     }
 }

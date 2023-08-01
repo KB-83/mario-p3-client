@@ -13,7 +13,7 @@ public class PanelsManagerCard extends MarioPanel {
     private Frame frame;
     private OfflineAskPanel offlineAskPanel;
     private ChatPanel chatPanel ;
-    private PrivateChatPanel privateChatPanel;
+    private MainChatPanel mainChatPanel;
     private ItemShopPanel itemShopPanel;
     private GamePanel gamePanel;
     private StartPanel startPanel;
@@ -41,7 +41,7 @@ public class PanelsManagerCard extends MarioPanel {
         gamePanel = new GamePanel(this);
         startPanel = new StartPanel(localController,this);
         chatPanel = new ChatPanel(localController,this);
-        privateChatPanel = new PrivateChatPanel(localController,this);
+        mainChatPanel = new MainChatPanel(localController,this);
         itemShopPanel = new ItemShopPanel(localController,this);
         mainMenu = new MainMenu(this);
         cardLayout = new CardLayout();
@@ -61,7 +61,6 @@ public class PanelsManagerCard extends MarioPanel {
 
         //adding panels order is important
         add(loadingPanel , loadingPanel.getClass().getSimpleName());
-        add(privateChatPanel , privateChatPanel.getClass().getSimpleName());
         add(offlineAskPanel, offlineAskPanel.getClass().getSimpleName());
         add(chatPanel , chatPanel.getClass().getSimpleName());
         add(itemShopPanel , itemShopPanel.getClass().getSimpleName());
@@ -70,6 +69,7 @@ public class PanelsManagerCard extends MarioPanel {
         add(gamePanel, gamePanel.getClass().getSimpleName());
         add(onlineGamePanel,onlineGamePanel.getClass().getSimpleName());
         add(roomManagerCard, roomManagerCard.getClass().getSimpleName());
+        add(mainChatPanel, mainChatPanel.getClass().getSimpleName());
 //        add(newGamePanel,"newGamePanel");
 //        add(lastGamesPanel,"lastGamesPanel");
         add(mainMenu,mainMenu.getClass().getSimpleName());
@@ -98,7 +98,7 @@ public class PanelsManagerCard extends MarioPanel {
         startPanel.setOffline(offline);
         itemShopPanel.setOffline(offline);
         mainMenu.setOffline(offline);
-        privateChatPanel.setOffline(offline);
+        mainMenu.setOffline(offline);
     }
 
     public void paintComponent(Graphics g) {
@@ -161,10 +161,6 @@ public class PanelsManagerCard extends MarioPanel {
         return chatPanel;
     }
 
-    public PrivateChatPanel getPrivateChatPanel() {
-        return privateChatPanel;
-    }
-
     public ItemShopPanel getItemShopPanel() {
         return itemShopPanel;
     }
@@ -187,6 +183,14 @@ public class PanelsManagerCard extends MarioPanel {
 
     public ChooseOnlineGamePanel getChooseOnlineGamePanel() {
         return chooseOnlineGamePanel;
+    }
+
+    public MainChatPanel getMainChatPanel() {
+        return mainChatPanel;
+    }
+
+    public void setMainChatPanel(MainChatPanel mainChatPanel) {
+        this.mainChatPanel = mainChatPanel;
     }
 
     @Override

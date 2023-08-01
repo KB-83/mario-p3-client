@@ -1,20 +1,32 @@
 {
   "username" : "username",
   "password" : "pass",
-  "privateChats" : [ {
+  "chats" : [ {
     "opponentUsername" : "kb",
     "massages" : [ {
-      "context" : null,
-      "ownersPM" : false
+      "senderUsername" : null,
+      "receiverUsername" : null,
+      "context" : null
     }, {
-      "context" : "salam",
-      "ownersPM" : false
+      "senderUsername" : "kb",
+      "receiverUsername" : null,
+      "context" : "hi"
     }, {
-      "context" : "hi",
-      "ownersPM" : true
+      "senderUsername" : "kb",
+      "receiverUsername" : null,
+      "context" : "hi"
+    }, {
+      "senderUsername" : "username",
+      "receiverUsername" : null,
+      "context" : "hi"
+    }, {
+      "senderUsername" : "username",
+      "receiverUsername" : null,
+      "context" : "hi"
+    }, {
+      "senderUsername" : "username",
+      "receiverUsername" : null,
+      "context" : "n"
     } ]
-  }, {
-    "opponentUsername" : "2",
-    "massages" : [ ]
   } ]
 }

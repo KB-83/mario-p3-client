@@ -1,30 +1,22 @@
 package model.request;
 
-public class SendPMRequest extends Request{
-    private String opponentUserName;
-    private String Context;
+import model.Massage;
 
-    public SendPMRequest(String opponentUserName, String context) {
-        this.opponentUserName = opponentUserName;
-        Context = context;
-    }
+public class SendPMRequest extends Request{
+    private Massage massage;
 
     public SendPMRequest() {
     }
 
-    public String getOpponentUserName() {
-        return opponentUserName;
+    public SendPMRequest(Massage massage) {
+        this.massage = massage;
     }
 
-    public void setOpponentUserName(String opponentUserName) {
-        this.opponentUserName = opponentUserName;
+    public Massage getMassage() {
+        return massage;
     }
 
-    public String getContext() {
-        return Context;
-    }
-
-    public void setContext(String context) {
-        Context = context;
+    public void setMassage(Massage massage) {
+        this.massage = massage;
     }
 }

@@ -1,61 +1,70 @@
 package view.menu.room;
 
+import controller.LocalController;
+import controller.listener.CreateRoomPanelListener;
 import view.menu.MarioPanel;
-
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
-
 public class CreateRoomPanel extends MarioPanel {
+    private CreateRoomPanelListener listener;
     private JTextField roomNameField;
     private JTextField passwordField;
     private JButton createRoomButton;
-    private static Map<Integer, String> roomInfoMap = new HashMap<>();
+    private JLabel roomNameLabel = createStyledLabel("Room Name: ",true);
+    private JLabel roomPassLabel = createStyledLabel("Password (optional): ",true);
+    private JButton backButton;
+    private JPanel backButtonPanel;
+    private JPanel mainPanel;
+    private JPanel roomNamePanel;
+    private JPanel passwordPanel;
 
-    public CreateRoomPanel() {
-        // Create UI elements
-        roomNameField = new JTextField(15);
-        passwordField = new JTextField(15);
-        createRoomButton = new JButton("Create Room");
+    public CreateRoomPanel(LocalController localController) {
+        listener = new CreateRoomPanelListener(localController,this);
+        setUI();
 
-        // Add action listener to the button
-        createRoomButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                createRoom();
-            }
-        });
-
-        // Add elements to the panel
-        add(new JLabel("Room Name: "));
-        add(roomNameField);
-        add(new JLabel("Password (optional): "));
-        add(passwordField);
-        add(createRoomButton);
     }
 
-    private void createRoom() {
-        String roomName = roomNameField.getText();
-        String password = passwordField.getText();
 
-        // Add room information to the map
-//        roomInfoMap.put(roomCounter, password);
-
-        // Increment room ID counter
-//        roomCounter++;
-
-        // Show the room ID to the user
-        //send room reques
-        JOptionPane.showMessageDialog(this, "Room created!\nRoom ID: " );
-    }
 
     @Override
     public void setUI() {
+        setLayout(new BorderLayout());
+        setBackground(MarioPanel.DARK_COLOR);
 
+        backButton = createButton("< ");
+        backButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        backButtonPanel.setOpaque(false);
+        backButtonPanel.add(backButton);
+        add(backButtonPanel, BorderLayout.NORTH);
+
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        mainPanel.setOpaque(false);
+
+        roomNameField = createStyledTextField("", true, 12);
+        roomNameLabel = createStyledLabel("Room Name:",false);
+        roomNamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        roomNamePanel.setOpaque(false);
+        roomNamePanel.add(roomNameLabel);
+        roomNamePanel.add(roomNameField);
+
+        passwordField = createStyledTextField("", true, 12);
+        roomPassLabel = createStyledLabel("Password:",false);
+        passwordPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        passwordPanel.setOpaque(false);
+        passwordPanel.add(roomPassLabel);
+        passwordPanel.add(passwordField);
+
+        createRoomButton = createButton("Create Room");
+        createRoomButton.addActionListener(this);
+
+        mainPanel.add(roomNamePanel);
+        mainPanel.add(passwordPanel);
+        mainPanel.add(createRoomButton);
+
+        add(mainPanel, BorderLayout.CENTER);
     }
-
     @Override
     public void setOffline(boolean offline) {
 
@@ -63,6 +72,24 @@ public class CreateRoomPanel extends MarioPanel {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == createRoomButton) {
+            listener.createRoom();
+        }
+    }
 
+    public JTextField getRoomNameField() {
+        return roomNameField;
+    }
+
+    public void setRoomNameField(JTextField roomNameField) {
+        this.roomNameField = roomNameField;
+    }
+
+    public JTextField getPasswordField() {
+        return passwordField;
+    }
+
+    public void setPasswordField(JTextField passwordField) {
+        this.passwordField = passwordField;
     }
 }

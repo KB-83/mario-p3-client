@@ -1,6 +1,7 @@
 package view.menu.room;
 
 import util.Config;
+import view.menu.MainChatPanel;
 import view.menu.MarioPanel;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class RoomManagerPanel extends MarioPanel {
     private JButton startGameButton;
     private JButton chatButton;
     private JPanel buttonContainer;
+    private MainChatPanel chatPanel;
     private JButton inviteFriendOk;
     private JComboBox<String> inviteFriendComboBox;
     private JButton inviteFriendButton;
@@ -25,10 +27,10 @@ public class RoomManagerPanel extends MarioPanel {
     private JComboBox<String> addCoOwnerComboBox;
     private JButton addCoOwnerButton;
     private JButton backButton;
+    JPanel mainPanel;
 
     public RoomManagerPanel() {
         setUI();
-
     }
 
 
@@ -62,7 +64,7 @@ public class RoomManagerPanel extends MarioPanel {
         backgroundPanel.add(backButtonPanel, BorderLayout.NORTH);
 
         // Main Panel for the center content
-        JPanel mainPanel = new JPanel();
+        mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
         mainPanel.setOpaque(false); // Make the panel transparent to show the background image
 
@@ -88,6 +90,7 @@ public class RoomManagerPanel extends MarioPanel {
         roomTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         rightPanel.add(roomTitleLabel);
         rightPanel.add(Box.createVerticalStrut(20));
+
 
         // Buttons Panel in the center of the right panel
         buttonPanel = new JPanel();
@@ -121,13 +124,15 @@ public class RoomManagerPanel extends MarioPanel {
 
         // Add the button panel to the right panel
         rightPanel.add(buttonPanel);
-        mainPanel.add(rightPanel, createGridBagConstraints(1, 0, 1, 1, GridBagConstraints.BOTH, 0.5, 1.0));
+        mainPanel.add(rightPanel, createGridBagConstraints(2, 0, 1, 1, GridBagConstraints.BOTH, 0.5, 1.0));
+
 
         // Add the main panel to the background panel
         backgroundPanel.add(mainPanel, BorderLayout.CENTER);
 
         // Add the background panel to the outer container
         add(backgroundPanel);
+
 
         // Add action listeners
         startGameButton.addActionListener(this);
@@ -179,6 +184,13 @@ public class RoomManagerPanel extends MarioPanel {
             addCoOwnerOK.setVisible(false);
         }
     }
+    public void setRoom(MainChatPanel mainChatPanel) {
+        chatPanel = mainChatPanel;//without back button
+        mainPanel.add(chatPanel, createGridBagConstraints(1, 0, 1, 1, GridBagConstraints.BOTH, 0.5, 1.0));
+
+
+    }
+
 
 }
 
