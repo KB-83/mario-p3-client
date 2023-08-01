@@ -1,17 +1,17 @@
 package model.request;
 
-public class RoomRequest extends Request{
+public class CreateRoomRequest extends Request{
     private String username;
     private String roomPassword;
     private String roomName;
 
-    public RoomRequest(String username, String roomPassword, String roomName) {
+    public CreateRoomRequest(String username, String roomPassword, String roomName) {
         this.username = username;
         this.roomPassword = roomPassword;
         this.roomName = roomName;
     }
 
-    public RoomRequest() {
+    public CreateRoomRequest() {
     }
 
     public String getUsername() {

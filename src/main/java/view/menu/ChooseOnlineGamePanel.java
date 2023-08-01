@@ -2,7 +2,7 @@ package view.menu;
 
 import controller.LocalController;
 import view.menu.room.CreateRoomPanel;
-import view.menu.room.RoomManagerPanel;
+import view.menu.room.EnterRoomPanel;
 import view.menu.room.RoomManagerCard;
 
 import javax.swing.*;
@@ -62,7 +62,7 @@ public class ChooseOnlineGamePanel extends MarioPanel{
             panelsManagerCard.getCardLayout().show(panelsManagerCard,OnlineGamePanel.class.getSimpleName());
         }
         if (e.getSource() == enterRoom) {
-            panelsManagerCard.getRoomManager().getCardLayout().show(panelsManagerCard.getRoomManager(), RoomManagerPanel.class.getSimpleName());
+            panelsManagerCard.getRoomManager().getCardLayout().show(panelsManagerCard.getRoomManager(), EnterRoomPanel.class.getSimpleName());
             panelsManagerCard.getCardLayout().show(panelsManagerCard, RoomManagerCard.class.getSimpleName());
         }
         if (e.getSource() == createRoom) {

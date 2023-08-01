@@ -12,6 +12,8 @@ import model.request.*;
         @JsonSubTypes.Type(value = NewPMResponse.class),
         @JsonSubTypes.Type(value = GameOverResponse.class),
         @JsonSubTypes.Type(value = RoomResponse.class),
+        @JsonSubTypes.Type(value = DialogResponse.class),
+        @JsonSubTypes.Type(value = EnterRoomResponse.class),
         @JsonSubTypes.Type(value = BuyResponse.class),
         @JsonSubTypes.Type(value = GameStartResponse.class)
 

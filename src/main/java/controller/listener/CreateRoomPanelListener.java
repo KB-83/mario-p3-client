@@ -1,13 +1,10 @@
 package controller.listener;
 
 import controller.LocalController;
-import model.request.RoomRequest;
-import util.Config;
-import view.Notification.CustomDialogPanel;
+import model.request.CreateRoomRequest;
+import view.menu.ChooseOnlineGamePanel;
+import view.menu.PanelsManagerCard;
 import view.menu.room.CreateRoomPanel;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class CreateRoomPanelListener {
     private LocalController localController;
@@ -21,8 +18,8 @@ public class CreateRoomPanelListener {
 
         String roomName = createRoomPanel.getRoomNameField().getText();
         String password = createRoomPanel.getPasswordField().getText();
-        RoomRequest roomRequest = new RoomRequest(localController.getController().getClient().getUsername(),password,roomName);
-        localController.sendRequest(roomRequest);
+        CreateRoomRequest createRoomRequest = new CreateRoomRequest(localController.getController().getClient().getUsername(),password,roomName);
+        localController.sendRequest(createRoomRequest);
 
         // Add room information to the map
 //        roomInfoMap.put(roomCounter, password);
@@ -33,5 +30,9 @@ public class CreateRoomPanelListener {
         // Show the room ID to the user
         //send room reques
 
+    }
+    public void backButton(){
+        PanelsManagerCard panelsManagerCard = localController.getFrame().getPanelsManagerCard();
+        panelsManagerCard.getCardLayout().show(panelsManagerCard, ChooseOnlineGamePanel.class.getSimpleName());
     }
 }

@@ -84,6 +84,22 @@ public abstract class MarioPanel extends JPanel implements ActionListener {
 
         return button;
     }
+
+    public static JComboBox<String> createStyledComboBox(String[] items) {
+        JComboBox<String> comboBox = new JComboBox<>(items);
+        comboBox.setFont(FONT);
+        comboBox.setFocusable(false);
+        comboBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        comboBox.setMaximumSize(MAX_SIZE);
+        comboBox.setBorder(RED_BORDER);
+
+        comboBox.setOpaque(true);
+        comboBox.setBackground(LIGTH_COLOR);
+        comboBox.setForeground(Color.RED);
+
+        return comboBox;
+    }
+
     public static JTextField createStyledTextField(String text, boolean hasBackground, int columns) {
         JTextField textField = new JTextField(text, columns);
         textField.setFont(FONT);

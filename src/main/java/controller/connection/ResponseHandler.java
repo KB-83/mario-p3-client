@@ -10,6 +10,8 @@ import view.Notification.CustomDialogPanel;
 import view.menu.GamePanel;
 import view.menu.MainMenu;
 import view.menu.PanelsManagerCard;
+import view.menu.room.RoomManagerCard;
+import view.menu.room.SimpleRoomPanel;
 
 import javax.swing.*;
 
@@ -51,6 +53,7 @@ public class ResponseHandler implements ResponseVisitor{
 //        user.setCurrentGameState(gameState);
 //        panelsManagerCard.getGamePanel().setKeyListener(gameState);
         //test
+        System.out.println("here,client,game start response delivered");
         Loop loop = new Loop(localController,response.getGameStateDTO(),response.getPlayerDTO(),panelsManagerCard.getGamePanel(),60);
         localController.setClientCurrentGameLoop(loop);
         loop.start();
@@ -100,8 +103,18 @@ public class ResponseHandler implements ResponseVisitor{
     @Override
     public void visit(RoomResponse response) {
         System.out.println(response.getRoomToken());
-        ImageIcon icon = new ImageIcon();
-        icon.setImage(Config.IMAGES.get("marioright1"));
-        CustomDialogPanel.showDialog(localController.getFrame().getPanelsManagerCard().getRoomManager(),"token: "+response.getRoomToken() ,icon);
+        CustomDialogPanel.showDialog(localController.getFrame().getPanelsManagerCard().getRoomManager(),"token: "+response.getRoomToken() ,CustomDialogPanel.DEFAULT_ICON);
+    }
+
+    @Override
+    public void visit(DialogResponse response) {
+        CustomDialogPanel.showDialog(localController.getFrame().getPanelsManagerCard().getRoomManager(),response.getMassage(),CustomDialogPanel.DEFAULT_ICON);
+    }
+
+    @Override
+    public void visit(EnterRoomResponse response) {
+        //show room panel
+        panelsManagerCard.getRoomManager().getCardLayout().show(panelsManagerCard.getRoomManager(), SimpleRoomPanel.class.getSimpleName());
+        panelsManagerCard.getCardLayout().show(panelsManagerCard, RoomManagerCard.class.getSimpleName());
     }
 }

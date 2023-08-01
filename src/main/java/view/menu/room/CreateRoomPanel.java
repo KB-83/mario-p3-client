@@ -36,6 +36,7 @@ public class CreateRoomPanel extends MarioPanel {
         backButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         backButtonPanel.setOpaque(false);
         backButtonPanel.add(backButton);
+        backButton.addActionListener(this);
         add(backButtonPanel, BorderLayout.NORTH);
 
         mainPanel = new JPanel();
@@ -74,6 +75,9 @@ public class CreateRoomPanel extends MarioPanel {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == createRoomButton) {
             listener.createRoom();
+        }
+        if (e.getSource() == backButton) {
+            listener.backButton();
         }
     }
 

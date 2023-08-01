@@ -10,5 +10,7 @@ public interface ResponseVisitor {
     void visit(BuyResponse response);
     void visit(GameOverResponse response);
     void visit(RoomResponse response);
+    void visit(DialogResponse response);
+    void visit(EnterRoomResponse response);
 
 }

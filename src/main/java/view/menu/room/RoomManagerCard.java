@@ -9,8 +9,10 @@ import java.awt.event.ActionEvent;
 
 public class RoomManagerCard extends MarioPanel{
     private Frame frame;
-    private RoomManagerPanel roomManagerPanel;
+    private ManagerOfRoomPanel managerOfRoomPanel;
+    private SimpleRoomPanel simpleRoomPanel;
     private CreateRoomPanel createRoomPanel;
+    private EnterRoomPanel enterRoomPanel;
     //layout
     private CardLayout cardLayout;
     public RoomManagerCard(Frame frame, LocalController localController){
@@ -21,8 +23,10 @@ public class RoomManagerCard extends MarioPanel{
 
     public void setDependencies(LocalController localController) {
         cardLayout = new CardLayout();
-        roomManagerPanel = new RoomManagerPanel();
+        managerOfRoomPanel = new ManagerOfRoomPanel(localController);
         createRoomPanel = new CreateRoomPanel(localController);
+        enterRoomPanel = new EnterRoomPanel(localController);
+        simpleRoomPanel = new SimpleRoomPanel(localController);
 
         setUI();
 
@@ -31,8 +35,10 @@ public class RoomManagerCard extends MarioPanel{
     public void addPanels() {
 //        Config config = getClassConfig(this.getClass());
 //
-        add(roomManagerPanel, roomManagerPanel.getClass().getSimpleName());
+        add(managerOfRoomPanel, managerOfRoomPanel.getClass().getSimpleName());
         add(createRoomPanel,createRoomPanel.getClass().getSimpleName());
+        add(enterRoomPanel,enterRoomPanel.getClass().getSimpleName());
+        add(simpleRoomPanel,simpleRoomPanel.getClass().getSimpleName());
 
         revalidate();
 
@@ -76,11 +82,15 @@ public class RoomManagerCard extends MarioPanel{
 
     }
 
-    public RoomManagerPanel getManagerPanel() {
-        return roomManagerPanel;
+    public ManagerOfRoomPanel getManagerPanel() {
+        return managerOfRoomPanel;
     }
 
     public CreateRoomPanel getCreateRoomPanel() {
         return createRoomPanel;
+    }
+
+    public EnterRoomPanel getEnterRoomPanel() {
+        return enterRoomPanel;
     }
 }

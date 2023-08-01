@@ -1,5 +1,7 @@
 package view.menu.room;
 
+import controller.LocalController;
+import model.request.RoomGameStartRequest;
 import util.Config;
 import view.menu.MainChatPanel;
 import view.menu.MarioPanel;
@@ -8,10 +10,9 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 
-public class RoomManagerPanel extends MarioPanel {
+public class ManagerOfRoomPanel extends MarioPanel {
+    private LocalController localController;
     private DefaultListModel<String> userListModel;
     private JPanel userListPanel;
     private JScrollPane userScrollPane;
@@ -29,7 +30,8 @@ public class RoomManagerPanel extends MarioPanel {
     private JButton backButton;
     JPanel mainPanel;
 
-    public RoomManagerPanel() {
+    public ManagerOfRoomPanel(LocalController localController) {
+        this.localController = localController;
         setUI();
     }
 
@@ -182,6 +184,9 @@ public class RoomManagerPanel extends MarioPanel {
         } else if (e.getSource() == addCoOwnerOK) {
             addCoOwnerComboBox.setVisible(false);
             addCoOwnerOK.setVisible(false);
+        }
+        else if (e.getSource() == startGameButton) {
+            localController.sendRequest(new RoomGameStartRequest(true));
         }
     }
     public void setRoom(MainChatPanel mainChatPanel) {
