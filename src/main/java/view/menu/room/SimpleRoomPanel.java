@@ -1,6 +1,7 @@
 package view.menu.room;
 
 import controller.LocalController;
+import model.dto.RoomDTO;
 import model.request.RoomGameStartRequest;
 import util.Config;
 import view.menu.MainChatPanel;
@@ -13,7 +14,6 @@ import java.awt.event.ActionEvent;
 
 public class SimpleRoomPanel extends MarioPanel {
     private LocalController localController;
-    private DefaultListModel<String> userListModel;
     private JPanel userListPanel;
     private JScrollPane userScrollPane;
     private JPanel buttonPanel;
@@ -66,10 +66,9 @@ public class SimpleRoomPanel extends MarioPanel {
         // User List Panel on the left
         userListPanel = new JPanel();
         userListPanel.setLayout(new BoxLayout(userListPanel, BoxLayout.Y_AXIS));
-        userListModel = new DefaultListModel<>();
-        JList<String> userList = new JList<>(userListModel);
-        userList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        userScrollPane = new JScrollPane(userList);
+
+
+        userScrollPane = new JScrollPane();
         userListPanel.add(userScrollPane);
         mainPanel.add(userListPanel, createGridBagConstraints(0, 0, 1, 1, GridBagConstraints.BOTH, 0.5, 1.0));
 
@@ -94,11 +93,6 @@ public class SimpleRoomPanel extends MarioPanel {
         // Buttons for Start Game and Chat
         chatButton = createButton("Chat");
 
-        // Initialize inviteFriendOk button and inviteFriendComboBox
-        String[] friends = {"Friend1", "Friend2", "Friend3"};
-
-        // Initialize addCoOwnerOK button and addCoOwnerComboBox
-        String[] users = {"User1", "User2", "User3"};
 
         // Add buttons to the button panel
         buttonPanel.add(chatButton);
@@ -143,10 +137,16 @@ public class SimpleRoomPanel extends MarioPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
     }
-    public void setRoom(MainChatPanel mainChatPanel) {
-        chatPanel = mainChatPanel;//without back button
+    public void setRoom(RoomDTO room) {
+//        chatPanel = mainChatPanel;//without back button
+        if (chatPanel == null) {
+            //test
+            chatPanel = new MainChatPanel(localController, localController.getFrame().getPanelsManagerCard());
+        }
+        chatPanel.setChat(room.getRoomChat().getMassages(),room.getRoomChat().getOpponentUsername());
         mainPanel.add(chatPanel, createGridBagConstraints(1, 0, 1, 1, GridBagConstraints.BOTH, 0.5, 1.0));
-
-
+        JList<String> userList = new JList<>(room.getRoomUsers().toArray(new String[0]));
+        userList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        userScrollPane.setViewportView(userList);
     }
 }

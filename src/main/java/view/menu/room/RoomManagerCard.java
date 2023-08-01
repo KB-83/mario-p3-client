@@ -93,4 +93,8 @@ public class RoomManagerCard extends MarioPanel{
     public EnterRoomPanel getEnterRoomPanel() {
         return enterRoomPanel;
     }
+
+    public SimpleRoomPanel getSimpleRoomPanel() {
+        return simpleRoomPanel;
+    }
 }

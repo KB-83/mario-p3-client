@@ -12,5 +12,6 @@ public interface ResponseVisitor {
     void visit(RoomResponse response);
     void visit(DialogResponse response);
     void visit(EnterRoomResponse response);
+    void visit(RoomUpdateResponse response);
 
 }

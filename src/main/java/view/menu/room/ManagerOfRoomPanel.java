@@ -1,6 +1,7 @@
 package view.menu.room;
 
 import controller.LocalController;
+import model.dto.RoomDTO;
 import model.request.RoomGameStartRequest;
 import util.Config;
 import view.menu.MainChatPanel;
@@ -189,9 +190,9 @@ public class ManagerOfRoomPanel extends MarioPanel {
             localController.sendRequest(new RoomGameStartRequest(true));
         }
     }
-    public void setRoom(MainChatPanel mainChatPanel) {
-        chatPanel = mainChatPanel;//without back button
-        mainPanel.add(chatPanel, createGridBagConstraints(1, 0, 1, 1, GridBagConstraints.BOTH, 0.5, 1.0));
+    public void setRoom(RoomDTO room) {
+//        chatPanel = mainChatPanel;//without back button
+//        mainPanel.add(chatPanel, createGridBagConstraints(1, 0, 1, 1, GridBagConstraints.BOTH, 0.5, 1.0));
 
 
     }
