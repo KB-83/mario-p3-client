@@ -2,7 +2,6 @@ package controller.listener;
 
 import controller.LocalController;
 import controller.offline_logic.requsethandler.PlayerRequestHandler;
-import controller.offline_logic.requsethandler.UserRequestHandler;
 import model.request.PlayerActionRequest;
 
 import javax.swing.*;

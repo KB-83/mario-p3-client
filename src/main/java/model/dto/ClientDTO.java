@@ -15,6 +15,7 @@ public class ClientDTO {
         private PlayerDTO playerDTO;
         @JsonIgnore
         private ClientController clientController;
+        private String[] savedGamesURLs;
         private String username;
         private String password;
         private ArrayList<Chat> chats;
@@ -88,5 +89,13 @@ public class ClientDTO {
 
     public void setRoomChat(Chat roomChat) {
         this.roomChat = roomChat;
+    }
+
+    public String[] getSavedGamesURLs() {
+        return savedGamesURLs;
+    }
+
+    public void setSavedGamesURLs(String[] savedGamesURLs) {
+        this.savedGamesURLs = savedGamesURLs;
     }
 }

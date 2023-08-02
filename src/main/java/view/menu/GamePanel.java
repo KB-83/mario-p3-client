@@ -5,7 +5,6 @@ import controller.Camera;
 import controller.LocalController;
 import controller.listener.PlayerListener;
 import controller.offline_logic.requsethandler.PlayerRequestHandler;
-import controller.offline_logic.requsethandler.UserRequestHandler;
 import model.dto.entity.PlayerDTO;
 import model.dto.game.GameStateDTO;
 import view.GameHUI;

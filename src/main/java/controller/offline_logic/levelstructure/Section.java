@@ -12,15 +12,15 @@ import util.Constant;
 public class Section {
     private int length;
     private int time;
-    private Block[] blocks;
-    private Enemy[] enemies;
-    private Pipe[] pipes;
+    private Block[] blocks = new Block[0];
+    private Enemy[] enemies = new Enemy[0];
+    private Pipe[] pipes = new Pipe[0];
     private Pipe spawnPipe;
     @JsonIgnore
     private BackgroundMap backgroundMap;
     private CheckPoint checkPoint;
     @JsonIgnore
-    private Item[] items;
+    private Item[] items = new Item[0];
     public Section(){
     }
 

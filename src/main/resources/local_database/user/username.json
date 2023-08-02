@@ -1,6 +1,9 @@
 {
   "username" : "username",
   "password" : "pass",
+  "savedGamesURLs" : [
+    ""
+  ],
   "chats" : [ {
     "opponentUsername" : "kb",
     "massages" : [ {
@@ -27,6 +30,10 @@
       "senderUsername" : "username",
       "receiverUsername" : null,
       "context" : "n"
+    }, {
+      "senderUsername" : "username",
+      "receiverUsername" : null,
+      "context" : "hi"
     } ]
   } ]
 }

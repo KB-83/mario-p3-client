@@ -2,6 +2,7 @@ package util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import controller.offline_logic.gamestrucure.GameState;
 import model.Client;
 import model.dto.ClientDTO;
 
@@ -32,6 +33,17 @@ public class Saver {
             return false;
         }
         return true;
+    }
+    public void saveGameState(GameState gameState, String clientName) {
+        File file = new File("src/main/resources/local_database/gamestate/"+clientName+"/"+gameState.getName()+".json");
+
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            objectMapper.writeValue(fileWriter,gameState);
+        } catch (IOException e) {
+            System.out.println("json mapping for this user is not right.\nsource: Saver class saveUser method.");
+            e.printStackTrace();
+        }
     }
 
 }

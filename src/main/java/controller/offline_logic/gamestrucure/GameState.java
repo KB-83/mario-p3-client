@@ -13,6 +13,9 @@ import util.Sound;
 import util.Loop;
 
 public class GameState {
+    //M-S-GS-O-T
+    //marathon-survival-group_survival-offline-team
+    private String type;
     private String name;
     @JsonIgnore
     private GameStateController gameStateController;
@@ -55,6 +58,7 @@ public class GameState {
         sound = new Sound("MAIN2");
         swardCollisionHandler = new SwardCollisionHandler(this);
         bulletCollisionHandler = new BulletCollisionHandler(this);
+        setType("O");
     }
     public void setDefaultDependencies(){
         sound = new Sound("MAIN2");
@@ -242,5 +246,13 @@ public class GameState {
 
     public void setGameloop(Loop gameloop) {
         this.gameloop = gameloop;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

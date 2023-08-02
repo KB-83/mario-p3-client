@@ -279,31 +279,35 @@ public class GameStateController {
                         for (int j = 0; j < section.getPipes().length; j++) {
                             Pipe pipe = section.getPipes()[j];
                             if (pipe.getClass() == TelePlantPipe.class) {
-                                for (int k = 0; k < ((TelePlantPipe) pipe).getTeleSection().getEnemies().length; k++) {
-                                    Enemy enemy = ((TelePlantPipe) pipe).getTeleSection().getEnemies()[k];
-                                    String s = enemy.getClass().getSimpleName();
-                                    switch (s){
-                                        case "Koopa":
-                                            ((Koopa)enemy).setEnemyController(new KoopaController(gameState, enemy));
-                                            break;
-                                        case "Goomba":
-                                            ((Goomba)enemy).setEnemyController(new GoombaController(gameState, enemy));
-                                            break;
-                                        case "Spiny":
-                                            ((Spiny)enemy).setEnemyController(new SpinyController(gameState, enemy));
-                                            break;
-                                        case "Bowser":
-                                            enemy.setEnemyController(new BowserController(gameState, enemy));
-                                            break;
-                                        case "Plant":
-                                            enemy.setEnemyController(new PlantController(gameState, enemy));
-                                            break;
+                                if (((TelePlantPipe) pipe).getTeleSection().getEnemies() != null) { //todo : improve important
+                                    for (int k = 0; k < ((TelePlantPipe) pipe).getTeleSection().getEnemies().length; k++) {
+                                        Enemy enemy = ((TelePlantPipe) pipe).getTeleSection().getEnemies()[k];
+                                        String s = enemy.getClass().getSimpleName();
+                                        switch (s) {
+                                            case "Koopa":
+                                                ((Koopa) enemy).setEnemyController(new KoopaController(gameState, enemy));
+                                                break;
+                                            case "Goomba":
+                                                ((Goomba) enemy).setEnemyController(new GoombaController(gameState, enemy));
+                                                break;
+                                            case "Spiny":
+                                                ((Spiny) enemy).setEnemyController(new SpinyController(gameState, enemy));
+                                                break;
+                                            case "Bowser":
+                                                enemy.setEnemyController(new BowserController(gameState, enemy));
+                                                break;
+                                            case "Plant":
+                                                enemy.setEnemyController(new PlantController(gameState, enemy));
+                                                break;
+                                        }
                                     }
                                 }
                             } else if (pipe.getClass() == SimpleTelePipe.class) {
-                                for (int k = 0; k < ((TelePlantPipe) pipe).getTeleSection().getEnemies().length; k++) {
-                                    Enemy enemy = ((TelePlantPipe) pipe).getTeleSection().getEnemies()[k];
-                                    enemy.setEnemyController(new EnemyController(gameState, enemy));
+                                if (((TelePlantPipe) pipe).getTeleSection().getEnemies() != null) {
+                                    for (int k = 0; k < ((TelePlantPipe) pipe).getTeleSection().getEnemies().length; k++) {
+                                        Enemy enemy = ((TelePlantPipe) pipe).getTeleSection().getEnemies()[k];
+                                        enemy.setEnemyController(new EnemyController(gameState, enemy));
+                                    }
                                 }
                             }
                         }

@@ -1,114 +1,123 @@
 package view.menu;
 
+import controller.LocalController;
+import model.Client;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LastGamesPanel extends MarioPanel {
-    private PanelsManagerCard cardPanel;
-//    User user;
-    private ButtonGroup bg = new ButtonGroup();
-    private JButton back = new JButton("<-");
-    private JButton ok =new  JButton("ok");
+        private LocalController localController;
+        private PanelsManagerCard panelsManagerCard;
+        private ButtonGroup bg = new ButtonGroup();
+        private JButton ok = createStyledButton("ok");
+        private JButton delete = createStyledButton("delete");
+        private JRadioButton[] lastGamesList = new JRadioButton[3];
+        private JButton back = createButton(" < ");
 
-    private JRadioButton[] lastGamesList = new JRadioButton[3];
-    LastGamesPanel(PanelsManagerCard cardPanel) {
-        this.cardPanel = cardPanel;
-        setUI();
-        loadConfig();
-    }
-    @Override
-    public void setUI() {
+        LastGamesPanel(LocalController localController, PanelsManagerCard panelsManagerCard) {
+            this.localController = localController;
+            this.panelsManagerCard = panelsManagerCard;
+            setUI();
+        }
 
-    }
+        private void setButtons() {
+            delete.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Add your delete action code here
+                }
+            });
 
-    @Override
-    public void setOffline(boolean offline) {
-
-    }
-
-
-    public void loadConfig() {
-        setLayout(null);
-        setBackground(Color.red);
-        setInitialButtons();
-    }
-    public void setUser() {
-//        this.user = this.card.gM.lM.userManager.currentUser;
-    }
-    private void setInitialButtons(){
-        back.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardPanel.getCardLayout().show(cardPanel,"mainMenu");
-                cardPanel.getMainMenu().requestFocus();
-            }
-        });
-        back.setBounds(0,0,50,50);
-        add(back);
-        //test
-        setLastGamesButtons();
-    }
-    public void setLastGamesButtons(){
-//        ok.setBounds(Constant.PANEL_WIDTH/2,550,50,50);
-        ok.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//
-                String gameName = "";
-                for (JRadioButton button : lastGamesList){
-                    if (button != null && button.isSelected()){
-                        gameName = button.getText();
-                        break;
+            ok.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String gameName = "";
+                    for (JRadioButton button : lastGamesList){
+                        if (button != null && button.isSelected()){
+                            gameName = button.getText();
+                            break;
+                        }
                     }
+                    if (gameName.equals("")){
+                        System.out.println("select a game!");
+                        return;
+                    }
+                    localController.getUserRequestHandler().lastGameRequest(localController.getController().getClient().getUsername(),gameName);
+
                 }
-                if (gameName.equals("")){
-                    System.out.println("select a game!");
-                    return;
+            });
+        }
+
+        public void setUserClearedDependencies(Client client) {
+            // Add your user dependencies setup code here
+        }
+
+        @Override
+        public void setUI() {
+            setLayout(new BorderLayout());
+            setBackground(MarioPanel.LIGTH_COLOR);
+            setButtons();
+
+            // Create a panel for the back button and add it to the top (north)
+            JPanel backButtonPanel = new JPanel();
+            backButtonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+            backButtonPanel.setBackground(MarioPanel.LIGTH_COLOR);
+
+            back.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    panelsManagerCard.getCardLayout().show(panelsManagerCard, MainMenu.class.getSimpleName());
+                    panelsManagerCard.getMainMenu().requestFocus();
                 }
-//                UserRequestHandler userRequestHandler = cardPanel.getFrame().getGraphicManager().getLogicManager().getUser().getUserRequestHandler();
-                cardPanel.getCardLayout().show(cardPanel,"gamePanel");
-                cardPanel.getGamePanel().requestFocus();
-//                cardPanel.getFrame().getGraphicManager().getUser().getUserRequestHandler().lastGameRequest(gameName);
+            });
+            backButtonPanel.add(back);
+
+            add(backButtonPanel, BorderLayout.NORTH);
+
+            // Add lastGamesList radio buttons to the center
+            JPanel centerPanel = new JPanel();
+            centerPanel.setLayout(new GridBagLayout());
+            centerPanel.setBackground(MarioPanel.MENU_COLOR);
+            GridBagConstraints constraints = new GridBagConstraints();
+            constraints.insets = new Insets(5, 5, 5, 5);
+
+            int x = 0;
+            for (int i = 0; i < lastGamesList.length; i++) {
+                JRadioButton gameButton = new JRadioButton("default");
+                gameButton.setFont(MarioPanel.FONT);
+                lastGamesList[i] = gameButton;
+                bg.add(gameButton);
+
+                constraints.gridx = x;
+                constraints.gridy = 0;
+                constraints.anchor = GridBagConstraints.WEST;
+                centerPanel.add(gameButton, constraints);
+
+                x++;
             }
-        });
-        add(ok);
 
-    }
-//    public void setUserClearedDependencies(User user) {
-//        int x = 200;
-//        if (user.getSavedGames() == null) {
-//            return;
-//        }
-//        for (int i = 0;i < user.getSavedGames().length; i++){
-//            if(lastGamesList[i] != null){
-//                this.remove(lastGamesList[i]);
-//            }
-//            JRadioButton gameButton = new JRadioButton();
-//            lastGamesList[i] = gameButton;
-//            gameButton.setText(user.getSavedGames()[i].getName());
-//            gameButton.setBounds(x,500,250,30);
-//            bg.add(gameButton);
-//            this.add(gameButton);
-//            x += 300;
-//        }
-//    }
+            add(centerPanel, BorderLayout.CENTER);
 
-    private void saveInfo(){
-//        File file = new File(user.getUserName() + ".json");
-//        FileWriter fileWriter = null;
-//        try {
-//            fileWriter = new FileWriter(file);
-//            user.userManager.objectMapper.writeValue(fileWriter,user);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-    }
+            // Add buttons to the bottom (south)
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.setBackground(MarioPanel.LIGTH_COLOR);
+            buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+            buttonPanel.add(delete);
+            buttonPanel.add(ok);
 
+            add(buttonPanel, BorderLayout.SOUTH);
+        }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+        @Override
+        public void setOffline(boolean offline) {
+            // Add your setOffline code here if needed
+        }
 
-    }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Add your actionPerformed code here if needed
+        }
 }
