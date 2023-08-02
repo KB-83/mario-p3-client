@@ -1,6 +1,7 @@
 package view.menu.room;
 
 import controller.LocalController;
+import model.Chat;
 import model.dto.RoomDTO;
 import model.request.RoomGameStartRequest;
 import util.Config;
@@ -141,6 +142,7 @@ public class SimpleRoomPanel extends MarioPanel {
 //        chatPanel = mainChatPanel;//without back button
         if (chatPanel == null) {
             //test
+            System.out.println("newing chat");
             chatPanel = new MainChatPanel(localController, localController.getFrame().getPanelsManagerCard());
         }
         chatPanel.setChat(room.getRoomChat().getMassages(),room.getRoomChat().getOpponentUsername());
@@ -148,5 +150,10 @@ public class SimpleRoomPanel extends MarioPanel {
         JList<String> userList = new JList<>(room.getRoomUsers().toArray(new String[0]));
         userList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         userScrollPane.setViewportView(userList);
+        repaint();
+        revalidate();
+    }
+    public void updateChat(Chat chat) {
+        chatPanel.setChat(chat.getMassages(),chat.getOpponentUsername());
     }
 }

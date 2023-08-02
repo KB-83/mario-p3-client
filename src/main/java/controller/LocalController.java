@@ -1,5 +1,6 @@
 package controller;
 
+import controller.offline_logic.requsethandler.UserRequestHandler;
 import model.Client;
 import model.request.Request;
 import util.Loop;
@@ -13,9 +14,11 @@ public class LocalController {
     private ClientController controller;
     private Loop clientCurrentGameLoop;
     private Frame frame;
+    private UserRequestHandler userRequestHandler;
     public LocalController(ClientController controller) {
         this.controller = controller;
         this.frame = new Frame(this);
+        this.userRequestHandler = new UserRequestHandler(this);
     }
     public void enableOfflineMode(boolean offline) {
         frame.getPanelsManagerCard().setOffline(offline);
@@ -52,6 +55,7 @@ public class LocalController {
     public void clientCleared(Client client) {
         //set client
         frame.getPanelsManagerCard().getChatPanel().clientCleared(client);
+        userRequestHandler.setClient(client);//test
 
     }
     public void tryToConnectAgain() {
@@ -69,5 +73,9 @@ public class LocalController {
 
     public Loop getClientCurrentGameLoop() {
         return clientCurrentGameLoop;
+    }
+
+    public UserRequestHandler getUserRequestHandler() {
+        return userRequestHandler;
     }
 }

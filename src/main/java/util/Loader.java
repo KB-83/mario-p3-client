@@ -3,6 +3,7 @@ package util;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import controller.ClientController;
+import controller.offline_logic.gamestrucure.Game;
 import model.dto.ClientDTO;
 
 import java.io.File;
@@ -41,15 +42,16 @@ public class Loader {
             return null;
         }
     }
-//    public Game loadGame(String name) {
-//        File file = new File("src/main/resources/game/"+name+".json");
-//        Game game = null;
-//        try {
-//            game = objectMapper.readValue(file, Game.class);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return game;
-//    }
+    public Game loadGame(String name) {
+        File file = new File("/Users/kajal/Documents/AP/project/ProjectP3/mario_p3-client/src/main/resources/game/"+name+".json");
+        System.out.println(name);
+        Game game = null;
+        try {
+            game = objectMapper.readValue(file, Game.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return game;
+    }
 
 }

@@ -2,7 +2,6 @@ package view.menu;
 
 import controller.LocalController;
 import view.Frame;
-import view.NewGamePanel;
 import view.ProfilePanel;
 import view.menu.room.RoomManagerCard;
 
@@ -48,6 +47,7 @@ public class PanelsManagerCard extends MarioPanel {
         chooseOnlineGamePanel = new ChooseOnlineGamePanel(localController,this);
         onlineGamePanel = new OnlineGamePanel(localController,this);
         roomManagerCard = new RoomManagerCard(frame,localController);
+        newGamePanel = new NewGamePanel(localController,this);
 
         setUI();
 
@@ -70,6 +70,7 @@ public class PanelsManagerCard extends MarioPanel {
         add(onlineGamePanel,onlineGamePanel.getClass().getSimpleName());
         add(roomManagerCard, roomManagerCard.getClass().getSimpleName());
         add(mainChatPanel, mainChatPanel.getClass().getSimpleName());
+        add(newGamePanel,newGamePanel.getClass().getSimpleName());
 //        add(newGamePanel,"newGamePanel");
 //        add(lastGamesPanel,"lastGamesPanel");
         add(mainMenu,mainMenu.getClass().getSimpleName());
@@ -192,6 +193,7 @@ public class PanelsManagerCard extends MarioPanel {
     public void setMainChatPanel(MainChatPanel mainChatPanel) {
         this.mainChatPanel = mainChatPanel;
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

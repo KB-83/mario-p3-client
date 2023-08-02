@@ -23,7 +23,7 @@ public class NetworkController extends Thread{
     private PrintWriter writer;
     private final ObjectMapper MAPPER = new ObjectMapper();
     private final int PORT_NUM = 9001;
-    private boolean isOnline;
+    private static boolean isOnline;
     public NetworkController(ClientController controller) {
         this.controller = controller;
     }
@@ -62,5 +62,9 @@ public class NetworkController extends Thread{
             isOnline = false;
             System.out.println("client "+ socket.getInetAddress().toString()+" disconnected");
         }
+    }
+
+    public static boolean isOnline() {
+        return isOnline;
     }
 }

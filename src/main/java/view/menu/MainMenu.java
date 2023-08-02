@@ -78,7 +78,7 @@ public class MainMenu extends MarioPanel {
         startNewGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardPanel.getCardLayout().show(cardPanel,"newGamePanel");
+                cardPanel.getCardLayout().show(cardPanel,NewGamePanel.class.getSimpleName());
                 cardPanel.getNewGamePanel().requestFocus();
             }
         });

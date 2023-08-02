@@ -1,12 +1,17 @@
 package util;
 
+import controller.ClientController;
 import controller.LocalController;
+import controller.NetworkController;
+import controller.offline_logic.gamestrucure.GameState;
+import controller.offline_logic.tools.DTOCreator;
 import model.dto.entity.PlayerDTO;
 import model.dto.game.GameStateDTO;
 import model.request.GetGameStateRequest;
 import view.menu.GamePanel;
 
 public class Loop implements Runnable{
+    private GameState offlineGameState;
     private GameStateDTO gameState;// to update
     private PlayerDTO player;
     private LocalController controller;
@@ -24,6 +29,15 @@ public class Loop implements Runnable{
         this.gameState = gameState;
         this.FPS = FPS;
         this.player = player;
+        this.controller = localController;
+    }
+    //offline loop
+    public Loop(LocalController localController, GameStateDTO gameStateDTO,PlayerDTO player,GameState gameState,GamePanel gamePanel,int FPS) {
+        this.gamePanel = gamePanel;
+        this.gameState = gameStateDTO;
+        this.offlineGameState = gameState;
+        this.player = player;
+        this.FPS = FPS;
         this.controller = localController;
     }
 
@@ -62,7 +76,13 @@ public class Loop implements Runnable{
             if(delta >= 1){
                 tryFps++;
 //                gameState = controller;
-                controller.sendRequest(updateRequest);
+                if (NetworkController.isOnline()) {
+                    controller.sendRequest(updateRequest);
+                }
+                else {
+                    offlineGameState.getGameStateController().update();
+                    gamePanel.setGameStateDTO(DTOCreator.updateGameStateDTO(gameState,offlineGameState),DTOCreator.updatePlayerDTO(offlineGameState.getMario(),player));
+                }
 //                gamePanel.setGameStateDTO(gameState,player);
                 gamePanel.repaint();
                 lastTime = System.nanoTime();

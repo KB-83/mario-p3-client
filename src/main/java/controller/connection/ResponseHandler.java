@@ -124,4 +124,10 @@ public class ResponseHandler implements ResponseVisitor{
         panelsManagerCard.getRoomManager().getManagerPanel().setRoom(response.getRoomDTO());
         panelsManagerCard.getRoomManager().getSimpleRoomPanel().setRoom(response.getRoomDTO());
     }
+
+    @Override
+    public void visit(RoomChatUpdateResponse response) {
+        panelsManagerCard.getRoomManager().getManagerPanel().updateChat(response.getChat());
+        panelsManagerCard.getRoomManager().getSimpleRoomPanel().updateChat(response.getChat());
+    }
 }
