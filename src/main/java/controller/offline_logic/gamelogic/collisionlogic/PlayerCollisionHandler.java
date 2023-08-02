@@ -75,16 +75,16 @@ public class PlayerCollisionHandler implements CollisionHandler{
     }
     private void checkCheckPointTouch(){
         CheckPoint checkPoint = gameState.getCurrentSection().getCheckPoint();
-        if (checkPoint != null){
-            checkpointRect.updatePosition(checkPoint.getCol() * 48,checkPoint.getRow() * 48);
-            if (!checkPoint.getSaved() && collisionChecker.didCollide(playerRect,checkpointRect)) {
-                //todo : do it as a requset
-                gameState.setWaitingCheckpoint(checkPoint);
-                gameState.setPaused(true);
-                //todo : doit
-//                gameState.getClient().getLogicManager().getGraphicManager().getFrame().getCheckPointFrame().setVisible(true);
-            }
-        }
+//        if (checkPoint != null){
+//            checkpointRect.updatePosition(checkPoint.getCol() * 48,checkPoint.getRow() * 48);
+//            if (!checkPoint.getSaved() && collisionChecker.didCollide(playerRect,checkpointRect)) {
+//                //todo : do it as a requset
+//                gameState.setWaitingCheckpoint(checkPoint);
+//                gameState.setPaused(true);
+//                //todo : doit
+////                gameState.getClient().getLogicManager().getGraphicManager().getFrame().getCheckPointFrame().setVisible(true);
+//            }
+//        }
     }
     public void checkItemEating(){
         if (gameState == null) {

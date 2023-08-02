@@ -70,12 +70,13 @@ public class UserRequestHandler {
             PanelsManagerCard panelsManagerCard = localController.getFrame().getPanelsManagerCard();
             GameState gameState = new GameStateController().createGameState(game);
             GameStateDTO gameStateDTO = DTOCreator.createGameStateDTO(gameState);
+            PlayerRequestHandler playerRequestHandler = new PlayerRequestHandler(gameState);
             PlayerDTO playerDTO = DTOCreator.createPlayerDTO(gameState.getMario());//todo : test it
             Loop loop = new Loop(localController,gameStateDTO,playerDTO,gameState,panelsManagerCard.getGamePanel(),60);
             localController.setClientCurrentGameLoop(loop);
             loop.start();
             panelsManagerCard.getGamePanel().setGameStateDTO(gameStateDTO,playerDTO);
-            panelsManagerCard.getGamePanel().setKeyListener(localController);
+            panelsManagerCard.getGamePanel().setOfflineKeyListener(gameState.getMario().getPlayerRequestHandler());
             panelsManagerCard.getCardLayout().show(panelsManagerCard, GamePanel.class.getSimpleName());
             panelsManagerCard.getGamePanel().requestFocus();
 

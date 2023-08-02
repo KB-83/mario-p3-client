@@ -58,7 +58,7 @@ public class ResponseHandler implements ResponseVisitor{
         localController.setClientCurrentGameLoop(loop);
         loop.start();
         panelsManagerCard.getGamePanel().setGameStateDTO(response.getGameStateDTO(),response.getPlayerDTO());
-        panelsManagerCard.getGamePanel().setKeyListener(localController);
+        panelsManagerCard.getGamePanel().setOnlineKeyListener(localController);
         panelsManagerCard.getCardLayout().show(panelsManagerCard, GamePanel.class.getSimpleName());
         panelsManagerCard.getGamePanel().requestFocus();
     }

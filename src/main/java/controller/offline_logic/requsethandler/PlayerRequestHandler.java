@@ -214,13 +214,13 @@ public class PlayerRequestHandler{
     }
     private void setPlayerImageByState(String s) {
         if (player.isFire()){
-            player.setImageAddress("2"+s);
+            player.setImageAddress("FireMario"+s);
         }
         else if (player.isMega()){
-            player.setImageAddress("1"+s);
+            player.setImageAddress("MegaMario"+s);
         }
         else {
-            player.setImageAddress("0"+s);
+            player.setImageAddress("Mario"+s);
         }
     }
 

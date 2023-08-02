@@ -102,21 +102,21 @@ public class Camera {
         }
 
 //         drying player
-//        Image image;
-//        if (playerDTO.getImage() != null) {
-//            image = Config.IMAGES.get(playerDTO.getImage().toLowerCase());
-//        }
-//        else {
-//            image = Config.IMAGES.get("marioright1");
-//        }
-//        g2.drawImage(image, playerDTO.getCameraX(),
-//                playerDTO.getCameraY()
-//                , 48, playerDTO.getHeight(),
-//                null );
+        Image image;
+        if (playerDTO.getImage() != null) {
+            image = Config.IMAGES.get(playerDTO.getImage().toLowerCase());
+        }
+        else {
+            image = Config.IMAGES.get("marioright1");
+        }
+        g2.drawImage(image, playerDTO.getCameraX(),
+                playerDTO.getCameraY()
+                , 48, playerDTO.getHeight(),
+                null );
 
 
         //draying other players
-        Image image;
+
         for (PlayerDTO playerDTO1 : gameStateDTO.getPlayerDTOS()) {
             if (playerDTO1.getImage() != null) {
                 image = Config.IMAGES.get(playerDTO1.getImage().toLowerCase());

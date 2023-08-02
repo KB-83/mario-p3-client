@@ -1,6 +1,8 @@
 package controller.listener;
 
 import controller.LocalController;
+import controller.offline_logic.requsethandler.PlayerRequestHandler;
+import controller.offline_logic.requsethandler.UserRequestHandler;
 import model.request.PlayerActionRequest;
 
 import javax.swing.*;
@@ -10,7 +12,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class PlayerListener implements KeyListener {
-    private LocalController controller;
+    private LocalController controller ;
+    private boolean isOfflineMode;
+    private PlayerRequestHandler playerRequestHandler;//offline
     private final PlayerActionRequest request;
     private boolean isUpPressed, isDownPressed;
     private boolean isDuringSwardChecking;
@@ -23,6 +27,19 @@ public class PlayerListener implements KeyListener {
         request = new PlayerActionRequest();
         this.controller = controller;
         isDuringSwardChecking = false;
+        isOfflineMode = false;
+        setTimers();
+    }
+
+    public PlayerListener(PlayerRequestHandler playerRequestHandler) {
+        request = new PlayerActionRequest();
+        this.playerRequestHandler = playerRequestHandler;
+        isDuringSwardChecking = false;
+        isOfflineMode = true;
+        setTimers();
+    }
+
+    private void setTimers() {
         letPlayerPressBothKeys = new Timer(100, new ActionListener() {
             int i = 0;
             @Override
@@ -40,17 +57,28 @@ public class PlayerListener implements KeyListener {
                         startSwardRequestTimer();
                     }
                     else if (isUpPressed) {
-                        request.setType("jump");
-                        controller.sendRequest(request);
+                        if (isOfflineMode) {
+                            playerRequestHandler.jumpRequest();
+                        }
+                        else {
+                            request.setType("jump");
+                            controller.sendRequest(request);
+                        }
                     }
                     else if (isDownPressed){
-                        request.setType("seat");
-                        controller.sendRequest(request);
+                        if (isOfflineMode) {
+                            playerRequestHandler.SeatRequest();
+                        }
+                        else {
+                            request.setType("seat");
+                            controller.sendRequest(request);
+                        }
                     }
 
                 }
             }
         });
+
     }
     private void startSwardRequestTimer(){
         startPressingUpAndDown = System.currentTimeMillis();
@@ -58,8 +86,14 @@ public class PlayerListener implements KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (isUpPressed && isDownPressed && System.currentTimeMillis() - startPressingUpAndDown >= 1000){
-                    request.setType("sward");
-                    controller.sendRequest(request);
+
+                    if (isOfflineMode) {
+                        playerRequestHandler.SwardRequest();
+                    }
+                    else {
+                        request.setType("sward");
+                        controller.sendRequest(request);
+                    }
                     swardRequestTimer.stop();
                     swardRequestTimer = null;
                     isDuringSwardChecking = false;
@@ -96,20 +130,40 @@ public class PlayerListener implements KeyListener {
             }
         }
         else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            request.setType("right");
-            controller.sendRequest(request);
+            if (isOfflineMode) {
+                playerRequestHandler.RightRequest();
+            }
+            else {
+                request.setType("right");
+                controller.sendRequest(request);
+            }
         }
         else if(e.getKeyCode() == KeyEvent.VK_LEFT){
-            request.setType("left");
-            controller.sendRequest(request);
+            if (isOfflineMode) {
+                playerRequestHandler.LeftRequest();
+            }
+            else {
+                request.setType("left");
+                controller.sendRequest(request);
+            }
         }
         else if(e.getKeyCode() == KeyEvent.VK_SHIFT){
-            request.setType("bullet");
-            controller.sendRequest(request);
+            if (isOfflineMode) {
+                playerRequestHandler.BulletRequest();
+            }
+            else {
+                request.setType("bullet");
+                controller.sendRequest(request);
+            }
         }
         else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            request.setType("pause");
-            controller.sendRequest(request);
+            if (isOfflineMode) {
+//                playerRequestHandler.();
+            }
+                                    else{
+                request.setType("pause");
+                controller.sendRequest(request);
+            }
         }
         //Todo : add swan timer request too
 
@@ -124,12 +178,22 @@ public class PlayerListener implements KeyListener {
             isDownPressed = false;
         }
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            request.setType("rightD");
-            controller.sendRequest(request);
+            if (isOfflineMode) {
+                playerRequestHandler.rightDoneRequest();
+            }
+            else {
+                request.setType("rightD");
+                controller.sendRequest(request);
+            }
         }
         else if(e.getKeyCode() == KeyEvent.VK_LEFT){
-            request.setType("leftD");
-            controller.sendRequest(request);
+            if (isOfflineMode) {
+                playerRequestHandler.leftDoneRequest();
+            }
+            else {
+                request.setType("leftD");
+                controller.sendRequest(request);
+            }
         }
 //        else if(e.getKeyCode() == KeyEvent.VK_SHIFT){
 //            playerRequestHandler.BulletRequest();
