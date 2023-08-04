@@ -6,6 +6,7 @@ import model.dto.entity.PlayerDTO;
 import model.dto.game.GameStateDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Client {
     @JsonIgnore
@@ -16,7 +17,7 @@ public class Client {
     private ClientController clientController;
     private String username;
     private String password;
-    private ArrayList<Chat> chats;
+    private List<Chat> chats;
 
     //    todo : maybe in feature going to add multiplie players
 //    private Player[] players;
@@ -101,11 +102,11 @@ public class Client {
         this.diamond = diamond;
     }
 
-    public ArrayList<Chat> getChats() {
+    public List<Chat> getChats() {
         return chats;
     }
 
-    public void setChats(ArrayList<Chat> chats) {
+    public void setChats(List<Chat> chats) {
         this.chats = chats;
     }
 

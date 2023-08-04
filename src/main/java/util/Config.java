@@ -52,10 +52,10 @@ public class Config extends Properties {
                 BufferedImage bufferedImage = ImageIO.read(Config.class.getResourceAsStream("/image"+imagePath));
 
 
-                // Create a new BufferedImage with the desired width and height
                 BufferedImage resizedImage = new BufferedImage(48, 48, bufferedImage.getType());
                 resizedImage.getGraphics().drawImage(bufferedImage, 0, 0, 48, 48, null);
                 IMAGES.put(key, resizedImage);
+                IMAGES.put(key+"ORG", bufferedImage);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

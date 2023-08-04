@@ -7,6 +7,7 @@ import model.dto.entity.PlayerDTO;
 import model.dto.game.GameStateDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ClientDTO {
         @JsonIgnore
@@ -18,7 +19,7 @@ public class ClientDTO {
         private String[] savedGamesURLs;
         private String username;
         private String password;
-        private ArrayList<Chat> chats;
+        private List<Chat> chats;
         // vaghti room request miad Setcon shayad asan currunt room bashe
         @JsonIgnore
         private Chat roomChat;
@@ -29,7 +30,7 @@ public class ClientDTO {
     public ClientDTO() {
     }
 
-    public ClientDTO(String username, String password,ArrayList<Chat> chats) {
+    public ClientDTO(String username, String password,List<Chat> chats) {
             this.chats = chats;
             this.username = username;
             this.password = password;
@@ -75,11 +76,11 @@ public class ClientDTO {
         }
 
 
-        public ArrayList<Chat> getChats() {
+        public List<Chat> getChats() {
             return chats;
         }
 
-        public void setChats(ArrayList<Chat> chats) {
+        public void setChats(List<Chat> chats) {
             this.chats = chats;
         }
 

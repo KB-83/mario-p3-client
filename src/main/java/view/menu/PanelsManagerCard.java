@@ -3,6 +3,8 @@ package view.menu;
 import controller.LocalController;
 import view.Frame;
 import view.ProfilePanel;
+import view.menu.bag.BagPanel;
+import view.menu.bag.EditBagPanel;
 import view.menu.room.RoomManagerCard;
 
 import java.awt.*;
@@ -27,6 +29,7 @@ public class PanelsManagerCard extends MarioPanel {
     private ChooseOnlineGamePanel chooseOnlineGamePanel;
     //layout
     private CardLayout cardLayout;
+    private BagPanel bagPanel;
     public PanelsManagerCard(Frame frame, LocalController localController){
         this.frame = frame;
         setDependencies(localController);
@@ -49,6 +52,7 @@ public class PanelsManagerCard extends MarioPanel {
         roomManagerCard = new RoomManagerCard(frame,localController);
         newGamePanel = new NewGamePanel(localController,this);
         lastGamesPanel = new LastGamesPanel(localController,this);
+        bagPanel = new BagPanel();
 
         setUI();
 
@@ -72,6 +76,7 @@ public class PanelsManagerCard extends MarioPanel {
         add(roomManagerCard, roomManagerCard.getClass().getSimpleName());
         add(mainChatPanel, mainChatPanel.getClass().getSimpleName());
         add(newGamePanel,newGamePanel.getClass().getSimpleName());
+        add(bagPanel,bagPanel.getClass().getSimpleName());
 //        add(newGamePanel,"newGamePanel");
 //        add(lastGamesPanel,"lastGamesPanel");
         add(mainMenu,mainMenu.getClass().getSimpleName());
@@ -196,7 +201,9 @@ public class PanelsManagerCard extends MarioPanel {
         this.mainChatPanel = mainChatPanel;
     }
 
-
+    public BagPanel getBagPanel() {
+        return bagPanel;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

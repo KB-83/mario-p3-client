@@ -1,5 +1,7 @@
 package view.menu;
 
+import view.menu.bag.BagPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -35,7 +37,7 @@ public class MainMenu extends MarioPanel {
 
     @Override
     public void setOffline(boolean offline) {
-        profile.setEnabled(!offline);
+//        profile.setEnabled(!offline);
         onlineGame.setEnabled(!offline);
         tryAgain.setVisible(offline);
     }
@@ -100,8 +102,8 @@ public class MainMenu extends MarioPanel {
         profile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardPanel.getCardLayout().show(cardPanel,"profilePanel");
-                cardPanel.getProfilePanel().requestFocus();
+                cardPanel.getCardLayout().show(cardPanel, BagPanel.class.getSimpleName());
+                cardPanel.getBagPanel().requestFocus();
             }
         });
         shop.addActionListener(new ActionListener() {

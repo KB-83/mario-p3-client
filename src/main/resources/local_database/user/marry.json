@@ -1,0 +1,37 @@
+{
+  "savedGamesURLs" : null,
+  "username" : "marry",
+  "password" : "123",
+  "chats" : [ {
+    "opponentUsername" : "john",
+    "massages" : [ {
+      "senderUsername" : "john",
+      "receiverUsername" : "marry",
+      "context" : "hi"
+    }, {
+      "senderUsername" : "john",
+      "receiverUsername" : "marry",
+      "context" : "hi"
+    }, {
+      "senderUsername" : "john",
+      "receiverUsername" : "marry",
+      "context" : "1"
+    }, {
+      "senderUsername" : "john",
+      "receiverUsername" : "marry",
+      "context" : "2"
+    }, {
+      "senderUsername" : "john",
+      "receiverUsername" : "marry",
+      "context" : "3"
+    }, {
+      "senderUsername" : "john",
+      "receiverUsername" : "marry",
+      "context" : "hi"
+    }, {
+      "senderUsername" : "john",
+      "receiverUsername" : "marry",
+      "context" : "4"
+    } ]
+  } ]
+}
