@@ -133,7 +133,7 @@ public class PlayerListener implements KeyListener {
                 playerRequestHandler.RightRequest();
             }
             else {
-                request.setType("right");
+                request.setType(RequestType.RIGHT.getType());
                 controller.sendRequest(request);
             }
         }
@@ -142,7 +142,7 @@ public class PlayerListener implements KeyListener {
                 playerRequestHandler.LeftRequest();
             }
             else {
-                request.setType("left");
+                request.setType(RequestType.LEFT.getType());
                 controller.sendRequest(request);
             }
         }
@@ -151,7 +151,7 @@ public class PlayerListener implements KeyListener {
                 playerRequestHandler.BulletRequest();
             }
             else {
-                request.setType("bullet");
+                request.setType(RequestType.BULLET.getType());
                 controller.sendRequest(request);
             }
         }
@@ -160,7 +160,49 @@ public class PlayerListener implements KeyListener {
 //                playerRequestHandler.();
             }
                                     else{
-                request.setType("pause");
+                request.setType(RequestType.PAUSE.getType());
+                controller.sendRequest(request);
+            }
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_D) {
+            if (isOfflineMode) {}
+            else {
+                request.setType(RequestType.DAMAGE_BOMB.getType());
+                controller.sendRequest(request);
+            }
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_H) {
+            if (isOfflineMode) {}
+            else {
+                request.setType(RequestType.HEALTH_POTION.getType());
+                controller.sendRequest(request);
+            }
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_B) {
+            if (isOfflineMode) {}
+            else {
+                request.setType(RequestType.SPEED_POTION.getType());
+                controller.sendRequest(request);
+            }
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_I) {
+            if (isOfflineMode) {}
+            else {
+                request.setType(RequestType.INVISIBILITY_POTION.getType());
+                controller.sendRequest(request);
+            }
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_S) {
+            if (isOfflineMode) {}
+            else {
+                request.setType(RequestType.SPEED_POTION.getType());
+                controller.sendRequest(request);
+            }
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_W) {
+            if (isOfflineMode) {}
+            else {
+                request.setType(RequestType.HAMMER.getType());
                 controller.sendRequest(request);
             }
         }
@@ -181,7 +223,7 @@ public class PlayerListener implements KeyListener {
                 playerRequestHandler.rightDoneRequest();
             }
             else {
-                request.setType("rightD");
+                request.setType(RequestType.RIGHT_DONE.getType());
                 controller.sendRequest(request);
             }
         }
@@ -190,7 +232,7 @@ public class PlayerListener implements KeyListener {
                 playerRequestHandler.leftDoneRequest();
             }
             else {
-                request.setType("leftD");
+                request.setType(RequestType.LEFT_DONE.getType());
                 controller.sendRequest(request);
             }
         }

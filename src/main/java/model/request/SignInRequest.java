@@ -1,7 +1,5 @@
 package model.request;
 
-import controller.connection.RequestVisitor;
-
 public class SignInRequest extends Request{
     private String username;
     private String password;

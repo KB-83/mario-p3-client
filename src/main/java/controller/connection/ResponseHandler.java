@@ -2,7 +2,6 @@ package controller.connection;
 
 import controller.LocalController;
 import model.response.*;
-import util.Config;
 import util.Saver;
 import model.dto.ClientDTO;
 import util.Loop;
@@ -12,8 +11,6 @@ import view.menu.MainMenu;
 import view.menu.PanelsManagerCard;
 import view.menu.room.RoomManagerCard;
 import view.menu.room.SimpleRoomPanel;
-
-import javax.swing.*;
 
 public class ResponseHandler implements ResponseVisitor{
     private static ResponseHandler responseHandler;
@@ -49,11 +46,6 @@ public class ResponseHandler implements ResponseVisitor{
 
     @Override
     public void visit(GameStartResponse response) {
-
-//        user.setCurrentGameState(gameState);
-//        panelsManagerCard.getGamePanel().setKeyListener(gameState);
-        //test
-        System.out.println("here,client,game start response delivered");
         Loop loop = new Loop(localController,response.getGameStateDTO(),response.getPlayerDTO(),panelsManagerCard.getGamePanel(),60);
         localController.setClientCurrentGameLoop(loop);
         loop.start();
@@ -113,14 +105,12 @@ public class ResponseHandler implements ResponseVisitor{
 
     @Override
     public void visit(EnterRoomResponse response) {
-        //show room panel
         panelsManagerCard.getRoomManager().getCardLayout().show(panelsManagerCard.getRoomManager(), SimpleRoomPanel.class.getSimpleName());
         panelsManagerCard.getCardLayout().show(panelsManagerCard, RoomManagerCard.class.getSimpleName());
     }
 
     @Override
     public void visit(RoomUpdateResponse response) {
-//        if(managere) {}
         panelsManagerCard.getRoomManager().getManagerPanel().setRoom(response.getRoomDTO());
         panelsManagerCard.getRoomManager().getSimpleRoomPanel().setRoom(response.getRoomDTO());
     }

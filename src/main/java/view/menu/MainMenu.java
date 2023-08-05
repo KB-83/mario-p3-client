@@ -127,7 +127,7 @@ public class MainMenu extends MarioPanel {
                 //Todo : send save info request
 //                saveInfo();
 //                card.gM.lM.userManager.currentUser = null;
-                cardPanel.getCardLayout().show(cardPanel,"startPanel");
+                cardPanel.getCardLayout().show(cardPanel,StartPanel.class.getSimpleName());
                 cardPanel.getStartPanel().requestFocus();
             }
         });

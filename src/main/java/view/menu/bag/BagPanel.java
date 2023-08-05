@@ -1,5 +1,6 @@
 package view.menu.bag;
 
+import util.Name;
 import view.menu.MarioPanel;
 
 import javax.swing.*;
@@ -12,8 +13,8 @@ public class BagPanel extends MarioPanel {
     private JPanel southPanel;
     private JButton backButton;
     private JPanel centerPanel;
-    private final String[] items = {"speedbomb","damagebomb","sward",
-            "healthpotion","speedpotion","invisiblepotion"};
+    private final String[] items = {Name.SPEED_BOMB, Name.DAMAGE_BOMB, Name.SWARD,
+            Name.HEALTH_POTION,Name.SPEED_POTION,Name.INVISIBILITY_POTION};
     private EditBagPanel[] editBagPanels = new EditBagPanel[3];
     public BagPanel() {
         setUI();

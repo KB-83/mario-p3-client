@@ -1,6 +1,5 @@
 package model.response;
 
-import controller.connection.RequestVisitor;
 import controller.connection.ResponseVisitor;
 import model.Client;
 

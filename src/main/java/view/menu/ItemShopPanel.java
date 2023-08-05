@@ -4,6 +4,7 @@ import controller.LocalController;
 import controller.listener.ItemShopPanelListener;
 import model.request.BuyRequest;
 import util.Config;
+import util.Name;
 
 import javax.swing.*;
 import java.awt.*;
@@ -97,7 +98,7 @@ public class ItemShopPanel extends MarioPanel {
         topPanel.add(backButton);
 
         ImageIcon coinIcon = new ImageIcon();
-        coinIcon.setImage(Config.IMAGES.get("coin"));
+        coinIcon.setImage(Config.IMAGES.get(Name.COIN));
 
 
         coinsLabel = createStyledLabel("Coins: " + userCoins,false);
@@ -107,7 +108,7 @@ public class ItemShopPanel extends MarioPanel {
         topPanel.add(coinsLabel);
 
         ImageIcon diamondIcon = new ImageIcon(); // Replace with your diamond image
-        diamondIcon.setImage(Config.IMAGES.get("diamond"));
+        diamondIcon.setImage(Config.IMAGES.get(Name.DIAMOND));
         diamondsLabel = createStyledLabel("Diamonds: " + diamondCount,false);
         diamondsLabel.setIcon(diamondIcon);
         topPanel.add(diamondsLabel);
@@ -127,7 +128,8 @@ public class ItemShopPanel extends MarioPanel {
         add(scrollPane, BorderLayout.CENTER);
 
         // Add items to the center panel
-        String[] itemNames = {"hammer", "healthpotion", "invisiblepotion", "invisiblepotion", "speedbomb"};
+        //todo
+        String[] itemNames = {Name.HAMMER, Name.HEALTH_POTION, "invisibilityPotion", "invisibilityPotion", "speedBomb"};
         for (int i = 1; i <= itemNames.length; i++) {
             centerPanel.add(createItemPanel(itemNames[i - 1], itemNames[i - 1]));
         }

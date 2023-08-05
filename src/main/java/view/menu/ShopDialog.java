@@ -1,6 +1,7 @@
 package view.menu;
 
 import util.Config;
+import util.Name;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,14 +41,14 @@ public class ShopDialog extends JDialog {
         constraints.insets = new Insets(5, 5, 5, 5);
 
         diamondsLabel = new JLabel("Diamonds: " + diamonds);
-        ImageIcon diamondIcon = new ImageIcon(Config.IMAGES.get("diamond"));
+        ImageIcon diamondIcon = new ImageIcon(Config.IMAGES.get(Name.DIAMOND));
         diamondsLabel.setIcon(diamondIcon);
         constraints.gridx = 0;
         constraints.gridy = 0;
         mainPanel.add(diamondsLabel, constraints);
 
         coinsToBuyLabel = new JLabel("Coins to buy: " + coinsToBuy);
-        ImageIcon coinIcon = new ImageIcon(Config.IMAGES.get("coin"));
+        ImageIcon coinIcon = new ImageIcon(Config.IMAGES.get(Name.COIN));
         coinsToBuyLabel.setIcon(coinIcon);
         constraints.gridy = 1;
         mainPanel.add(coinsToBuyLabel, constraints);

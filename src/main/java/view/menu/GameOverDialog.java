@@ -1,6 +1,7 @@
 package view.menu;
 
 import util.Config;
+import util.Name;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +28,7 @@ public class GameOverDialog extends JDialog {
 
 
         diamondsLabel = new JLabel();
-        ImageIcon diamondIcon = new ImageIcon(Config.IMAGES.get("diamond"));
+        ImageIcon diamondIcon = new ImageIcon(Config.IMAGES.get(Name.DIAMOND));
         diamondsLabel.setIcon(diamondIcon);
 
         scoreLabel = new JLabel();

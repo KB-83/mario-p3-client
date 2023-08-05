@@ -77,11 +77,11 @@ public class Loop implements Runnable{
                 tryFps++;
 //                gameState = controller;
                 if (NetworkController.isOnline()) {
-                    System.out.println("in online loop");
+//                    System.out.println("in online loop");
                     controller.sendRequest(updateRequest);
                 }
                 else {
-                    System.out.println("in offline loop");
+//                    System.out.println("in offline loop");
                     offlineGameState.getGameStateController().update();
                     gamePanel.setGameStateDTO(DTOCreator.updateGameStateDTO(gameState,offlineGameState),DTOCreator.updatePlayerDTO(offlineGameState.getMario(),player));
                 }

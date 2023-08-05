@@ -11,6 +11,7 @@ public class PlayerDTO {
     private String name;
     private int remainingLifePercent;
     private int teamColor;
+    private PowerItemDTO powerItemDTO;
 
     public PlayerDTO() {
     }
@@ -93,5 +94,12 @@ public class PlayerDTO {
 
     public void setTeamColor(int teamColor) {
         this.teamColor = teamColor;
+    }
+    public PowerItemDTO getPowerItemDTO() {
+        return powerItemDTO;
+    }
+
+    public void setPowerItemDTO(PowerItemDTO powerItemDTO) {
+        this.powerItemDTO = powerItemDTO;
     }
 }

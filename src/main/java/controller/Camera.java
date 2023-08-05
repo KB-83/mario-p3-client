@@ -45,14 +45,17 @@ public class Camera {
             case "M" :
                 paintTime(g2);
                 paintPlayers(g2);
+                paintPowerItem(g2);
                 break;
             case "S" :
                 paintPlayers(g2);
                 paintLife(g2);
+                paintPowerItem(g2);
                 break;
             case "GS" :
                 paintPlayers(g2);
                 paintLife(g2);
+                paintPowerItem(g2);
                 break;
         }
     }
@@ -123,7 +126,7 @@ public class Camera {
 //            if(checkBound(block.getX(), block.getY())) {
 //                // draw blocks
 //            }
-            Image image = Config.IMAGES.get(blockDTO.getType().toLowerCase());
+            Image image = Config.IMAGES.get(blockDTO.getType());
             g2.drawImage(image,(blockDTO.getCol()*48)- minasXLength,
                     blockDTO.getRow()*48, null);
         }
@@ -156,10 +159,10 @@ public class Camera {
     private void paintPlayer(Graphics2D g2) {
         Image image;
         if (playerDTO.getImage() != null) {
-            image = Config.IMAGES.get(playerDTO.getImage().toLowerCase());
+            image = Config.IMAGES.get(playerDTO.getImage());
         }
         else {
-            image = Config.IMAGES.get("marioright1");
+            image = Config.IMAGES.get("marioRight1");
         }
         g2.drawImage(image, playerDTO.getCameraX(),
                 playerDTO.getCameraY()
@@ -171,11 +174,10 @@ public class Camera {
         for (PlayerDTO playerDTO1 : gameStateDTO.getPlayerDTOS()) {
 
             if (playerDTO1.getImage() != null) {
-
-                image = Config.IMAGES.get(playerDTO1.getImage().toLowerCase());
+                image = Config.IMAGES.get(playerDTO1.getImage());
             }
             else {
-                image = Config.IMAGES.get("marioright1");
+                image = Config.IMAGES.get("MarioRight1");
             }
 
             g2.setFont(cartoonFont);
@@ -244,6 +246,11 @@ public class Camera {
 //            g2.drawImage(guiSward.getCurrentImage(),guiSward.getWorldX() - minasXLength,guiSward.getWorldY(),
 //                    guiSward.getWidth(),guiSward.getHeight(),null);
 //        }
+    }
+    private void paintPowerItem(Graphics2D g2) {
+        if (playerDTO.getPowerItemDTO().getType() != null) {
+            g2.drawImage(Config.IMAGES.get(playerDTO.getPowerItemDTO().getType().toLowerCase()),playerDTO.getPowerItemDTO().getX() - minasXLength ,playerDTO.getPowerItemDTO().getY(),48,48,null);
+        }
     }
     public PlayerDTO getPlayerDTO() {
         return playerDTO;

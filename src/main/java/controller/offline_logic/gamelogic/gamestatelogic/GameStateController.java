@@ -129,7 +129,7 @@ public class GameStateController {
         Mario mario = new Mario();
         mario.setWorldY(7 * 48);
         mario.setCameraY(7 * 48);
-        mario.setImageAddress("MarioRight1");
+        mario.setImageAddress("marioRight1");
         mario.setWidth(Constant.BACKGROUND_TILE_SIZE);
         mario.setHeight(Constant.BACKGROUND_TILE_SIZE);
         if (game.getMarioState() > 0) {
