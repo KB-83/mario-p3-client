@@ -1,6 +1,7 @@
 package view.menu;
 
 import controller.LocalController;
+import view.menu.bag.BagPanel;
 import view.menu.room.CreateRoomPanel;
 import view.menu.room.EnterRoomPanel;
 import view.menu.room.RoomManagerCard;
@@ -13,6 +14,7 @@ public class ChooseOnlineGamePanel extends MarioPanel{
     private JButton scoreGame = createStyledButton("score game");
     private JButton createRoom = createStyledButton("create room");
     private JButton enterRoom = createStyledButton("enter room");
+    private JButton bagSetting = createStyledButton("bag setting");
     private PanelsManagerCard panelsManagerCard;
     private LocalController localController;
     public ChooseOnlineGamePanel(LocalController localController, PanelsManagerCard panelsManagerCard) {
@@ -43,10 +45,13 @@ public class ChooseOnlineGamePanel extends MarioPanel{
         createRoom.addActionListener(this);
         enterRoom.setFocusable(false);
         enterRoom.addActionListener(this);
+        bagSetting.setFocusable(false);
+        bagSetting.addActionListener(this);
 
         add(scoreGame);
         add(createRoom);
         add(enterRoom);
+        add(bagSetting);
 
         add(Box.createVerticalGlue());
     }
@@ -68,6 +73,10 @@ public class ChooseOnlineGamePanel extends MarioPanel{
         if (e.getSource() == createRoom) {
             panelsManagerCard.getRoomManager().getCardLayout().show(panelsManagerCard.getRoomManager(), CreateRoomPanel.class.getSimpleName());
             panelsManagerCard.getCardLayout().show(panelsManagerCard, RoomManagerCard.class.getSimpleName());
+        }
+        if (e.getSource() == bagSetting) {
+            panelsManagerCard.getCardLayout().show(panelsManagerCard, BagPanel.class.getSimpleName());
+            panelsManagerCard.getBagPanel().requestFocus();
         }
     }
 

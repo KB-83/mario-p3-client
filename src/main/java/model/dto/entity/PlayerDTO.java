@@ -12,6 +12,7 @@ public class PlayerDTO {
     private int remainingLifePercent;
     private int teamColor;
     private PowerItemDTO powerItemDTO;
+    private String[] selectedBag;
 
     public PlayerDTO() {
     }
@@ -101,5 +102,13 @@ public class PlayerDTO {
 
     public void setPowerItemDTO(PowerItemDTO powerItemDTO) {
         this.powerItemDTO = powerItemDTO;
+    }
+
+    public String[] getSelectedBag() {
+        return selectedBag;
+    }
+
+    public void setSelectedBag(String[] selectedBag) {
+        this.selectedBag = selectedBag;
     }
 }

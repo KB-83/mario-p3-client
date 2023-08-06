@@ -36,6 +36,17 @@ public class Camera {
         paintBlocks(g2);
         paintPipes(g2);
         paintItems(g2);
+        //test
+        int cons = 140;
+        int i = 0;
+        if (playerDTO.getSelectedBag() != null) {
+            for (String s : playerDTO.getSelectedBag()) {
+                if (s!=null) {
+                    g2.drawString(s, cons * i, 20);
+                }
+                i++;
+            }
+        }
         // age marathon bood marathon bekesh
         //offline bood
         switch (gameStateDTO.getType()) {

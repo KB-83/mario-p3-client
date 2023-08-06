@@ -54,7 +54,7 @@ public class PanelsManagerCard extends MarioPanel {
         newGamePanel = new NewGamePanel(localController,this);
         lastGamesPanel = new LastGamesPanel(localController,this);
         scoreBardPanel = new ScoreBardPanel(localController);
-        bagPanel = new BagPanel();
+        bagPanel = new BagPanel(localController,this);
 
         setUI();
 

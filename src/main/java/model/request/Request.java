@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = GroupSurvivalRequest.class),
         @JsonSubTypes.Type(value = RoomGameStartRequest.class),
         @JsonSubTypes.Type(value = EnterRoomRequest.class),
+        @JsonSubTypes.Type(value = SelectBagRequest.class),
         @JsonSubTypes.Type(value = BuyRequest.class),
         @JsonSubTypes.Type(value = SignInRequest.class),
         @JsonSubTypes.Type(value = FinalBuyRequest.class),
