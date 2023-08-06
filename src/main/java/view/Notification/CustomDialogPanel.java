@@ -15,7 +15,7 @@ import java.awt.event.MouseEvent;
 public class CustomDialogPanel extends JDialog {
     private JLabel messageLabel;
     private JButton okButton;
-    public static final ImageIcon DEFAULT_ICON = new ImageIcon(Config.IMAGES.get("marioright1"));
+    public static final ImageIcon DEFAULT_ICON = new ImageIcon(Config.IMAGES.get("marioRight1"));
 
     private CustomDialogPanel(JPanel parentPanel) {
         super((JFrame) SwingUtilities.getWindowAncestor(parentPanel), true); // "true" makes the dialog modal

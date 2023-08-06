@@ -5,6 +5,8 @@ public enum RequestType {
     LEFT("left"),
     RIGHT_DONE("rightD"),
     LEFT_DONE("leftD"),
+    JUMP("jump"),
+    SEAT("seat"),
     BULLET("bullet"),
     PAUSE("pause"),
     DAMAGE_BOMB("damageBomb"),

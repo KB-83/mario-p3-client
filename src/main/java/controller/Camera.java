@@ -249,7 +249,7 @@ public class Camera {
     }
     private void paintPowerItem(Graphics2D g2) {
         if (playerDTO.getPowerItemDTO().getType() != null) {
-            g2.drawImage(Config.IMAGES.get(playerDTO.getPowerItemDTO().getType().toLowerCase()),playerDTO.getPowerItemDTO().getX() - minasXLength ,playerDTO.getPowerItemDTO().getY(),48,48,null);
+            g2.drawImage(Config.IMAGES.get(playerDTO.getPowerItemDTO().getType()),playerDTO.getPowerItemDTO().getX() - minasXLength ,playerDTO.getPowerItemDTO().getY(),48,48,null);
         }
     }
     public PlayerDTO getPlayerDTO() {

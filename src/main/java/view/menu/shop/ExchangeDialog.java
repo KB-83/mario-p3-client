@@ -1,4 +1,4 @@
-package view.menu;
+package view.menu.shop;
 
 import util.Config;
 import util.Name;
@@ -8,11 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ShopDialog extends JDialog {
+public class ExchangeDialog extends JDialog {
 
-    private int diamonds = 10;
+    private int diamonds;
     private int coinsToBuy = 0;
-    private int diamondConversionRate = 1200;
+    private int diamondConversionRate;
 
     private JLabel diamondsLabel;
     private JLabel coinsToBuyLabel;
@@ -22,7 +22,7 @@ public class ShopDialog extends JDialog {
 
 
 
-    public ShopDialog() {
+    public ExchangeDialog() {
 //        super(frame,"shop",true);
         setLayout(new GridBagLayout());
         setUI();
@@ -103,6 +103,10 @@ public class ShopDialog extends JDialog {
         add(mainPanel);
 
         pack();
+    }
+    public void setInfo(int diamonds,int diamondConversionRate) {
+        this.diamonds = diamonds;
+        this.diamondConversionRate = diamondConversionRate;
     }
     private void updateLabels() {
         diamondsLabel.setText("Diamonds: " + diamonds);

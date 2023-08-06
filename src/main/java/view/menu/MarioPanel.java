@@ -30,6 +30,8 @@ public abstract class MarioPanel extends JPanel implements ActionListener {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
     }
+    public void updateClient(Client client) {
+    }
     public static JLabel createStyledLabel(String text, boolean hasBackground) {
         JLabel label = new JLabel(text);
         label.setFont(FONT);

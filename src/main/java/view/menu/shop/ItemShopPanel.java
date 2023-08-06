@@ -1,10 +1,12 @@
-package view.menu;
+package view.menu.shop;
 
 import controller.LocalController;
 import controller.listener.ItemShopPanelListener;
-import model.request.BuyRequest;
 import util.Config;
 import util.Name;
+import view.menu.MainMenu;
+import view.menu.MarioPanel;
+import view.menu.PanelsManagerCard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +18,8 @@ public class ItemShopPanel extends MarioPanel {
     private PanelsManagerCard panelsManagerCard;
     private JLabel coinsLabel;
     private JLabel diamondsLabel;
-    private int userCoins = 100; // Initial user coins
-    private int diamondCount = 10; // Initial diamond count
+    private int coins;
+    private int diamonds;
     private JPanel topPanel;
     private JPanel centerPanel;
     private JScrollPane scrollPane;
@@ -25,12 +27,14 @@ public class ItemShopPanel extends MarioPanel {
     private JButton buyButton;
     private JButton backButton;
     private JButton buyCoinButton;
-    private ShopDialog shopDialog;
+    private ExchangeDialog exchangeDialog;
+    private BuyDialog buyDialog;
 
     public ItemShopPanel(LocalController localController,PanelsManagerCard panelsManagerCard) {
         this.panelsManagerCard = panelsManagerCard;
         listener = new ItemShopPanelListener(localController,this);
-        shopDialog = new ShopDialog();
+        exchangeDialog = new ExchangeDialog();
+        buyDialog = new BuyDialog(localController);
         setUI();
 
     }
@@ -101,7 +105,7 @@ public class ItemShopPanel extends MarioPanel {
         coinIcon.setImage(Config.IMAGES.get(Name.COIN));
 
 
-        coinsLabel = createStyledLabel("Coins: " + userCoins,false);
+        coinsLabel = createStyledLabel("Coins: " + coins,false);
         coinsLabel.setIcon(coinIcon);
 
 
@@ -109,7 +113,7 @@ public class ItemShopPanel extends MarioPanel {
 
         ImageIcon diamondIcon = new ImageIcon(); // Replace with your diamond image
         diamondIcon.setImage(Config.IMAGES.get(Name.DIAMOND));
-        diamondsLabel = createStyledLabel("Diamonds: " + diamondCount,false);
+        diamondsLabel = createStyledLabel("Diamonds: " + diamonds,false);
         diamondsLabel.setIcon(diamondIcon);
         topPanel.add(diamondsLabel);
 
@@ -128,20 +132,27 @@ public class ItemShopPanel extends MarioPanel {
         add(scrollPane, BorderLayout.CENTER);
 
         // Add items to the center panel
-        //todo
-        String[] itemNames = {Name.HAMMER, Name.HEALTH_POTION, "invisibilityPotion", "invisibilityPotion", "speedBomb"};
+        //todo as a setting comes from server
+        String[] itemNames = {Name.HAMMER, Name.HEALTH_POTION, "InvisibilityPotion", "InvisibilityPotion", "SpeedBomb"};
         for (int i = 1; i <= itemNames.length; i++) {
             centerPanel.add(createItemPanel(itemNames[i - 1], itemNames[i - 1]));
         }
 
         // Create south panel for buy button
         southPanel = new JPanel();
-        buyButton = createStyledButton("BuyRequest");
+        buyButton = createStyledButton("Buy");
         buyButton.addActionListener(this);
 
 
         southPanel.add(buyButton);
         add(southPanel, BorderLayout.SOUTH);
+    }
+
+    public void setInfo(int coins,int diamonds) {
+        this.coins = coins;
+        this.diamonds = diamonds;
+        coinsLabel.setText("Coins: " + coins);
+        diamondsLabel.setText("Diamonds: " + diamonds);
     }
 
     @Override
@@ -153,11 +164,11 @@ public class ItemShopPanel extends MarioPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == backButton) {
-            panelsManagerCard.getCardLayout().show(panelsManagerCard,MainMenu.class.getSimpleName());
+            panelsManagerCard.getCardLayout().show(panelsManagerCard, MainMenu.class.getSimpleName());
             panelsManagerCard.getMainMenu().requestFocus();
         }
         if (e.getSource() == buyCoinButton) {
-            shopDialog.setVisible(true);
+            exchangeDialog.setVisible(true);
 //            listener.buyCoin();
         }
         if (e.getSource() == buyButton) {
@@ -167,5 +178,9 @@ public class ItemShopPanel extends MarioPanel {
 
     public JPanel getCenterPanel() {
         return centerPanel;
+    }
+
+    public BuyDialog getBuyDialog() {
+        return buyDialog;
     }
 }

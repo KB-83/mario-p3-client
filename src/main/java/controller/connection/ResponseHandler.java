@@ -1,6 +1,7 @@
 package controller.connection;
 
 import controller.LocalController;
+import model.Client;
 import model.response.*;
 import util.Saver;
 import model.dto.ClientDTO;
@@ -75,9 +76,8 @@ public class ResponseHandler implements ResponseVisitor{
     @Override
     public void visit(BuyResponse response) {
         if (response.getBill() != null) {
-            System.out.println(response.getBill().getCoinCost());
-            System.out.println(response.getBill().getDiamondCost());
-            System.out.println(response.getBill().getBuyRequest().getHammer());
+            panelsManagerCard.getItemShopPanel().getBuyDialog().updateTable(response.getBill().getBuyRequest(), response);
+            panelsManagerCard.getItemShopPanel().getBuyDialog().setVisible(true);
         }
         else {
             System.out.println(response.getMessage());
@@ -100,7 +100,7 @@ public class ResponseHandler implements ResponseVisitor{
 
     @Override
     public void visit(DialogResponse response) {
-        CustomDialogPanel.showDialog(localController.getFrame().getPanelsManagerCard().getRoomManager(),response.getMassage(),CustomDialogPanel.DEFAULT_ICON);
+        CustomDialogPanel.showDialog(panelsManagerCard,response.getMassage(),CustomDialogPanel.DEFAULT_ICON);
     }
 
     @Override
@@ -119,5 +119,14 @@ public class ResponseHandler implements ResponseVisitor{
     public void visit(RoomChatUpdateResponse response) {
         panelsManagerCard.getRoomManager().getManagerPanel().updateChat(response.getChat());
         panelsManagerCard.getRoomManager().getSimpleRoomPanel().updateChat(response.getChat());
+    }
+
+    @Override
+    public void visit(ClientUpdateResponse response) {
+        Client client = localController.getController().getClient();
+        client.setCoin(response.getCoin());
+        client.setDiamond(response.getDiamond());
+        //test
+        panelsManagerCard.getItemShopPanel().setInfo(response.getCoin(),response.getDiamond());
     }
 }

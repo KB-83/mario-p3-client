@@ -2,15 +2,15 @@ package util;
 
 public class Name {
     private Name(){}
-    public static final String DAMAGE_BOMB = "damageBomb";
-    public static final String HEALTH_POTION = "healthPotion";
-    public static final String SPEED_BOMB = "speedBomb";
-    public static final String INVISIBILITY_POTION = "invisibilityPotion";
-    public static final String SPEED_POTION = "speedPotion";
-    public static final String HAMMER = "hammer";
-    public static final String SWARD = "sward";
-    public static final String DIAMOND = "diamond";
-    public static final String COIN = "coin";
+    public static final String DAMAGE_BOMB = "DamageBomb";
+    public static final String HEALTH_POTION = "HealthPotion";
+    public static final String SPEED_BOMB = "SpeedBomb";
+    public static final String INVISIBILITY_POTION = "InvisibilityPotion";
+    public static final String SPEED_POTION = "SpeedPotion";
+    public static final String HAMMER = "Hammer";
+    public static final String SWARD = "Sward";
+    public static final String DIAMOND = "Diamond";
+    public static final String COIN = "Coin";
 }
 
 

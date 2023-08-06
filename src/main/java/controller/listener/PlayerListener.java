@@ -60,7 +60,7 @@ public class PlayerListener implements KeyListener {
                             playerRequestHandler.jumpRequest();
                         }
                         else {
-                            request.setType("jump");
+                            request.setType(RequestType.JUMP.getType());
                             controller.sendRequest(request);
                         }
                     }
@@ -69,7 +69,7 @@ public class PlayerListener implements KeyListener {
                             playerRequestHandler.SeatRequest();
                         }
                         else {
-                            request.setType("seat");
+                            request.setType(RequestType.SEAT.getType());
                             controller.sendRequest(request);
                         }
                     }
@@ -181,7 +181,7 @@ public class PlayerListener implements KeyListener {
         else if (e.getKeyCode() == KeyEvent.VK_B) {
             if (isOfflineMode) {}
             else {
-                request.setType(RequestType.SPEED_POTION.getType());
+                request.setType(RequestType.SPEED_BOMB.getType());
                 controller.sendRequest(request);
             }
         }

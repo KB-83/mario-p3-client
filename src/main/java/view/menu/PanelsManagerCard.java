@@ -4,8 +4,8 @@ import controller.LocalController;
 import view.Frame;
 import view.ProfilePanel;
 import view.menu.bag.BagPanel;
-import view.menu.bag.EditBagPanel;
 import view.menu.room.RoomManagerCard;
+import view.menu.shop.ItemShopPanel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -45,7 +45,7 @@ public class PanelsManagerCard extends MarioPanel {
         chatPanel = new ChatPanel(localController,this);
         mainChatPanel = new MainChatPanel(localController,this);
         itemShopPanel = new ItemShopPanel(localController,this);
-        mainMenu = new MainMenu(this);
+        mainMenu = new MainMenu(localController,this);
         cardLayout = new CardLayout();
         chooseOnlineGamePanel = new ChooseOnlineGamePanel(localController,this);
         onlineGamePanel = new OnlineGamePanel(localController,this);

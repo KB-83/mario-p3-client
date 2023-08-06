@@ -2,7 +2,8 @@ package controller.listener;
 
 import controller.LocalController;
 import model.request.BuyRequest;
-import view.menu.ItemShopPanel;
+import util.Name;
+import view.menu.shop.ItemShopPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,25 +30,25 @@ public class ItemShopPanelListener {
                 String itemName = nameLabel.getText();
                 int itemQuantity = Integer.parseInt(quantityLabel.getText());
                 switch (itemName) {
-                    case "hammer" :
+                    case Name.HAMMER :
                         buyRequest.setHammer(buyRequest.getHammer() + itemQuantity);
                         break;
-                    case "sward" :
+                    case Name.SWARD :
                         buyRequest.setSward(buyRequest.getSward() + itemQuantity);
                         break;
-                    case "healthpotion" :
+                    case Name.HEALTH_POTION :
                         buyRequest.setHealthPotion(buyRequest.getHealthPotion() + itemQuantity);
                         break;
-                    case "invisiblepotion" :
+                    case Name.INVISIBILITY_POTION :
                         buyRequest.setInVisibilityPotion(buyRequest.getInVisibilityPotion() + itemQuantity);
                         break;
-                    case "speedpotion" :
+                    case Name.SPEED_POTION :
                         buyRequest.setSpeedPotion(buyRequest.getSpeedPotion() + itemQuantity);
                         break;
-                    case "damagebomb" :
+                    case Name.DAMAGE_BOMB :
                         buyRequest.setDamageBomb(buyRequest.getDamageBomb() + itemQuantity);
                         break;
-                    case "speedbomb" :
+                    case Name.SPEED_BOMB :
                         buyRequest.setSpeedBomb(buyRequest.getSpeedBomb() + itemQuantity);
                         break;
                 }

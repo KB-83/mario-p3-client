@@ -1,6 +1,9 @@
 package view.menu;
 
+import controller.LocalController;
+import model.Client;
 import view.menu.bag.BagPanel;
+import view.menu.shop.ItemShopPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainMenu extends MarioPanel {
+    private LocalController localController;
 
     private PanelsManagerCard cardPanel;
     //    User user;
@@ -20,8 +24,8 @@ public class MainMenu extends MarioPanel {
     private JButton logout = createStyledButton("logout");
     private JButton onlineGame = createStyledButton("play online");
 
-    MainMenu(PanelsManagerCard cardPanel) {
-
+    MainMenu(LocalController localController, PanelsManagerCard cardPanel) {
+        this.localController = localController;
         this.cardPanel = cardPanel;
         setUI();
     }
@@ -109,7 +113,9 @@ public class MainMenu extends MarioPanel {
         shop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardPanel.getCardLayout().show(cardPanel,ItemShopPanel.class.getSimpleName());
+                Client client = localController.getController().getClient();
+                cardPanel.getItemShopPanel().setInfo(client.getCoin(), client.getDiamond());
+                cardPanel.getCardLayout().show(cardPanel, ItemShopPanel.class.getSimpleName());
                 cardPanel.getItemShopPanel().requestFocus();
             }
         });
