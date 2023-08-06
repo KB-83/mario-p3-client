@@ -7,9 +7,7 @@ import util.Saver;
 import model.dto.ClientDTO;
 import util.Loop;
 import view.Notification.CustomDialogPanel;
-import view.menu.GamePanel;
-import view.menu.MainMenu;
-import view.menu.PanelsManagerCard;
+import view.menu.*;
 import view.menu.room.RoomManagerCard;
 import view.menu.room.SimpleRoomPanel;
 
@@ -128,5 +126,12 @@ public class ResponseHandler implements ResponseVisitor{
         client.setDiamond(response.getDiamond());
         //test
         panelsManagerCard.getItemShopPanel().setInfo(response.getCoin(),response.getDiamond());
+    }
+
+    @Override
+    public void visit(ScoreBoardResponse response) {
+        panelsManagerCard.getScoreBardPanel().setScoreBoard(response.getScoreBoardDTO());
+        panelsManagerCard.getCardLayout().show(panelsManagerCard, ScoreBardPanel.class.getSimpleName());
+        panelsManagerCard.getStartPanel().requestFocus();
     }
 }

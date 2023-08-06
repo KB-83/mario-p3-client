@@ -2,6 +2,7 @@ package view.menu;
 
 import controller.LocalController;
 import model.Client;
+import model.request.ScoreBoardRequest;
 import view.menu.bag.BagPanel;
 import view.menu.shop.ItemShopPanel;
 
@@ -19,6 +20,7 @@ public class MainMenu extends MarioPanel {
     private JButton continueLastGames = createStyledButton("continue last games");
     private JButton shop = createStyledButton("shop");
     private JButton chatRoom = createStyledButton("chat room");
+    private JButton scoreBoard = createStyledButton("score board");
     private JButton tryAgain = createStyledButton("try to connect again");
     private JButton profile = createStyledButton("profile");
     private JButton logout = createStyledButton("logout");
@@ -66,6 +68,9 @@ public class MainMenu extends MarioPanel {
 
         constraints.gridy++;
         add(shop, constraints);
+
+        constraints.gridy++;
+        add(scoreBoard, constraints);
 
         constraints.gridy++;
         add(chatRoom, constraints);
@@ -135,6 +140,13 @@ public class MainMenu extends MarioPanel {
 //                card.gM.lM.userManager.currentUser = null;
                 cardPanel.getCardLayout().show(cardPanel,StartPanel.class.getSimpleName());
                 cardPanel.getStartPanel().requestFocus();
+            }
+        });
+        scoreBoard.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                localController.sendRequest(new ScoreBoardRequest());
+
             }
         });
 //    }

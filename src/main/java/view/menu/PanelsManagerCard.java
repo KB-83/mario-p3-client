@@ -27,6 +27,7 @@ public class PanelsManagerCard extends MarioPanel {
     private NewGamePanel newGamePanel;
     private LastGamesPanel lastGamesPanel;
     private ChooseOnlineGamePanel chooseOnlineGamePanel;
+    private ScoreBardPanel scoreBardPanel;
     //layout
     private CardLayout cardLayout;
     private BagPanel bagPanel;
@@ -52,6 +53,7 @@ public class PanelsManagerCard extends MarioPanel {
         roomManagerCard = new RoomManagerCard(frame,localController);
         newGamePanel = new NewGamePanel(localController,this);
         lastGamesPanel = new LastGamesPanel(localController,this);
+        scoreBardPanel = new ScoreBardPanel(localController);
         bagPanel = new BagPanel();
 
         setUI();
@@ -81,6 +83,7 @@ public class PanelsManagerCard extends MarioPanel {
 //        add(lastGamesPanel,"lastGamesPanel");
         add(mainMenu,mainMenu.getClass().getSimpleName());
         add(lastGamesPanel,lastGamesPanel.getClass().getSimpleName());
+        add(scoreBardPanel,scoreBardPanel.getClass().getSimpleName());
 //        add(profilePanel,"profilePanel");
 //        add(shopPanel,"shopPanel");
 
@@ -203,6 +206,14 @@ public class PanelsManagerCard extends MarioPanel {
 
     public BagPanel getBagPanel() {
         return bagPanel;
+    }
+
+    public RoomManagerCard getRoomManagerCard() {
+        return roomManagerCard;
+    }
+
+    public ScoreBardPanel getScoreBardPanel() {
+        return scoreBardPanel;
     }
 
     @Override
