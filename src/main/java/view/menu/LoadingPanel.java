@@ -96,7 +96,7 @@ public class LoadingPanel extends MarioPanel{
     @Override
     public void setUI() {
 //        setOpaque(false);
-        setBackground(MarioPanel.LIGTH_COLOR);
+        setBackground(MarioPanel.LIGHT_COLOR);
         setLayout(new BorderLayout());
         connectingLabel = createStyledLabel("Connecting...",false);
         connectingLabel.setHorizontalAlignment(SwingConstants.CENTER);

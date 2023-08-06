@@ -34,7 +34,7 @@ public class CustomDialogPanel extends JDialog {
 
         // Add components to the dialog panel
         JPanel contentPanel = new JPanel(new BorderLayout());
-        contentPanel.setBackground(MarioPanel.LIGTH_COLOR);
+        contentPanel.setBackground(MarioPanel.LIGHT_COLOR);
         contentPanel.add(messageLabel, BorderLayout.CENTER);
         add(contentPanel, BorderLayout.CENTER);
         add(okButton, BorderLayout.SOUTH);

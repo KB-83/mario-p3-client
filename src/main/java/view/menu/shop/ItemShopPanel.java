@@ -83,7 +83,7 @@ public class ItemShopPanel extends MarioPanel {
         buttonPanel.add(plusButton);
 
         itemPanel.add(buttonPanel, BorderLayout.SOUTH);
-        itemPanel.setBackground(MarioPanel.LIGTH_COLOR);
+        itemPanel.setBackground(MarioPanel.LIGHT_COLOR);
         return itemPanel;
     }
 
@@ -95,7 +95,7 @@ public class ItemShopPanel extends MarioPanel {
 
         // Create top panel for currencies
         topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        topPanel.setBackground(MarioPanel.LIGTH_COLOR);
+        topPanel.setBackground(MarioPanel.LIGHT_COLOR);
 
         backButton = createButton(" < ");
         backButton.addActionListener(this);

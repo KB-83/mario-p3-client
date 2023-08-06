@@ -6,21 +6,29 @@ import model.Client;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionListener;
+
 
 public abstract class MarioPanel extends JPanel implements ActionListener {
     public static final Dimension MAX_SIZE = new Dimension(200,40);
     public static final Font FONT = new Font("Arial", Font.BOLD, 16);
     public static final Color DARK_COLOR = new Color(255, 100, 100);
-    public static final Color LIGTH_COLOR = new Color(255, 150, 150);
+    public static final Color LIGHT_COLOR = new Color(255, 150, 150);
     public static final Color MENU_COLOR = new Color(255,230,230 );
     public static final Color WHITE_COLOR = new Color(240, 240, 240);
-    public static final Color BOARDER_COLOR = new Color(210, 0, 0);
+    public static final Color BORDER_COLOR = new Color(210, 0, 0);
+
+    private static final Color DARK_COLOR_B = new Color(100, 100, 255); // Blue
+    private static final Color LIGHT_COLOR_B = new Color(150, 150, 255); // Light blue
+    private static final Color MENU_COLOR_B = new Color(230, 230, 255); // Lighter blue
+    private static final Color WHITE_COLOR_B = new Color(240, 240, 255); // Off-white
+    private static final Color BORDER_COLOR_B = new Color(0, 0, 210); // Dark blue
+
     public static final Border BLACK_BORDER = BorderFactory.createLineBorder(Color.BLACK, 2, true);
     public static final Border RED_BORDER = BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(BOARDER_COLOR, 2, true),
+            BorderFactory.createLineBorder(BORDER_COLOR, 2, true),
             BorderFactory.createEmptyBorder(5, 15, 5, 15)
     );
 
@@ -59,6 +67,24 @@ public abstract class MarioPanel extends JPanel implements ActionListener {
         button.setForeground(Color.BLACK);
         return button;
     }
+    public static JTable createTable() {
+        JTable table = new JTable();
+        table.getTableHeader().setFont(FONT); // Set font for column names
+        table.setFont(FONT); // Set font for cell values
+        table.setFocusable(false);
+        table.setEnabled(false); // Disable editing for the entire table
+        table.setShowGrid(true); // Show lines between rows
+        table.setBackground(LIGHT_COLOR_B);
+        table.setForeground(Color.BLACK);
+        table.setBorder(BLACK_BORDER);
+
+        // Center align the cell content
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        table.setDefaultRenderer(Object.class, centerRenderer);
+
+        return table;
+    }
     public static JButton createStyledButton(String text) {
         JButton button = new JButton(text);
         button.setFont(FONT);
@@ -68,7 +94,7 @@ public abstract class MarioPanel extends JPanel implements ActionListener {
         button.setBorder(RED_BORDER);
 
         button.setOpaque(true);
-        button.setBackground(LIGTH_COLOR);
+        button.setBackground(LIGHT_COLOR);
         button.setForeground(Color.WHITE);
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -80,7 +106,7 @@ public abstract class MarioPanel extends JPanel implements ActionListener {
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
 //                button.setBackground(new Color(155, 190, 255));
-                button.setBackground(LIGTH_COLOR);
+                button.setBackground(LIGHT_COLOR);
             }
         });
 
@@ -96,7 +122,7 @@ public abstract class MarioPanel extends JPanel implements ActionListener {
         comboBox.setBorder(RED_BORDER);
 
         comboBox.setOpaque(true);
-        comboBox.setBackground(LIGTH_COLOR);
+        comboBox.setBackground(LIGHT_COLOR);
         comboBox.setForeground(Color.RED);
 
         return comboBox;
@@ -108,7 +134,7 @@ public abstract class MarioPanel extends JPanel implements ActionListener {
         textField.setForeground(Color.RED);
         if (hasBackground) {
             textField.setOpaque(true);
-            textField.setBackground(LIGTH_COLOR);
+            textField.setBackground(LIGHT_COLOR);
         }
         return textField;
     }

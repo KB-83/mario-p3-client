@@ -27,7 +27,7 @@ public class StartPanel extends MarioPanel {
     }
     @Override
     public void setUI() {
-        setBackground(MarioPanel.LIGTH_COLOR);
+        setBackground(MarioPanel.LIGHT_COLOR);
         setFocusable(true);
         setLayout(null);
         setTextAreas();

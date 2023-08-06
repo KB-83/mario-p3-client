@@ -57,13 +57,13 @@ public class NewGamePanel extends MarioPanel {
     @Override
     public void setUI() {
         setLayout(new BorderLayout());
-        setBackground(MarioPanel.LIGTH_COLOR);
+        setBackground(MarioPanel.LIGHT_COLOR);
         setButtons();
 
         // Create a panel for the back button and add it to the top (north)
         JPanel backButtonPanel = new JPanel();
         backButtonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        backButtonPanel.setBackground(MarioPanel.LIGTH_COLOR);
+        backButtonPanel.setBackground(MarioPanel.LIGHT_COLOR);
 
         back.addActionListener(new ActionListener() {
             @Override
@@ -102,7 +102,7 @@ public class NewGamePanel extends MarioPanel {
 
         // Add buttons to the bottom (south)
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setBackground(MarioPanel.LIGTH_COLOR);
+        buttonPanel.setBackground(MarioPanel.LIGHT_COLOR);
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.add(delete);
         buttonPanel.add(ok);
