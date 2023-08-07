@@ -14,6 +14,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ManagerOfRoomPanel extends MarioPanel {
+    private String token;
     private LocalController localController;
     private DefaultListModel<String> userListModel;
     private JPanel userListPanel;
@@ -43,17 +44,11 @@ public class ManagerOfRoomPanel extends MarioPanel {
         setLayout(new BorderLayout());
 
         // Custom JPanel for the background
-        JPanel backgroundPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                Image image = Config.IMAGES.get("back");
-                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-            }
-        };
+        JPanel backgroundPanel = new JPanel();
+        backgroundPanel.setBackground(BORDER_COLOR_B);
         backgroundPanel.setLayout(new BorderLayout());
 
-        backButton = new JButton("<-");
+        backButton = createButton(" < ");
         backButton.addActionListener(this);
 
         // Wrap the back button in a panel
@@ -188,18 +183,27 @@ public class ManagerOfRoomPanel extends MarioPanel {
             addCoOwnerOK.setVisible(false);
         }
         else if (e.getSource() == startGameButton) {
-            localController.sendRequest(new RoomGameStartRequest(true));
+            localController.sendRequest(new RoomGameStartRequest(true,token));
         }
     }
     public void setRoom(RoomDTO room) {
-//        chatPanel = mainChatPanel;//without back button
-//        mainPanel.add(chatPanel, createGridBagConstraints(1, 0, 1, 1, GridBagConstraints.BOTH, 0.5, 1.0));
+        if (chatPanel == null) {
+            chatPanel = new MainChatPanel(localController, localController.getFrame().getPanelsManagerCard());
+            chatPanel.getBackButton().setVisible(false);
+        }
+        token = room.getRoomChat().getOpponentUsername();
+        chatPanel.setChat(room.getRoomChat().getMassages(),token);
+        mainPanel.add(chatPanel, createGridBagConstraints(1, 0, 1, 1, GridBagConstraints.BOTH, 0.5, 1.0));
+        JList<String> userList = new JList<>(room.getRoomUsers().toArray(new String[0]));
+        userList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        userScrollPane.setViewportView(userList);
+        repaint();
+        revalidate();
 
 
     }
     public void updateChat(Chat chat) {
-//
-//        chatPanel.setChat(chat.getMassages(),chat.getOpponentUsername());
+        chatPanel.setChat(chat.getMassages(),chat.getOpponentUsername());
     }
 
 

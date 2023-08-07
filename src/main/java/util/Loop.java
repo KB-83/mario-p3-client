@@ -70,7 +70,7 @@ public class Loop implements Runnable{
         while (running){
             // sorry but it is the best i can design fo pause mechanisem :(
             //todo : improve pause mechanisem
-            while (isPaused){}
+            while (isPaused && running){}
             currentTime = System.nanoTime();
             delta = (currentTime - lastTime) / drawInterval ;
             if(delta >= 1){

@@ -27,7 +27,7 @@ public class StartPanel extends MarioPanel {
     }
     @Override
     public void setUI() {
-        setBackground(MarioPanel.LIGHT_COLOR);
+        setBackground(MENU_COLOR_B);
         setFocusable(true);
         setLayout(null);
         setTextAreas();
@@ -68,8 +68,8 @@ public class StartPanel extends MarioPanel {
         signIn.setBounds(3 * 48 - 50 , 460,100,40);
         login.setBounds(3 * 48 - 50, 520,100,40);
         exit.setBounds(3 * 48 - 50,580,100,40);
-        getSignIn.setBounds(3 * 48 + 280 + 30, 460,70,40);
-        getLogin.setBounds(3 * 48 + 280 + 30, 520,70,40);
+        getSignIn.setBounds(3 * 48 + 280 + 40, 460,70,40);
+        getLogin.setBounds(3 * 48 + 280 + 40, 520,70,40);
         tryAgain.setBounds(1000,20,200,40);
 //
         signIn.setFocusable(false);

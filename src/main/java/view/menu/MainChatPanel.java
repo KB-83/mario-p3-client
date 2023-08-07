@@ -62,7 +62,10 @@ public class MainChatPanel extends MarioPanel implements ActionListener {
 
         if (!isOwner) {
             messagePanel.add(senderLabel, BorderLayout.LINE_START);
-            messageLabel.setBackground(Color.green);
+            messageLabel.setBackground(LIGHT_COLOR_B);
+        }
+        else {
+            messageLabel.setBackground(LIGHT_COLOR);
         }
 
         JPanel labelWrapperPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -97,10 +100,10 @@ public class MainChatPanel extends MarioPanel implements ActionListener {
 
         // Top Panel
         topPanel = new JPanel(new BorderLayout());
-        topPanel.setBackground(Color.darkGray);
+        topPanel.setBackground(DARK_COLOR_B);
         topPanel.setPreferredSize(new Dimension(600, 60));
 
-        backButton = new JButton("<-");
+        backButton = createButton(" < ");
         backButton.addActionListener(this);
         backButton.setPreferredSize(new Dimension(50, 30));
         topPanel.add(backButton, BorderLayout.WEST);
@@ -147,7 +150,7 @@ public class MainChatPanel extends MarioPanel implements ActionListener {
         });
         inputPanel.add(messageField);
 
-        sendButton = new JButton("Send");
+        sendButton = createButton(" > ");
         sendButton.addActionListener(this);
         sendButton.setPreferredSize(new Dimension(100, 40));
         sendButton.addActionListener(e -> {
@@ -168,7 +171,7 @@ public class MainChatPanel extends MarioPanel implements ActionListener {
         BufferedImage image = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = image.createGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setColor(Color.GREEN);
+        g2d.setColor(LIGHT_COLOR_B);
         g2d.fillOval(0, 0, size - 1, size - 1);
         g2d.setColor(Color.WHITE);
         Font font = new Font("Arial", Font.BOLD, size / 2);
@@ -197,6 +200,10 @@ public class MainChatPanel extends MarioPanel implements ActionListener {
             localController.sendRequest(new SendPMRequest(new Massage(username,titleLabel.getText(), messageField.getText())));
             messageField.setText("");
         }
+    }
+
+    public JButton getBackButton() {
+        return backButton;
     }
 }
 

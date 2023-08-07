@@ -29,6 +29,8 @@ public class ItemShopPanel extends MarioPanel {
     private JButton buyCoinButton;
     private ExchangeDialog exchangeDialog;
     private BuyDialog buyDialog;
+    private final String[] ITEMS_NAME = { Name.HAMMER, Name.SWARD,Name.DAMAGE_BOMB, Name.SPEED_BOMB,
+            Name.HEALTH_POTION, Name.INVISIBILITY_POTION, Name.SPEED_POTION};
 
     public ItemShopPanel(LocalController localController,PanelsManagerCard panelsManagerCard) {
         this.panelsManagerCard = panelsManagerCard;
@@ -41,19 +43,19 @@ public class ItemShopPanel extends MarioPanel {
 
     private JPanel createItemPanel(String address, String itemName) {
         JPanel itemPanel = new JPanel(new BorderLayout());
-        ImageIcon itemImage = new ImageIcon(Config.IMAGES.get(address));
+        ImageIcon itemImage = new ImageIcon(Config.IMAGES.get(address+"ORG"));
         JLabel itemLabel = new JLabel(itemImage);
         itemPanel.add(itemLabel, BorderLayout.CENTER);
 
         JPanel namePanel = new JPanel();
-        namePanel.setBackground(MarioPanel.MENU_COLOR);
+        namePanel.setBackground(MENU_COLOR_B);
         JLabel nameLabel = new JLabel(itemName);
         namePanel.add(nameLabel);
 
         itemPanel.add(namePanel, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setBackground(MarioPanel.MENU_COLOR);
+        buttonPanel.setBackground(MENU_COLOR_B);
         JButton minusButton = createButton(" - ");
         JLabel quantityLabel = createStyledLabel("0",false);
         JButton plusButton = createButton(" + ");
@@ -83,7 +85,7 @@ public class ItemShopPanel extends MarioPanel {
         buttonPanel.add(plusButton);
 
         itemPanel.add(buttonPanel, BorderLayout.SOUTH);
-        itemPanel.setBackground(MarioPanel.LIGHT_COLOR);
+        itemPanel.setBackground(LIGHT_COLOR_B);
         return itemPanel;
     }
 
@@ -95,7 +97,7 @@ public class ItemShopPanel extends MarioPanel {
 
         // Create top panel for currencies
         topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        topPanel.setBackground(MarioPanel.LIGHT_COLOR);
+        topPanel.setBackground(DARK_COLOR_B);
 
         backButton = createButton(" < ");
         backButton.addActionListener(this);
@@ -112,7 +114,7 @@ public class ItemShopPanel extends MarioPanel {
         topPanel.add(coinsLabel);
 
         ImageIcon diamondIcon = new ImageIcon(); // Replace with your diamond image
-        diamondIcon.setImage(Config.IMAGES.get(Name.DIAMOND));
+        diamondIcon.setImage(Config.IMAGES.get(Name.DIAMOND+"ORG"));
         diamondsLabel = createStyledLabel("Diamonds: " + diamonds,false);
         diamondsLabel.setIcon(diamondIcon);
         topPanel.add(diamondsLabel);
@@ -126,25 +128,24 @@ public class ItemShopPanel extends MarioPanel {
         add(topPanel, BorderLayout.NORTH);
 
         // Create center panel for item display
-        centerPanel = new JPanel(new GridLayout(0, 3, 10, 10));
-        centerPanel.setBackground(MarioPanel.DARK_COLOR);
+        centerPanel = new JPanel(new GridLayout(2, 3, 10, 10));
+        centerPanel.setBackground(MENU_COLOR_B);
         scrollPane = new JScrollPane(centerPanel);
         add(scrollPane, BorderLayout.CENTER);
 
         // Add items to the center panel
-        //todo as a setting comes from server
-        String[] itemNames = {Name.HAMMER, Name.HEALTH_POTION, "InvisibilityPotion", "InvisibilityPotion", "SpeedBomb"};
-        for (int i = 1; i <= itemNames.length; i++) {
-            centerPanel.add(createItemPanel(itemNames[i - 1], itemNames[i - 1]));
+        for (int i = 1; i <= ITEMS_NAME.length; i++) {
+            centerPanel.add(createItemPanel(ITEMS_NAME[i - 1], ITEMS_NAME[i - 1]));
         }
 
         // Create south panel for buy button
         southPanel = new JPanel();
-        buyButton = createStyledButton("Buy");
+        buyButton = createButton("Buy");
         buyButton.addActionListener(this);
 
 
         southPanel.add(buyButton);
+        southPanel.setBackground(DARK_COLOR_B);
         add(southPanel, BorderLayout.SOUTH);
     }
 
@@ -157,8 +158,8 @@ public class ItemShopPanel extends MarioPanel {
 
     @Override
     public void setOffline(boolean offline) {
-//        buyButton.setEnabled(!offline);
-//        buyCoinButton.setEnabled(!offline);
+        buyButton.setEnabled(!offline);
+        buyCoinButton.setEnabled(!offline);
     }
 
     @Override

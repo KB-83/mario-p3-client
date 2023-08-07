@@ -1,16 +1,16 @@
 package model.request;
 
 public class BuyRequest extends Request{
-    private int hammer,speedPotion,healthPotion, inVisibilityPotion,speedBomb,damageBomb,sward;
+    private int hammer,speedPotion,healthPotion, invisibilityPotion,speedBomb,damageBomb,sward;
 
     public BuyRequest() {
     }
 
-    public BuyRequest(int hammer, int speedPotion, int healthPotion, int inVisibilityPotion, int speedBomb, int damageBomb, int sward) {
+    public BuyRequest(int hammer, int speedPotion, int healthPotion, int invisibilityPotion, int speedBomb, int damageBomb, int sward) {
         this.hammer = hammer;
         this.speedPotion = speedPotion;
         this.healthPotion = healthPotion;
-        this.inVisibilityPotion = inVisibilityPotion;
+        this.invisibilityPotion = invisibilityPotion;
         this.speedBomb = speedBomb;
         this.damageBomb = damageBomb;
         this.sward = sward;
@@ -40,12 +40,12 @@ public class BuyRequest extends Request{
         this.healthPotion = healthPotion;
     }
 
-    public int getInVisibilityPotion() {
-        return inVisibilityPotion;
+    public int getInvisibilityPotion() {
+        return invisibilityPotion;
     }
 
-    public void setInVisibilityPotion(int inVisibilityPotion) {
-        this.inVisibilityPotion = inVisibilityPotion;
+    public void setInvisibilityPotion(int invisibilityPotion) {
+        this.invisibilityPotion = invisibilityPotion;
     }
 
     public int getSpeedBomb() {

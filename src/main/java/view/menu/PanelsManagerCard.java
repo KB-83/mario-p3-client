@@ -2,7 +2,6 @@ package view.menu;
 
 import controller.LocalController;
 import view.Frame;
-import view.ProfilePanel;
 import view.menu.bag.BagPanel;
 import view.menu.room.RoomManagerCard;
 import view.menu.shop.ItemShopPanel;
@@ -22,12 +21,10 @@ public class PanelsManagerCard extends MarioPanel {
     private OnlineGamePanel onlineGamePanel;
     private MainMenu mainMenu;
     private RoomManagerCard roomManagerCard;
-    private ProfilePanel profilePanel;
-    private ShopPanel shopPanel;
     private NewGamePanel newGamePanel;
     private LastGamesPanel lastGamesPanel;
     private ChooseOnlineGamePanel chooseOnlineGamePanel;
-    private ScoreBardPanel scoreBardPanel;
+    private ScoreBoardPanel scoreBoardPanel;
     //layout
     private CardLayout cardLayout;
     private BagPanel bagPanel;
@@ -53,7 +50,7 @@ public class PanelsManagerCard extends MarioPanel {
         roomManagerCard = new RoomManagerCard(frame,localController);
         newGamePanel = new NewGamePanel(localController,this);
         lastGamesPanel = new LastGamesPanel(localController,this);
-        scoreBardPanel = new ScoreBardPanel(localController);
+        scoreBoardPanel = new ScoreBoardPanel(localController);
         bagPanel = new BagPanel(localController,this);
 
         setUI();
@@ -83,7 +80,7 @@ public class PanelsManagerCard extends MarioPanel {
 //        add(lastGamesPanel,"lastGamesPanel");
         add(mainMenu,mainMenu.getClass().getSimpleName());
         add(lastGamesPanel,lastGamesPanel.getClass().getSimpleName());
-        add(scoreBardPanel,scoreBardPanel.getClass().getSimpleName());
+        add(scoreBoardPanel, scoreBoardPanel.getClass().getSimpleName());
 //        add(profilePanel,"profilePanel");
 //        add(shopPanel,"shopPanel");
 
@@ -142,14 +139,6 @@ public class PanelsManagerCard extends MarioPanel {
 
     public MainMenu getMainMenu() {
         return mainMenu;
-    }
-
-    public ProfilePanel getProfilePanel() {
-        return profilePanel;
-    }
-
-    public ShopPanel getShopPanel() {
-        return shopPanel;
     }
 
     public NewGamePanel getNewGamePanel() {
@@ -212,8 +201,8 @@ public class PanelsManagerCard extends MarioPanel {
         return roomManagerCard;
     }
 
-    public ScoreBardPanel getScoreBardPanel() {
-        return scoreBardPanel;
+    public ScoreBoardPanel getScoreBardPanel() {
+        return scoreBoardPanel;
     }
 
     @Override

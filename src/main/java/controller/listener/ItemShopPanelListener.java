@@ -40,7 +40,7 @@ public class ItemShopPanelListener {
                         buyRequest.setHealthPotion(buyRequest.getHealthPotion() + itemQuantity);
                         break;
                     case Name.INVISIBILITY_POTION :
-                        buyRequest.setInVisibilityPotion(buyRequest.getInVisibilityPotion() + itemQuantity);
+                        buyRequest.setInvisibilityPotion(buyRequest.getInvisibilityPotion() + itemQuantity);
                         break;
                     case Name.SPEED_POTION :
                         buyRequest.setSpeedPotion(buyRequest.getSpeedPotion() + itemQuantity);

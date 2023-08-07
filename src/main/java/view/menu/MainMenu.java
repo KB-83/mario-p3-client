@@ -22,7 +22,6 @@ public class MainMenu extends MarioPanel {
     private JButton chatRoom = createStyledButton("chat room");
     private JButton scoreBoard = createStyledButton("score board");
     private JButton tryAgain = createStyledButton("try to connect again");
-    private JButton profile = createStyledButton("profile");
     private JButton logout = createStyledButton("logout");
     private JButton onlineGame = createStyledButton("play online");
 
@@ -43,7 +42,6 @@ public class MainMenu extends MarioPanel {
 
     @Override
     public void setOffline(boolean offline) {
-        profile.setEnabled(!offline);
         onlineGame.setEnabled(!offline);
         tryAgain.setVisible(offline);
     }
@@ -76,9 +74,6 @@ public class MainMenu extends MarioPanel {
         add(chatRoom, constraints);
 
         constraints.gridy++;
-        add(profile, constraints);
-
-        constraints.gridy++;
         add(logout, constraints);
 
         // Place "try again" button to the right of the other buttons
@@ -106,13 +101,6 @@ public class MainMenu extends MarioPanel {
             public void actionPerformed(ActionEvent e) {
                 cardPanel.getCardLayout().show(cardPanel,LastGamesPanel.class.getSimpleName());
                 cardPanel.getLastGamesPanel().requestFocus();
-            }
-        });
-        profile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                cardPanel.getCardLayout().show(cardPanel, BagPanel.class.getSimpleName());
-//                cardPanel.getBagPanel().requestFocus();
             }
         });
         shop.addActionListener(new ActionListener() {
@@ -147,6 +135,12 @@ public class MainMenu extends MarioPanel {
             public void actionPerformed(ActionEvent e) {
                 localController.sendRequest(new ScoreBoardRequest());
 
+            }
+        });
+        tryAgain.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                localController.tryToConnectAgain();
             }
         });
 //    }

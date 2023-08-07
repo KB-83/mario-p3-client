@@ -35,17 +35,11 @@ public class SimpleRoomPanel extends MarioPanel {
         setLayout(new BorderLayout());
 
         // Custom JPanel for the background
-        JPanel backgroundPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                Image image = Config.IMAGES.get("back");
-                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-            }
-        };
+        JPanel backgroundPanel = new JPanel();
+        backgroundPanel.setBackground(BORDER_COLOR_B);
         backgroundPanel.setLayout(new BorderLayout());
 
-        backButton = new JButton("<-");
+        backButton = createButton(" < ");
         backButton.addActionListener(this);
 
         // Wrap the back button in a panel
@@ -142,8 +136,8 @@ public class SimpleRoomPanel extends MarioPanel {
 //        chatPanel = mainChatPanel;//without back button
         if (chatPanel == null) {
             //test
-            System.out.println("newing chat");
             chatPanel = new MainChatPanel(localController, localController.getFrame().getPanelsManagerCard());
+            chatPanel.getBackButton().setVisible(false);
         }
         chatPanel.setChat(room.getRoomChat().getMassages(),room.getRoomChat().getOpponentUsername());
         mainPanel.add(chatPanel, createGridBagConstraints(1, 0, 1, 1, GridBagConstraints.BOTH, 0.5, 1.0));

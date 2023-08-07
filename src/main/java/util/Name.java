@@ -10,7 +10,7 @@ public class Name {
     public static final String HAMMER = "Hammer";
     public static final String SWARD = "Sward";
     public static final String DIAMOND = "Diamond";
-    public static final String COIN = "Coin";
+    public static final String COIN = "coin";
 }
 
 

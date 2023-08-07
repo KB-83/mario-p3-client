@@ -20,11 +20,11 @@ public abstract class MarioPanel extends JPanel implements ActionListener {
     public static final Color WHITE_COLOR = new Color(240, 240, 240);
     public static final Color BORDER_COLOR = new Color(210, 0, 0);
 
-    private static final Color DARK_COLOR_B = new Color(100, 100, 255); // Blue
-    private static final Color LIGHT_COLOR_B = new Color(150, 150, 255); // Light blue
-    private static final Color MENU_COLOR_B = new Color(230, 230, 255); // Lighter blue
-    private static final Color WHITE_COLOR_B = new Color(240, 240, 255); // Off-white
-    private static final Color BORDER_COLOR_B = new Color(0, 0, 210); // Dark blue
+    public static final Color DARK_COLOR_B = new Color(100, 100, 255); // Blue
+    public static final Color LIGHT_COLOR_B = new Color(150, 150, 255); // Light blue
+    public static final Color MENU_COLOR_B = new Color(230, 230, 255); // Lighter blue
+    public static final Color WHITE_COLOR_B = new Color(240, 240, 255); // Off-white
+    public static final Color BORDER_COLOR_B = new Color(0, 0, 210); // Dark blue
 
     public static final Border BLACK_BORDER = BorderFactory.createLineBorder(Color.BLACK, 2, true);
     public static final Border RED_BORDER = BorderFactory.createCompoundBorder(

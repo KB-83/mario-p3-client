@@ -8,6 +8,7 @@ import model.dto.ClientDTO;
 import util.Loop;
 import view.Notification.CustomDialogPanel;
 import view.menu.*;
+import view.menu.room.ManagerOfRoomPanel;
 import view.menu.room.RoomManagerCard;
 import view.menu.room.SimpleRoomPanel;
 
@@ -80,7 +81,6 @@ public class ResponseHandler implements ResponseVisitor{
         else {
             System.out.println(response.getMessage());
         }
-        System.out.println("buy response returned");
     }
 
     @Override
@@ -92,8 +92,9 @@ public class ResponseHandler implements ResponseVisitor{
 
     @Override
     public void visit(RoomResponse response) {
-        System.out.println(response.getRoomToken());
         CustomDialogPanel.showDialog(localController.getFrame().getPanelsManagerCard().getRoomManager(),"token: "+response.getRoomToken() ,CustomDialogPanel.DEFAULT_ICON);
+        panelsManagerCard.getRoomManager().getCardLayout().show(panelsManagerCard.getRoomManager(), ManagerOfRoomPanel.class.getSimpleName());
+        panelsManagerCard.getCardLayout().show(panelsManagerCard, RoomManagerCard.class.getSimpleName());
     }
 
     @Override
@@ -111,12 +112,14 @@ public class ResponseHandler implements ResponseVisitor{
     public void visit(RoomUpdateResponse response) {
         panelsManagerCard.getRoomManager().getManagerPanel().setRoom(response.getRoomDTO());
         panelsManagerCard.getRoomManager().getSimpleRoomPanel().setRoom(response.getRoomDTO());
+        panelsManagerCard.getRoomManager().getManagerPanel().setRoom(response.getRoomDTO());
     }
 
     @Override
     public void visit(RoomChatUpdateResponse response) {
         panelsManagerCard.getRoomManager().getManagerPanel().updateChat(response.getChat());
         panelsManagerCard.getRoomManager().getSimpleRoomPanel().updateChat(response.getChat());
+        panelsManagerCard.getRoomManager().getManagerPanel().updateChat(response.getChat());
     }
 
     @Override
@@ -131,7 +134,13 @@ public class ResponseHandler implements ResponseVisitor{
     @Override
     public void visit(ScoreBoardResponse response) {
         panelsManagerCard.getScoreBardPanel().setScoreBoard(response.getScoreBoardDTO());
-        panelsManagerCard.getCardLayout().show(panelsManagerCard, ScoreBardPanel.class.getSimpleName());
+        panelsManagerCard.getCardLayout().show(panelsManagerCard, ScoreBoardPanel.class.getSimpleName());
         panelsManagerCard.getStartPanel().requestFocus();
+    }
+
+    @Override
+    public void visit(RoomCloseResponse response) {
+        CustomDialogPanel.showDialog(panelsManagerCard,response.getMassage(),CustomDialogPanel.DEFAULT_ICON);
+        panelsManagerCard.getCardLayout().show(panelsManagerCard, MainMenu.class.getSimpleName());
     }
 }

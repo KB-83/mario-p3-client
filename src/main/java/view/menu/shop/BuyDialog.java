@@ -4,7 +4,6 @@ import controller.LocalController;
 import model.request.BuyRequest;
 import model.request.FinalBuyRequest;
 import model.response.BuyResponse;
-import util.Config;
 import util.Name;
 import view.menu.MarioPanel;
 
@@ -60,7 +59,7 @@ public class BuyDialog extends JDialog implements ActionListener{
         model.addRow(new Object[]{Name.HAMMER,buyRequest.getHammer()});
         model.addRow(new Object[]{Name.SWARD,buyRequest.getSward()});
         model.addRow(new Object[]{Name.HEALTH_POTION,buyRequest.getHealthPotion()});
-        model.addRow(new Object[]{Name.INVISIBILITY_POTION,buyRequest.getInVisibilityPotion()});
+        model.addRow(new Object[]{Name.INVISIBILITY_POTION,buyRequest.getInvisibilityPotion()});
         model.addRow(new Object[]{Name.SPEED_POTION,buyRequest.getSpeedPotion()});
 
         model.addRow(new Object[]{Name.COIN,buyResponse.getBill().getCoinCost()});

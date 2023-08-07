@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class ScoreBardPanel extends MarioPanel{
+public class ScoreBoardPanel extends MarioPanel{
     LocalController localController;
     private JTable table;
     private JButton backButton;
@@ -22,7 +22,7 @@ public class ScoreBardPanel extends MarioPanel{
     private JTextField maxScoreField;
     private String[] columnNames = {"Place", "Name","Score","Grade"};
 
-    public ScoreBardPanel(LocalController localController) {
+    public ScoreBoardPanel(LocalController localController) {
         this.localController = localController;
         setUI();
     }
@@ -41,6 +41,7 @@ public class ScoreBardPanel extends MarioPanel{
 
         // Create the back button
         backButton = createButton(" < ");
+        backButton.addActionListener(this);
 
         // Create the search button
         searchScoreButton = createButton("Search");
@@ -102,8 +103,8 @@ public class ScoreBardPanel extends MarioPanel{
                 return;
             }
             int min = Integer.parseInt(minScoreString);
-            int maxe = Integer.parseInt(maxScoreString);
-            localController.sendRequest(new SearchTableRequest(maxe,min,null,false));
+            int max = Integer.parseInt(maxScoreString);
+            localController.sendRequest(new SearchTableRequest(max,min,null,false));
         }
         else if(e.getSource() == searchUsernameButton) {
             String username = usernameField.getText();
@@ -112,6 +113,10 @@ public class ScoreBardPanel extends MarioPanel{
                 return;
             }
             localController.sendRequest(new SearchTableRequest(0,0,username,true));
+        }
+        else if (e.getSource() == backButton) {
+            PanelsManagerCard panelsManagerCard = localController.getFrame().getPanelsManagerCard();
+            panelsManagerCard.getCardLayout().show(panelsManagerCard,MainMenu.class.getSimpleName());
         }
 
     }
