@@ -19,7 +19,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = SignInRequest.class),
         @JsonSubTypes.Type(value = FinalBuyRequest.class),
         @JsonSubTypes.Type(value = ScoreBoardRequest.class),
+        @JsonSubTypes.Type(value = SearchChatRequest.class),
         @JsonSubTypes.Type(value = SearchTableRequest.class),
+        @JsonSubTypes.Type(value = NewPrivateChatRequest.class),
         @JsonSubTypes.Type(value = CreateRoomRequest.class)
 })
 

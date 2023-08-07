@@ -2,5 +2,12 @@
   "savedGamesURLs" : null,
   "username" : "kajal",
   "password" : "111",
-  "chats" : [ ]
+  "chats" : [ {
+    "opponentUsername" : "username",
+    "massages" : [ {
+      "senderUsername" : "username",
+      "receiverUsername" : "kajal",
+      "context" : "hi"
+    } ]
+  } ]
 }

@@ -17,5 +17,7 @@ public interface ResponseVisitor {
     void visit(ClientUpdateResponse response);
     void visit(ScoreBoardResponse response);
     void visit(RoomCloseResponse response);
+    void visit(ChatSearchResponse response);
+
 
 }

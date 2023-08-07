@@ -15,6 +15,9 @@ public class ChatPanel extends MarioPanel {
     private PanelsManagerCard panelsManagerCard;
     private List<JButton> chats;
     private JPanel contentPanel;
+    private JButton searchButton;
+    private JLabel usernameLabel;
+    private JTextField usernameField;
     private JScrollPane scrollPane;
     private JButton backButton;
     private JPanel buttonPanel;
@@ -36,9 +39,19 @@ public class ChatPanel extends MarioPanel {
         backButton.setFocusable(false);
         backButton.addActionListener(this);
 
+        searchButton = createButton("Search");
+        searchButton.addActionListener(this);
+
+        usernameLabel = createStyledLabel("username",false);
+
+        usernameField = createStyledTextField("",false,30);
+
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         buttonPanel.setAlignmentY(0);
         buttonPanel.add(backButton);
+        buttonPanel.add(usernameLabel);
+        buttonPanel.add(usernameField);
+        buttonPanel.add(searchButton);
         buttonPanel.setBackground(Color.lightGray);
 
 // Add the buttonPanel to the north region of the BorderLayout
@@ -65,6 +78,7 @@ public class ChatPanel extends MarioPanel {
 
 
     private void setChats(List<String> names, JPanel contentPanel) {
+        contentPanel.removeAll();
         chats = new ArrayList<>();
         for (int i = 0; i < names.size(); i++) {
             JButton jButton = new JButton(names.get(i));
@@ -79,6 +93,8 @@ public class ChatPanel extends MarioPanel {
 
         // Set the preferred size of the contentPanel based on the total height
         contentPanel.setPreferredSize(new Dimension(contentPanel.getPreferredSize().width, totalHeight));
+        revalidate();
+        repaint();
     }
 
     @Override
@@ -86,6 +102,9 @@ public class ChatPanel extends MarioPanel {
         if(e.getSource() == backButton) {
             panelsManagerCard.getCardLayout().show(panelsManagerCard,MainMenu.class.getSimpleName());
             panelsManagerCard.getMainMenu().requestFocus();
+        }
+        else if (e.getSource() == searchButton) {
+            listener.searchUser(usernameField.getText());
         }
         else {
             listener.openPrivateChat(((JButton)e.getSource()).getText());

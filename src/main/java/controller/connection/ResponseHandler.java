@@ -127,6 +127,9 @@ public class ResponseHandler implements ResponseVisitor{
         Client client = localController.getController().getClient();
         client.setCoin(response.getCoin());
         client.setDiamond(response.getDiamond());
+        if (response.getChats() != null) {
+            client.setChats(response.getChats());
+        }
         //test
         panelsManagerCard.getItemShopPanel().setInfo(response.getCoin(),response.getDiamond());
     }
@@ -142,5 +145,10 @@ public class ResponseHandler implements ResponseVisitor{
     public void visit(RoomCloseResponse response) {
         CustomDialogPanel.showDialog(panelsManagerCard,response.getMassage(),CustomDialogPanel.DEFAULT_ICON);
         panelsManagerCard.getCardLayout().show(panelsManagerCard, MainMenu.class.getSimpleName());
+    }
+
+    @Override
+    public void visit(ChatSearchResponse response) {
+        panelsManagerCard.getChatPanel().setChats(response.getUsernames());
     }
 }

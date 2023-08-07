@@ -2,5 +2,44 @@
   "savedGamesURLs" : null,
   "username" : "username",
   "password" : "pass",
-  "chats" : [ ]
+  "chats" : [ {
+    "opponentUsername" : "kajal",
+    "massages" : [ {
+      "senderUsername" : "username",
+      "receiverUsername" : "kajal",
+      "context" : "hi"
+    }, {
+      "senderUsername" : "kajal",
+      "receiverUsername" : "username",
+      "context" : "hi back"
+    }, {
+      "senderUsername" : "username",
+      "receiverUsername" : "kajal",
+      "context" : "oops"
+    }, {
+      "senderUsername" : "kajal",
+      "receiverUsername" : "username",
+      "context" : "oops back"
+    }, {
+      "senderUsername" : "username",
+      "receiverUsername" : "kajal",
+      "context" : "its getting 17"
+    }, {
+      "senderUsername" : "kajal",
+      "receiverUsername" : "username",
+      "context" : "yep"
+    }, {
+      "senderUsername" : "username",
+      "receiverUsername" : "kajal",
+      "context" : "by"
+    }, {
+      "senderUsername" : "kajal",
+      "receiverUsername" : "username",
+      "context" : "buy"
+    }, {
+      "senderUsername" : "kajal",
+      "receiverUsername" : "username",
+      "context" : "k"
+    } ]
+  } ]
 }
