@@ -28,7 +28,7 @@ public class GameOverDialog extends JDialog {
 
 
         diamondsLabel = new JLabel();
-        ImageIcon diamondIcon = new ImageIcon(Config.IMAGES.get(Name.DIAMOND));
+        ImageIcon diamondIcon = new ImageIcon(Config.IMAGES.get(Name.DIAMOND+"ORG"));
         diamondsLabel.setIcon(diamondIcon);
 
         scoreLabel = new JLabel();

@@ -87,6 +87,7 @@ public class ResponseHandler implements ResponseVisitor{
     public void visit(GameOverResponse response) {
         // next line is very important
         localController.getClientCurrentGameLoop().kill();
+//        System.out.println("90: "+response.getMassage());
         panelsManagerCard.getGamePanel().getGameOverDialog().showDialog(response.getScore(),response.getDiamond(), response.getMassage());
     }
 

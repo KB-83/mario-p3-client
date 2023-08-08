@@ -68,6 +68,11 @@ public class Camera {
                 paintLife(g2);
                 paintPowerItem(g2);
                 break;
+            case "GG" :
+                paintPlayers(g2);
+                paintPowerItem(g2);
+                paintTime(g2);
+                break;
         }
     }
     private boolean checkBound (int x , int y) {

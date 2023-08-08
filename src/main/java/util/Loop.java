@@ -42,6 +42,7 @@ public class Loop implements Runnable{
     }
 
     public void start(){
+//        System.out.println("45");
         if(gameThread == null) {
             gameThread = new Thread(this);
         }
@@ -50,6 +51,7 @@ public class Loop implements Runnable{
     }
 
     public void kill() {
+//        System.out.println("53");
         gameThread.stop();
         running = false;
         gameThread = null;
