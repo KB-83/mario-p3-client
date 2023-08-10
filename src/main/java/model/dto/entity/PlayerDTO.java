@@ -12,6 +12,7 @@ public class PlayerDTO {
     private int remainingLifePercent;
     private int teamColor;
     private PowerItemDTO powerItemDTO;
+    private boolean isInvisible;
     private String[] selectedBag;
 
     public PlayerDTO() {
@@ -110,5 +111,13 @@ public class PlayerDTO {
 
     public void setSelectedBag(String[] selectedBag) {
         this.selectedBag = selectedBag;
+    }
+
+    public boolean isInvisible() {
+        return isInvisible;
+    }
+
+    public void setInvisible(boolean invisible) {
+        isInvisible = invisible;
     }
 }

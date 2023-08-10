@@ -72,6 +72,7 @@ public class Camera {
                 paintPlayers(g2);
                 paintPowerItem(g2);
                 paintTime(g2);
+                paintPowerItem(g2);
                 break;
         }
     }
@@ -188,12 +189,11 @@ public class Camera {
     private void paintPlayers(Graphics2D g2) {
         Image image;
         for (PlayerDTO playerDTO1 : gameStateDTO.getPlayerDTOS()) {
-
             if (playerDTO1.getImage() != null) {
                 image = Config.IMAGES.get(playerDTO1.getImage());
             }
             else {
-                image = Config.IMAGES.get("MarioRight1");
+                image = Config.IMAGES.get("marioRight1");
             }
 
             g2.setFont(cartoonFont);
@@ -207,7 +207,7 @@ public class Camera {
                 g2.drawString(playerDTO1.getName(),playerDTO1.getCameraX(), playerDTO1.getCameraY() - 50);
 
             }
-            else if (playerDTO1.getName() != null){
+            else if (playerDTO1.getName() != null && !playerDTO1.isInvisible()){
                 g2.drawImage(image, playerDTO1.getX() - minasXLength,
                         playerDTO1.getY()
                         , 48, playerDTO1.getHeight(),
@@ -229,7 +229,7 @@ public class Camera {
     }
     private void paintLife(Graphics2D g2) {
         for (PlayerDTO playerDTO1 : gameStateDTO.getPlayerDTOS()) {
-            if (playerDTO1.getRemainingLifePercent() >= 0) {
+            if (playerDTO1.getRemainingLifePercent() >= 0 && (playerDTO1.getName().equals(playerDTO.getName()) || !playerDTO1.isInvisible())) {
                 g2.setColor(Color.WHITE);
                 g2.drawRoundRect(playerDTO1.getX(), playerDTO1.getY() - 30, 100, 15, 5, 5);
                 g2.setColor(new Color(playerDTO1.getTeamColor()));
